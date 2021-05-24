@@ -10,7 +10,16 @@ const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
+  },  {
+    path: 'duenio-supervisor',
+    loadChildren: () => import('./altas/duenio-supervisor/duenio-supervisor.module').then( m => m.DuenioSupervisorPageModule)
   },
+  {
+    path: 'mesa',
+    loadChildren: () => import('./altas/mesa/mesa.module').then( m => m.MesaPageModule)
+  }
+
+
 ];
 
 @NgModule({

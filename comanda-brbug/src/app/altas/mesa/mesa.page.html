@@ -1,0 +1,42 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="ion-text-center">
+    <ion-title>Alta de mesa</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form id="form" [formGroup]="altaForm" (ngSubmit)="alta(altaForm)">
+    <ion-item class="ion-margin-bottom">
+      <ion-input formControlName="numeroMesa" type="number" placeholder="Numero de mesa"></ion-input>
+      <ion-icon name="tablet-landscape-sharp" slot="start"></ion-icon>
+    </ion-item>
+
+    <ion-item class="ion-margin-bottom">
+      <ion-input formControlName="comensales" type="number" placeholder="Cantidad de comensales"></ion-input>
+      <ion-icon name="people-sharp" slot="start"></ion-icon>
+    </ion-item>
+
+    <ion-item class="ion-margin-bottom">
+      <ion-label>Mesa para VIP</ion-label>
+      <ion-checkbox color="danger" formControlName="vip"></ion-checkbox>
+    </ion-item>
+
+    <ion-item class="ion-margin-bottom">
+      <ion-label>Mesa para discapacitados</ion-label>
+      <ion-checkbox color="danger" formControlName="discapacitados"></ion-checkbox>
+    </ion-item>
+
+    <ion-item class="ion-margin-bottom">
+      <ion-button (click)="tomarFoto()" class="buttonCamera" expand="full">Tomar foto</ion-button>
+      <ion-icon name="camera-sharp" slot="start"></ion-icon>
+    </ion-item>
+
+    <ion-item class="ion-margin-bottom">
+      <ion-button (click)="escanearQr()" class="buttonCamera" expand="full">Escanear QR</ion-button>
+      <ion-icon name="qr-code-sharp" slot="start"></ion-icon>
+    </ion-item>
+
+    <ion-button class="buttonAlta" expand="block" type="submit" shape="round">Dar de alta</ion-button>
+
+  </form>
+</ion-content>
