@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { DuenioSupervisorPageRoutingModule } from './duenio-supervisor-routing.module';
+import { AltaClientePageRoutingModule } from './alta-cliente-routing.module';
 
-import { DuenioSupervisorPage } from './duenio-supervisor.page';
+import { AltaClientePage } from './alta-cliente.page';
 
 @NgModule({
   imports: [
@@ -14,8 +14,8 @@ import { DuenioSupervisorPage } from './duenio-supervisor.page';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    DuenioSupervisorPageRoutingModule
+    AltaClientePageRoutingModule
   ],
-  declarations: [DuenioSupervisorPage]
+  declarations: [AltaClientePage]
 })
-export class DuenioSupervisorPageModule {}
+export class AltaClientePageModule {}

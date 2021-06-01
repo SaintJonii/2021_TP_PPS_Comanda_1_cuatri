@@ -8,16 +8,19 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
-  },  {
-    path: 'duenio-supervisor',
-    loadChildren: () => import('./altas/duenio-supervisor/duenio-supervisor.module').then( m => m.DuenioSupervisorPageModule)
   },
   {
-    path: 'mesa',
-    loadChildren: () => import('./altas/mesa/mesa.module').then( m => m.MesaPageModule)
-  }
+    path: 'alta-cliente',
+    loadChildren: () => import('./altas/alta-cliente/alta-cliente.module').then( m => m.AltaClientePageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+
+
 
 
 ];

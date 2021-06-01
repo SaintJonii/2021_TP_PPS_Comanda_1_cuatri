@@ -1,5 +1,7 @@
 {
   "name": "comanda-brbug",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }
