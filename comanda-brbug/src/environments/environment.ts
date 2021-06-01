@@ -3,7 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: "AIzaSyDdRPKLr1bvm5RFkH7uUfoQRjkSl0Bsr7U",
+    authDomain: "la-estancia-76490.firebaseapp.com",
+    databaseURL: "https://la-estancia-76490-default-rtdb.firebaseio.com",
+    projectId: "la-estancia-76490",
+    storageBucket: "la-estancia-76490.appspot.com",
+    messagingSenderId: "355095454257",
+    appId: "1:355095454257:web:cc6fbcd9816e8892306b10",
+    measurementId: "G-EBPF60WK3N"
+  }
 };
 
 /*
