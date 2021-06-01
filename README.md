@@ -12,7 +12,7 @@ NOMBRE DEL RESTAURANTE: BODEGON LA ESTANCIA
 
 PRIMER SPRINT
 *********************************************************************************
-![image](https://user-images.githubusercontent.com/17880462/120365296-a31f4680-c2e4-11eb-8e17-c8f525904991.png)
+![image](https://user-images.githubusercontent.com/17880462/120370530-11ff9e00-c2eb-11eb-8a9e-2367b4337a6a.png)
 
 
 
