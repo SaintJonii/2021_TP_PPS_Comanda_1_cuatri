@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup ,FormControl, Validators } from '@angular/forms';
-import { ToastController } from '@ionic/angular';
-//import { Vibration } from '@ionic-native/vibration/ngx';
-//import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { ToastController, AlertController } from '@ionic/angular';
+import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
+
+const scanner = BarcodeScanner;
 
 @Component({
   selector: 'app-alta-cliente',
@@ -24,11 +25,27 @@ export class AltaClientePage implements OnInit {
     passwordConfirm: new FormControl('',  [Validators.required,Validators.minLength(3)])
   });
 
-  constructor(public toastController: ToastController, 
-    /*private vibration: Vibration*/
-    /*private barcodeScanner: BarcodeScanner*/) { }
+  dni : string = null;
+  apellido : string = null;
+  nombre : string = null;
+
+  //Variables para el uso del escaner
+  result : string = null;
+  scanActive : boolean = false;
+  resultDNI : string [] = [];
+
+
+
+  constructor(public toastController: ToastController, private alertController : AlertController) { }
 
   ngOnInit() {
+  }
+
+  ngAfterViewInit(){
+    scanner.prepare();
+  }
+  ngOnDestroy(){
+    scanner.stopScan();
   }
 
   tomarFoto(){
@@ -36,12 +53,7 @@ export class AltaClientePage implements OnInit {
   }
 
   escanearQr(){
-    console.log("Escanear Qr");
-    /*this.barcodeScanner.scan().then(barcodeData => {
-      console.log('Barcode data', barcodeData);
-    }).catch(err => {
-         console.log('Error', err);
-    });*/
+    this.startScanner();
   }
 
   alta(altaform){
@@ -51,12 +63,10 @@ export class AltaClientePage implements OnInit {
       }
       else{
         this.mostrarToast("Error: Confirme correctamente la contraseña.");
-        //this.vibration.vibrate(2000);
       }
     }
     else{
       this.mostrarToast("Error: Campos inválidos.");
-      //this.vibration.vibrate(2000);
     }
   }
 
@@ -66,6 +76,63 @@ export class AltaClientePage implements OnInit {
       duration: 3000
     });
     toast.present();
+  }
+
+  //FUNCIONES DEL ESCANER
+  stopScanner(){
+    scanner.stopScan();
+    this.scanActive = false;
+  }
+
+  async startScanner()
+  {
+    
+    const allowed = this.checkPermission();
+    if(allowed){
+      this.scanActive = true;
+      const result = await scanner.startScan();
+      console.log(result);
+      if(result.hasContent){
+        this.result = result.content;
+        this.scanActive = false;
+        
+        this.resultDNI=this.result.split("@",6)
+        this.dni=this.resultDNI[1].trim(); // DNI
+        this.apellido=this.resultDNI[4]; // APELLIDO
+        this.nombre=this.resultDNI[5]; // NOMBRE
+
+      }
+    }
+  
+  }
+
+  async checkPermission(){
+    return new Promise(async (resolve, reject) => {
+      const status = await scanner.checkPermission({ force: true });
+      if (status.granted){
+        resolve(true);
+      } else if (status.denied) {
+        const alert = await this.alertController.create({
+          header: 'No permission',
+          message: 'Please allow camera access in your settings',
+          buttons: [{
+            text: 'No',
+            role: 'cancel'
+          },
+          {
+            text: 'Open Settings',
+            handler: () => {
+              scanner.openAppSettings();
+              resolve(false);
+            }
+          }]
+        });
+
+        await alert.present();
+      } else {
+        resolve(false);
+      }
+    });
   }
 
 }

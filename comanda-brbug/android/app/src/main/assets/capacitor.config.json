@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "comanda-brbug",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
