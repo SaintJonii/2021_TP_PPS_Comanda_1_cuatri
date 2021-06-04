@@ -1,0 +1,22 @@
+ion-content{
+    --background: white;
+  }
+  
+  @keyframes scale-up-center{0%{transform:scale(.5)}100%{transform:scale(1)}}
+  .container{
+    margin-top: 50%;
+
+    animation:scale-up-center 2.6s cubic-bezier(.39,.575,.565,1.000) both;
+    img{
+        height: 250px;
+    }
+    h1{
+        font-size: 50px;
+        font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        margin-top: 40%;
+    }
+    h2{
+        font-size: 50px;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+  }
