@@ -1,0 +1,13 @@
+{
+    "appId": "io.ionic.starter",
+    "appName": "comanda-brbug",
+    "bundledWebRuntime": false,
+    "linuxAndroidStudioPath": "/snap/bin/android-studio",
+    "npmClient": "npm",
+    "webDir": "www",
+    "plugins": {
+      "SplashScreen": {
+        "launchShowDuration": 0
+      }
+    }
+}

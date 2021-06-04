@@ -1,0 +1,26 @@
+<ion-content>
+  <div class="divImage">
+    <ion-img src="assets/logo.jpeg"></ion-img>
+  </div>
+
+  <form id="form" [formGroup]="loginForm" (ngSubmit)="login(loginForm)">
+
+    <ion-item class="ion-margin-bottom ion-margin-top">
+      <ion-input formControlName="correo" placeholder="Correo"></ion-input>
+    </ion-item>
+
+    <ion-item class="ion-margin-bottom">
+      <ion-input formControlName="password" type="password" placeholder="Contraseña"></ion-input>
+    </ion-item>
+
+    <div class="divButton">
+      <ion-button  class="buttonAlta" type="submit" >Ingresar</ion-button>
+      <ion-button  class="buttonQr" (click)="registrarse()" type="button">Registrarse</ion-button>
+    </div>
+
+    <div class="alert show" *ngIf="alert">
+      <span class="msg">{{alertMsj}}</span>
+    </div>
+
+  </form>
+</ion-content>

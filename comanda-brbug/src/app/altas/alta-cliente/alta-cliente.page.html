@@ -1,0 +1,53 @@
+<ion-content [style.--background]="scanActive ? '#00000000' : '#fff'">
+
+  <div class="divImage" [hidden]="scanActive">
+    <ion-img src="assets/usuario.png"></ion-img>
+  </div>
+
+  <form [hidden]="scanActive" id="form" [formGroup]="altaForm" (ngSubmit)="alta(altaForm)">
+
+    <div class="divButton">
+      <ion-button  class="buttonQr" (click)="tomarFoto()" type="button" ><p>Tomar foto</p><ion-icon style="color: black;" name="camera-sharp"></ion-icon></ion-button>
+    </div>
+
+    <ion-item class="ion-margin-bottom ion-margin-top">
+      <ion-input formControlName="apellido" [value]='apellido' placeholder="Apellidos"></ion-input>
+    </ion-item>
+
+    <ion-item class="ion-margin-bottom">
+      <ion-input formControlName="nombre" [value]='nombre' placeholder="Nombres"></ion-input>
+    </ion-item>
+
+    <ion-item class="ion-margin-bottom">
+      <ion-input formControlName="dni" [value]='dni' placeholder="DNI" maxlength="8"></ion-input>
+    </ion-item>
+
+    <ion-item class="ion-margin-bottom">
+      <ion-input formControlName="correo" placeholder="Correo"></ion-input>
+    </ion-item>
+
+    <ion-item class="ion-margin-bottom">
+      <ion-input formControlName="password" type="password" placeholder="Contraseña"></ion-input>
+    </ion-item>
+
+    <ion-item class="ion-margin-bottom">
+      <ion-input formControlName="passwordConfirm" type="password" placeholder="Confirmar contraseña"></ion-input>
+    </ion-item>
+
+    <div class="divButton">
+      <ion-button  class="buttonAlta" type="submit" >Registrarse</ion-button>
+      <ion-button  class="buttonQr" (click)="escanearQr()" type="button" ><p>QR DOC</p><ion-icon style="color: black;" name="scan-sharp"></ion-icon></ion-button>
+    </div>
+
+  </form>
+
+
+  <!-- Aparece cuando el scanner esta activado-->
+  <div class="scan-box" [hidden]="!scanActive"></div>
+  <ion-row class="scanner-buttons" [hidden]="!scanActive">
+    <ion-col class="ion-no-padding">
+      <ion-button (click)="stopScanner()">Salir</ion-button>
+    </ion-col>
+  </ion-row>
+
+</ion-content>

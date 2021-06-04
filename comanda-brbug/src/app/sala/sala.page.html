@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Home
+      Sala
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,18 +9,18 @@
 <ion-content [fullscreen]="true" >
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Home</ion-title>
+      <ion-title size="large">Sala</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <div id="container" [hidden]="scanActive">
-    <strong>Bienvenido a La Estancia</strong>
-    <p>Escanee el QR para ingresar a la sala de espera</p>
+    <strong>Sala de Espere</strong>
+    <p>El mozo le asignará una mesa</p>
   </div>
 
   <div id="container-button" [hidden]="scanActive">
     <ion-button color="primary" shape="round" fill="outline" (click)="escanear()">
-      <ion-icon name="qr-code-sharp" slot="end"></ion-icon>Escanear QR
+      <ion-icon name="qr-code-sharp" slot="end"></ion-icon>Escanear QR Mesa
     </ion-button>
   </div>
 
