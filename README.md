@@ -12,11 +12,15 @@ NOMBRE DEL RESTAURANTE: BODEGON LA ESTANCIA
 
 PRIMER SPRINT
 *********************************************************************************
-![image](https://user-images.githubusercontent.com/17880462/120906762-9d9e6500-c632-11eb-8793-8b1c0d17f614.png)
+![image](https://user-images.githubusercontent.com/17880462/120907057-db03f200-c634-11eb-8f94-09b24e100799.png)
 
 SEGUNDO SPRINT
 *********************************************************************************
-![image](https://user-images.githubusercontent.com/17880462/120906788-d2122100-c632-11eb-97c3-34a2e5f1c63c.png)
+![image](https://user-images.githubusercontent.com/17880462/120907093-2f0ed680-c635-11eb-9d4c-52c5714c169c.png)
+
+DIAGRAMA DE PROCESOS Y ESTADOS
+
+![image](https://user-images.githubusercontent.com/17880462/120907139-8e6ce680-c635-11eb-8337-5fbd9604bf24.png)
 
 
 DIAGRAMA DE PANTALLAS PARA CLIENTE
