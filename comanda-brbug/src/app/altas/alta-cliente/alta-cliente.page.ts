@@ -3,7 +3,7 @@ import { FormGroup ,FormControl, Validators } from '@angular/forms';
 import { ToastController, AlertController } from '@ionic/angular';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 
-const scanner = BarcodeScanner;
+const scanner = BarcodeScanner; 
 
 @Component({
   selector: 'app-alta-cliente',

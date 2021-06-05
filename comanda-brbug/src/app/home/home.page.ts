@@ -76,7 +76,7 @@ export class HomePage implements OnInit {
         resolve(false);
       }
     });
-  }
+  } 
 
   async mostrarToast(mensaje) {
     const toast = await this.toastController.create({

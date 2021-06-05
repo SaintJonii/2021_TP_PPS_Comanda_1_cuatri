@@ -22,7 +22,7 @@ export class SalaPage implements OnInit {
       this.mostrarToast("El mozo asignará su mesa");
     }, 1000);
   }
-
+ 
   //FUNCIONES DEL ESCANER
   stopScanner() {
     scanner.stopScan();
@@ -80,6 +80,6 @@ export class SalaPage implements OnInit {
       duration: 3000
     });
     toast.present();
-  }
+  } 
 
 }
