@@ -1,6 +1,6 @@
 {
-    "appId": "io.ionic.starter",
-    "appName": "comanda-brbug",
+    "appId": "comanda.brbug",
+    "appName": "Comanda",
     "bundledWebRuntime": false,
     "linuxAndroidStudioPath": "/opt/android-studio/bin/studio.sh",
     "npmClient": "npm",
