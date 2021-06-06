@@ -1,6 +1,6 @@
-<<<<<<< HEAD
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { ConfirmacionComponent } from './components/confirmacion/confirmacion.component';
 
 const routes: Routes = [
   {
@@ -24,29 +24,14 @@ const routes: Routes = [
     path: 'sala',
     loadChildren: () => import('./sala/sala.module').then( m => m.SalaPageModule)
   },
-
-
-
-
-];
-=======
-import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-
-const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
-  {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
-  },  {
     path: 'splash',
     loadChildren: () => import('./splash/splash.module').then( m => m.SplashPageModule)
   },
->>>>>>> d711839... Splash agregado
+  {
+    path: 'confirmacion', component: ConfirmacionComponent
+  }
+
 
 ];
 
