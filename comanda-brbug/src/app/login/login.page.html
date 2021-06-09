@@ -6,12 +6,22 @@
   <form id="form" [formGroup]="loginForm" (ngSubmit)="login(loginForm)">
 
     <ion-item class="ion-margin-bottom ion-margin-top">
-      <ion-input formControlName="correo" placeholder="Correo"></ion-input>
+      <ion-input formControlName="correo" placeholder="Correo" name="correo"></ion-input>
     </ion-item>
+    <div *ngFor="let error of errorMessages.correo">
+      <ng-container *ngIf="correo.hasError(error.type) && (correo.dirty || correo.touched)">
+        <small class="error-message">{{error.message}}</small>
+      </ng-container>
+    </div><br>
 
     <ion-item class="ion-margin-bottom">
       <ion-input formControlName="password" type="password" placeholder="Contraseña"></ion-input>
     </ion-item>
+    <div *ngFor="let error of errorMessages.password">
+      <ng-container *ngIf="password.hasError(error.type) && (password.dirty || password.touched)">
+        <small class="error-message">{{error.message}}</small>
+      </ng-container>
+    </div><br>
 
     <div class="divButton">
       <ion-button  class="buttonAlta" type="submit" >Ingresar</ion-button>
