@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Pedido } from '../classes/pedido';
 import { Router } from '@angular/router'
+import { PedidoService } from './../services/pedido.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-confirmacion',
@@ -11,7 +13,7 @@ export class ConfirmacionPage implements OnInit {
 
   pedido: Array<Pedido>;
   total;
-  constructor(private routerNav: Router) {
+  constructor(private routerNav: Router, private pedidoSvice: PedidoService, public toastController: ToastController) {
     this.pedido = JSON.parse(localStorage.getItem("pedidoActual"));
     this.calcularTotal();
   }
@@ -41,6 +43,15 @@ export class ConfirmacionPage implements OnInit {
     this.total = sum;
   }
 
+  confirmar(){
+    this.pedidoSvice.confirmacionCliente(this.pedido, "mesa", "dni_cliente", this.total);
+    localStorage.removeItem("pedidoActual");
+    this.toastPedido();
+    setTimeout(() => {
+      this.routerNav.navigateByUrl('sala');
+    }, 3000);
+  }
+
   volver() {
     this.routerNav.navigateByUrl('menu');
   }
@@ -49,6 +60,14 @@ export class ConfirmacionPage implements OnInit {
     if(localStorage.getItem("pedidoActual") != null){
       this.pedido =  JSON.parse(localStorage.getItem("pedidoActual"));
     }
+  }
+
+  async toastPedido() {
+    const toast = await this.toastController.create({
+      message: 'Se envió el pedido al mozo',
+      duration: 2000
+    });
+    toast.present();
   }
 
 }
