@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from "@angular/fire/firestore";
-import { Productos } from '../classes/productos';
+import { Producto } from '../classes/producto';
 import { Imagen } from '../classes/imagen';
 import * as firebase from 'firebase';
+import { Pedido } from '../classes/pedido';
+import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-menu',
@@ -11,17 +14,29 @@ import * as firebase from 'firebase';
 })
 export class MenuPage implements OnInit {
 
-  public imagenes:Array<Imagen>;
-  productos:Array<Productos>;
-  constructor(private afs: AngularFirestore) { }
+  imagenes:Array<Imagen>;
+  productos:Array<Producto>;
+  mostrarSeleccion: Boolean;
+  productoSel:Producto;
+  pedido: Array<Pedido>;
+
+  constructor(private afs: AngularFirestore, private route : Router, public toastController: ToastController) {
+    this.mostrarSeleccion = false;
+   }
 
   ngOnInit() {
+    this.pedido = new Array<Pedido>();
+
+    if(localStorage.getItem("pedidoActual") != null){
+      this.pedido =  JSON.parse(localStorage.getItem("pedidoActual"));
+    }
+    
     this.getProducts();
   }
 
 
   getProducts() {
-    this.productos = new Array<Productos>();
+    this.productos = new Array<Producto>();
 
     const doc1 = this.afs.collection('productos',
       ref => ref.orderBy('id', 'asc')
@@ -29,8 +44,7 @@ export class MenuPage implements OnInit {
 
     doc1.valueChanges()
       .subscribe(data => {
-        this.productos = data as Array<Productos>;
-        console.log(this.productos);
+        this.productos = data as Array<Producto>;
         this.traerImagenes();
       });
   }
@@ -58,6 +72,38 @@ export class MenuPage implements OnInit {
       let imagen = this.imagenes.find(x => x.id == producto.id);
       producto.imagen = imagen != undefined ? imagen.referencia : "./../../assets/logo.jpeg";
     });
+  }
+
+  seleccion(p){
+    this.mostrarSeleccion = true;
+    this.productoSel = p;
+  } 
+
+  enviarPedido(e){
+    if(e!=null){
+    this.pedido.push(e);
+    this.toastPedido();
+    }
+    this.mostrarSeleccion = false;
+  }
+
+  confirmarPedido(){
+    localStorage.setItem("pedidoActual", JSON.stringify(this.pedido));
+    this.route.navigateByUrl('confirmacion');
+  }
+
+  async toastPedido() {
+    const toast = await this.toastController.create({
+      message: 'Se agregó al pedido',
+      duration: 2000
+    });
+    toast.present();
+  }
+
+  ionViewWillEnter(){
+    if(localStorage.getItem("pedidoActual") != null){
+      this.pedido =  JSON.parse(localStorage.getItem("pedidoActual"));
+    }
   }
 
 }

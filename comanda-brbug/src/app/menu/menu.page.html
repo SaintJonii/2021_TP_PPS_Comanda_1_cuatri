@@ -6,7 +6,7 @@
 
 <ion-content>
 
-  <ion-grid>
+  <ion-grid *ngIf="!mostrarSeleccion">
     <ion-row>
       <ion-col sizeLg="4" sizeMd="4" sizeXs="6" class="line" *ngFor="let p of productos">
 
@@ -24,7 +24,7 @@
           </ion-col>
 
           <ion-col size="12" class="ion-text-end">
-            <ion-button fill="outline" size="small">
+            <ion-button fill="outline" size="small" (click)="seleccion(p)">
               <ion-icon name="restaurant-outline"></ion-icon>
             </ion-button>
           </ion-col>
@@ -35,4 +35,11 @@
     </ion-row>
   </ion-grid>
 
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="pedido.length > 0 && !mostrarSeleccion">
+    <ion-fab-button color="primary" (click)="confirmarPedido()">
+      <ion-icon name="arrow-forward-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  
+  <app-seleccion [producto]="productoSel" (pedido)="enviarPedido($event)" *ngIf="mostrarSeleccion"></app-seleccion>
 </ion-content>
