@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Menu</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col sizeLg="4" sizeMd="4" sizeXs="6" class="line" *ngFor="let p of productos">
+
+        <ion-row>
+          <ion-col size="12">
+            <img [src]="p.imagen" width="200px" height="150px">
+          </ion-col>
+          <ion-col size="12">
+            <ion-label>
+              {{p.nombre}}
+            </ion-label>
+            <ion-label color="secondary">
+              <h5> $ {{p.precio}}</h5>
+            </ion-label>
+          </ion-col>
+
+          <ion-col size="12" class="ion-text-end">
+            <ion-button fill="outline" size="small">
+              <ion-icon name="restaurant-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+
+        </ion-row>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
