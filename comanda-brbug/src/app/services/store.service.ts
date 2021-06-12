@@ -8,7 +8,7 @@ export class StoreService {
 
   constructor(private db : AngularFirestore) { }
 
-  addUser(form, fotoUrl:string, tipo:string){
+  addUser(form, fotoUrl:string, tipo:string, aprobado:boolean){
 
     this.db.collection("users").doc(form.value.dni).set({
       nombre: form.value.nombre,
@@ -17,8 +17,27 @@ export class StoreService {
       email: form.value.email,
       password: form.value.password,
       foto: fotoUrl,
-      tipo: tipo       //El tipo puede ser: cliente, dueño, supervisor, mozo, etc.
+      tipo: tipo,       //El tipo puede ser: cliente, dueño, supervisor, mozo, etc.
+      aprobado: aprobado, // El estado del cliente empezara con false. Si es otro tipo de usuario empezara con true.
+      rechazado: false
     });
     
   }
+
+  obtenerUsuariosSinAprobar(){
+    return this.db.collection('users' , ref => ref.where('aprobado','==',false).where('rechazado','==',false)).valueChanges();
+  }
+
+  aceptarCliente(dni : string){
+    this.db.collection("users").doc(dni).update({
+      aprobado: true 
+    });
+  }
+
+  rechazarCliente(dni : string){
+    this.db.collection("users").doc(dni).update({
+      rechazado: true 
+    });
+  }
+
 }

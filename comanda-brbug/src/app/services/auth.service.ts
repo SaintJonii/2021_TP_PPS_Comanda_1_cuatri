@@ -16,6 +16,7 @@ export class AuthService {
 
 
   loginUser(email: string, password: string) {
+
     return this.auth.signInWithEmailAndPassword(email, password)
       .then(async resp => {
 
@@ -31,7 +32,9 @@ export class AuthService {
       });
   }
 
-  createUser(form, tipo : string, dataUrl : string)
+  //Cuando se crea un cliente el estado de aprobado sera false
+  //Cuando se crea cualquier tipo de usuario el estado de aprobado sera true
+  createUser(form, tipo : string, dataUrl : string, aprobado : boolean)
   {
     return new Promise((resolve,rejected)=>{
       this.auth.createUserWithEmailAndPassword(form.value.email, form.value.password)
@@ -44,7 +47,7 @@ export class AuthService {
 
         ref.getDownloadURL().subscribe(url=>{
             //Almacenar Usuario
-            this.db.addUser(form, url, tipo);   
+            this.db.addUser(form, url, tipo, aprobado);   
         });
         console.log("Usuario creado!!");
         resolve(user);

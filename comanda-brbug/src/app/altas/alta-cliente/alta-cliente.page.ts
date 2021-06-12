@@ -127,7 +127,7 @@ export class AltaClientePage implements OnInit {
     if(altaform.status!="INVALID"){
       if(altaform.value.password == altaform.value.passwordConfirm){
         if(this.dataUrl!=null){
-          this.auth.createUser(altaform, "cliente", this.dataUrl);
+          this.auth.createUser(altaform, "cliente", this.dataUrl, false);
         }
         else{
           this.mostrarToast("Error: Foto invalida");

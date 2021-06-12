@@ -55,7 +55,6 @@ export class LoginPage implements OnInit {
         setTimeout(() => {
           this.alert=false;
         }, 3000);
-
       }
     }
     else{
