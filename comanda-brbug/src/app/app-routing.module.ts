@@ -30,6 +30,18 @@ const routes: Routes = [
   },
   {
     path: 'confirmacion', component: ConfirmacionComponent
+  },
+  {
+    path: 'homeMozo',
+    loadChildren: () => import('./mozo/home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'listaMozo',
+    loadChildren: () => import('./mozo/lista/lista.module').then( m => m.ListaPageModule)
+  },
+  {
+    path: 'pedidosMozo',
+    loadChildren: () => import('./mozo/pedidos/pedidos.module').then( m => m.PedidosPageModule)
   }
 
 

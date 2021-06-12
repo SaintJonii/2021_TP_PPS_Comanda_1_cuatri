@@ -12,6 +12,6 @@ export class AppComponent {
   }
 
   initializeApp(){
-    this.router.navigateByUrl('splash');
+    //this.router.navigateByUrl('splash');
   }
 }
