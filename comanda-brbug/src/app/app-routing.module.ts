@@ -26,6 +26,10 @@ const routes: Routes = [
     path: 'home-duenio',
     loadChildren: () => import('./pages-duenio/home-duenio/home-duenio.module').then( m => m.HomeDuenioPageModule)
   },
+  {
+    path: 'encuesta',
+    loadChildren: () => import('./encuesta/encuesta.module').then( m => m.EncuestaPageModule)
+  },
 
 
 

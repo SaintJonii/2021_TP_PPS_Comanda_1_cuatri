@@ -36,6 +36,7 @@
                     <p>Nombre: {{user.nombre}}</p>
                     <p>DNI: {{user.dni}}</p>
                     <p>Correo: {{user.email}}</p>
+                    <p>Fecha de creación: {{ user.time | date: 'short' }}</p>
                   </ion-label>
                 </ion-col>
                 <ion-col>

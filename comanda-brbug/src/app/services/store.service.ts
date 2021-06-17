@@ -9,7 +9,7 @@ export class StoreService {
   constructor(private db : AngularFirestore) { }
 
   addUser(form, fotoUrl:string, tipo:string, aprobado:boolean){
-
+    let time = Date.now();
     this.db.collection("users").doc(form.value.dni).set({
       nombre: form.value.nombre,
       apellido: form.value.apellido,
@@ -19,7 +19,8 @@ export class StoreService {
       foto: fotoUrl,
       tipo: tipo,       //El tipo puede ser: cliente, dueño, supervisor, mozo, etc.
       aprobado: aprobado, // El estado del cliente empezara con false. Si es otro tipo de usuario empezara con true.
-      rechazado: false
+      rechazado: false,
+      time : time
     });
     
   }
@@ -29,7 +30,7 @@ export class StoreService {
   }
 
   obtenerUsuariosSinAprobar(){
-    return this.db.collection('users' , ref => ref.where('aprobado','==',false).where('rechazado','==',false)).valueChanges();
+    return this.db.collection('users' , ref => ref.orderBy('time').where('aprobado','==',false).where('rechazado','==',false)).valueChanges();
   }
 
   aceptarCliente(dni : string){
@@ -48,6 +49,24 @@ export class StoreService {
     this.db.collection("users").doc("14444444").update({
       nombre: nombre,
       apellido: apellido
+    });
+  }
+
+  addEncuesta(encuesta : any){
+    let time = Date.now();
+    this.db.collection("encuestas").add({
+      velocidad: encuesta.velocidad,
+      atencion: encuesta.atencion,
+      comida: encuesta.comida,
+      limpieza: encuesta.limpieza,
+
+      respuestaGustoComida: encuesta.respuestaGustoComida,
+      respuestaDisgustoComida: encuesta.respuestaDisgustoComida,
+      respuestabebida: encuesta.respuestabebida,
+      respuestaPersonal: encuesta.respuestaPersonal,
+      respuestaUltima: encuesta.respuestaUltima,
+
+      time: time
     });
   }
 
