@@ -10,11 +10,10 @@
         margin-top: 20px;
         margin-bottom: 10px;
         padding: 10px;
-        box-shadow: 0 0 6px #888888;
-        border-radius: 5px;
-
-        width: 250px;
-        height: 250px;
+        //box-shadow: 0 0 6px #888888;
+        //border-radius: 5px;
+        width: 200px;
+        height: 200px;
     }
 }
 
@@ -138,4 +137,39 @@
               transform-origin: 100% 100%;
       opacity: 1;
     }
+}
+
+.fabButton{
+        --background: #9200ff;
+}
+
+ion-fab-button[data-desc] {
+        position: relative;
+        --background: #9200ff;
+}
+      
+.mozo[data-desc]::after {
+        position: absolute;
+        content: attr(data-desc);
+        z-index: 1;
+        right: 0px;
+        bottom: 47px;
+        background-color: #9200ff;
+        padding: 7px;
+        border-radius: 10px;
+        color: white;
+        box-shadow: 0 3px 5px -1px rgba(0,0,0,0.2), 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12);
+}
+
+.duenio[data-desc]::after {
+        position: absolute;
+        content: attr(data-desc);
+        z-index: 1;
+        right: -8px;
+        bottom: 47px;
+        background-color: #9200ff;
+        padding: 7px;
+        border-radius: 10px;
+        color: white;
+        box-shadow: 0 3px 5px -1px rgba(0,0,0,0.2), 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12);
 }

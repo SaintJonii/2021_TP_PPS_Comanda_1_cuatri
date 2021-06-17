@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup ,FormControl, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
+import { StoreService } from '../services/store.service';
 
 
 @Component({
@@ -31,8 +33,15 @@ export class LoginPage implements OnInit {
      { type: 'minlength', message: 'La contraseña debe tener por lo mínimo 6 caracteres' } ],
   }
 
+  email : string = null;
+  contrasenia : string = null;
+
+
   constructor(private route : Router,
-    private auth : AuthService) { }
+    private auth : AuthService,
+    private alertController : AlertController,
+    private db : StoreService){
+  }
 
   ngOnInit() {
   }
@@ -55,6 +64,18 @@ export class LoginPage implements OnInit {
         setTimeout(() => {
           this.alert=false;
         }, 3000);
+      }else if(validation == 2){
+        this.alert=true;
+        this.alertMsj="Error: Cuenta rechazada";
+        setTimeout(() => {
+          this.alert=false;
+        }, 3000);
+      }else if(validation == 3){
+        this.alert=true;
+        this.alertMsj="Error: Cuenta sin aprobar";
+        setTimeout(() => {
+          this.alert=false;
+        }, 3000);
       }
     }
     else{
@@ -68,6 +89,57 @@ export class LoginPage implements OnInit {
 
   registrarse(){
     this.route.navigateByUrl('alta-cliente');
+  }
+
+  loginMozo(){
+    this.email="mozo@mozo.com";
+    this.contrasenia="mozo123";
+  }
+  loginDuenio(){
+    this.email="admin@admin.com";
+    this.contrasenia="admin123";
+  }
+  modoAnonimo(){
+    this.presentAlert();
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Ingrese su nombre y apellido',
+      buttons: [
+        {
+          text: 'Aceptar',
+          handler: (alertData) => {
+            if(alertData.nombre != "" && alertData.apellido != ""){
+              this.db.modificandoNombreApellidoAnonimo(alertData.nombre, alertData.apellido);
+              this.auth.loginUser("anonimo@anonimo.com", "anonimo123");
+            }else{
+              this.alert=true;
+              this.alertMsj="Error: Campos inválidos";
+              setTimeout(() => {
+                this.alert=false;
+              }, 3000);
+            } 
+
+          }
+        }
+      ],
+      inputs: [
+        {
+          name: 'nombre',
+          type: 'text',
+          placeholder: 'Nombre',
+        },
+        {
+          name: 'apellido',
+          type: 'text',
+          placeholder: 'Apellido'
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
 

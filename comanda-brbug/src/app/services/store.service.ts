@@ -24,6 +24,10 @@ export class StoreService {
     
   }
 
+  obtenerUsuarios(){
+    return this.db.collection('users').valueChanges();
+  }
+
   obtenerUsuariosSinAprobar(){
     return this.db.collection('users' , ref => ref.where('aprobado','==',false).where('rechazado','==',false)).valueChanges();
   }
@@ -37,6 +41,13 @@ export class StoreService {
   rechazarCliente(dni : string){
     this.db.collection("users").doc(dni).update({
       rechazado: true 
+    });
+  }
+
+  modificandoNombreApellidoAnonimo(nombre : string, apellido : string){
+    this.db.collection("users").doc("14444444").update({
+      nombre: nombre,
+      apellido: apellido
     });
   }
 
