@@ -41,6 +41,9 @@ export class SalaPage implements OnInit {
         this.scanActive = false;
         if(this.result[1] == "mesa"){
           let nroMesa = this.result[2];
+
+          //GUARDAR EN FIRE MESA-CLIENTE: ESTADO DE LA MESA
+          
           localStorage.setItem("nro_mesa", nroMesa);
           this.route.navigateByUrl('menu');
         }
