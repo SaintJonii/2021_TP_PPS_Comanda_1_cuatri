@@ -1,0 +1,56 @@
+.divImage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    ion-img{
+        margin-top: 20px;
+        margin-bottom: 10px;
+        padding: 10px;
+        //box-shadow: 0 0 6px #888888;
+        //border-radius: 5px;
+        width: 300px;
+        height: 300px;
+    }
+}
+
+.divTitle{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .title{
+        font-family: "Times New Roman", Times, serif;
+        font-size: 30px;
+    }
+}
+
+
+.divButton{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .buttonAdmin{
+        margin-top: 5px; //35
+        height: 40px;
+        width: 270px;
+        font-size: 18px;
+        text-transform: initial;
+
+        border: 2px solid;
+        --border-color: #9200ff;
+        color: #9200ff;
+        --background: white;
+    }
+    .buttonLista{
+        margin-top: 5px; //35
+        height: 40px;
+        width: 270px;
+        font-size: 18px;
+        text-transform: initial;
+        --background: #9200ff;
+    }
+}
+
+.fabButton{
+    --background: #9200ff;
+}

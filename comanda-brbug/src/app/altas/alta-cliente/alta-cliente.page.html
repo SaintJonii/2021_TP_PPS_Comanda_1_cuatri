@@ -1,7 +1,18 @@
+<ion-header [hidden]="scanActive">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="login" color="light"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content [style.--background]="scanActive ? '#00000000' : '#fff'">
 
   <div class="divImage" [hidden]="scanActive">
-    <ion-img src="assets/usuario.png"></ion-img>
+    <ion-avatar class="avatarImage">
+      <img [src]='foto' alt="">
+    </ion-avatar>
   </div>
 
   <form [hidden]="scanActive" id="form" [formGroup]="altaForm" (ngSubmit)="alta(altaForm)">
@@ -11,28 +22,58 @@
     </div>
 
     <ion-item class="ion-margin-bottom ion-margin-top">
-      <ion-input formControlName="apellido" [value]='apellido' placeholder="Apellidos"></ion-input>
+      <ion-input formControlName="apellido" [value]='apellidoStr' placeholder="Apellidos"></ion-input>
     </ion-item>
+    <div *ngFor="let error of errorMessages.apellido">
+      <ng-container *ngIf="apellido.hasError(error.type) && (apellido.dirty || apellido.touched)">
+        <small class="error-message">{{error.message}}</small>
+      </ng-container>
+    </div><br>
 
     <ion-item class="ion-margin-bottom">
-      <ion-input formControlName="nombre" [value]='nombre' placeholder="Nombres"></ion-input>
+      <ion-input formControlName="nombre" [value]='nombreStr' placeholder="Nombres"></ion-input>
     </ion-item>
+    <div *ngFor="let error of errorMessages.nombre">
+      <ng-container *ngIf="nombre.hasError(error.type) && (nombre.dirty || nombre.touched)">
+        <small class="error-message">{{error.message}}</small>
+      </ng-container>
+    </div><br>
 
     <ion-item class="ion-margin-bottom">
-      <ion-input formControlName="dni" [value]='dni' placeholder="DNI" maxlength="8"></ion-input>
+      <ion-input formControlName="dni" [value]='dniStr' placeholder="DNI" maxlength="8"></ion-input>
     </ion-item>
+    <div *ngFor="let error of errorMessages.dni">
+      <ng-container *ngIf="dni.hasError(error.type) && (dni.dirty || dni.touched)">
+        <small class="error-message">{{error.message}}</small>
+      </ng-container>
+    </div><br>
 
     <ion-item class="ion-margin-bottom">
-      <ion-input formControlName="correo" placeholder="Correo"></ion-input>
+      <ion-input formControlName="email" placeholder="Correo"></ion-input>
     </ion-item>
+    <div *ngFor="let error of errorMessages.email">
+      <ng-container *ngIf="email.hasError(error.type) && (email.dirty || email.touched)">
+        <small class="error-message">{{error.message}}</small>
+      </ng-container>
+    </div><br>
 
     <ion-item class="ion-margin-bottom">
       <ion-input formControlName="password" type="password" placeholder="Contraseña"></ion-input>
     </ion-item>
+    <div *ngFor="let error of errorMessages.password">
+      <ng-container *ngIf="password.hasError(error.type) && (password.dirty || password.touched)">
+        <small class="error-message">{{error.message}}</small>
+      </ng-container>
+    </div><br>
 
     <ion-item class="ion-margin-bottom">
       <ion-input formControlName="passwordConfirm" type="password" placeholder="Confirmar contraseña"></ion-input>
     </ion-item>
+    <div *ngFor="let error of errorMessages.passwordConfirm">
+      <ng-container *ngIf="passwordConfirm.hasError(error.type) && (passwordConfirm.dirty || passwordConfirm.touched)">
+        <small class="error-message">{{error.message}}</small>
+      </ng-container>
+    </div><br>
 
     <div class="divButton">
       <ion-button  class="buttonAlta" type="submit" >Registrarse</ion-button>

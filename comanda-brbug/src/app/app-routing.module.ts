@@ -20,6 +20,17 @@ const routes: Routes = [
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
   {
+    path: 'lista-clientes-aprobar',
+    loadChildren: () => import('./pages-duenio/lista-clientes-aprobar/lista-clientes-aprobar.module').then( m => m.ListaClientesAprobarPageModule)
+  },  {
+    path: 'home-duenio',
+    loadChildren: () => import('./pages-duenio/home-duenio/home-duenio.module').then( m => m.HomeDuenioPageModule)
+  },
+  {
+    path: 'encuesta',
+    loadChildren: () => import('./encuesta/encuesta.module').then( m => m.EncuestaPageModule)
+  },
+  {
     path: 'sala',
     loadChildren: () => import('./sala/sala.module').then( m => m.SalaPageModule)
   },
@@ -31,6 +42,8 @@ const routes: Routes = [
     path: 'confirmacion',
     loadChildren: () => import('./confirmacion/confirmacion.module').then( m => m.ConfirmacionPageModule)
   },
+
+
 
 
 

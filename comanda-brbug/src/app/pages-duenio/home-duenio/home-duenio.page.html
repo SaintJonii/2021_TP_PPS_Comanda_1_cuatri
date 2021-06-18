@@ -1,0 +1,21 @@
+<ion-content>
+  <div class="divTitle">
+    <h4 class="title">Bienvenido {{nombre}}</h4>
+  </div>
+
+  <div class="divImage">
+    <ion-img src="assets/logo.jpeg"></ion-img>
+  </div>
+
+  <div class="divButton">
+    <ion-button  class="buttonAdmin" (click)="altaDuenio()" >Alta de dueño / supervisor</ion-button>
+    <ion-button  class="buttonAdmin" (click)="altaEmpleado()" type="button">Alta de empleados</ion-button>
+    <ion-button  class="buttonLista" (click)="listaClientes()" type="button">Listado de clientes</ion-button>
+  </div>
+
+  <ion-fab vertical="bottom" horizontal="start">
+    <ion-fab-button class="fabButton" (click)="logout()">
+      <ion-icon name="log-out-sharp"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

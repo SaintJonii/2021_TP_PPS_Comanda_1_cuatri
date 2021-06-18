@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Lista de clientes sin aprobar</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home-duenio" color="light"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="!clienteSinAutorizar" class="divMensaje">
+    <h4 class="mensaje">No hay clientes por aprobar</h4>
+    <br>
+    <br>
+    <br>
+    <img style="width: 70vw;" src="assets/logo.jpeg">
+  </div>
+
+  <div *ngIf="clienteSinAutorizar">
+    <div *ngFor="let user of users">
+      <ion-card>
+        <ion-item>
+          <div class="divImage">
+            <ion-avatar slot="start" class="avatarImage">
+              <img src="{{user.foto}}" alt="">
+            </ion-avatar>
+          </div><br>
+        </ion-item>
+        <ion-item>
+          <div>
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <ion-label>
+                    <p>Apellido: {{user.apellido}}</p>
+                    <p>Nombre: {{user.nombre}}</p>
+                    <p>DNI: {{user.dni}}</p>
+                    <p>Correo: {{user.email}}</p>
+                    <p>Fecha de creación: {{ user.time | date: 'short' }}</p>
+                  </ion-label>
+                </ion-col>
+                <ion-col>
+                  <ion-button expand="block" (click)="aceptar(user)" class="buttonAceptar">Aceptar</ion-button>
+                  <ion-button expand="block" (click)="rechazar(user)"class="buttonRechazar">Rechazar</ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+        </ion-item>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>

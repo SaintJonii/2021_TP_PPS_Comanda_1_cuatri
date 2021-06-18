@@ -1,0 +1,55 @@
+ion-header{
+    text-align:center;
+}
+ion-toolbar{
+    --background: #9200ff;
+}
+ion-title{
+    padding-left: 0px;
+    color: white;
+    font-size: 18px;
+    text-transform: initial;
+}
+
+
+.divImage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    .avatarImage{
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding: 10px;
+        box-shadow: 0 0 6px #888888;
+        width: 120px;
+        height: 120px;
+    }
+}
+
+.buttonAceptar{
+    font-size: 18px;
+    text-transform: initial;
+    --background: #9200ff;
+}
+
+.buttonRechazar{
+    font-size: 18px;
+    text-transform: initial;
+
+    border: 2px solid;
+    --border-color: #9200ff;
+    color: #9200ff;
+    --background: white;
+}
+
+.divMensaje{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    .mensaje{
+        font-size: 20px;
+        text-transform: initial;
+    }
+}
