@@ -11,7 +11,7 @@ export class PedidoService {
   constructor(private afs: AngularFirestore) { }
 
   confirmacionCliente(pedido, mesa, cliente, total){
-    this.afs.collection('pedidos').doc().set(
+    this.afs.collection('pedidos').doc(mesa).set(
       {
         pedido: pedido,
         estado: "pendiente_confirmacion",
