@@ -1,5 +1,7 @@
+
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { ConfirmacionComponent } from './components/confirmacion/confirmacion.component';
 
 const routes: Routes = [
   {
@@ -22,7 +24,8 @@ const routes: Routes = [
   {
     path: 'lista-clientes-aprobar',
     loadChildren: () => import('./pages-duenio/lista-clientes-aprobar/lista-clientes-aprobar.module').then( m => m.ListaClientesAprobarPageModule)
-  },  {
+  },
+  {
     path: 'home-duenio',
     loadChildren: () => import('./pages-duenio/home-duenio/home-duenio.module').then( m => m.HomeDuenioPageModule)
   },
@@ -42,9 +45,29 @@ const routes: Routes = [
     path: 'confirmacion',
     loadChildren: () => import('./confirmacion/confirmacion.module').then( m => m.ConfirmacionPageModule)
   },
-
-
-
+  {
+    path: 'alta-cliente',
+    loadChildren: () => import('./altas/alta-cliente/alta-cliente.module').then( m => m.AltaClientePageModule)
+  },
+  {
+    path: 'splash',
+    loadChildren: () => import('./splash/splash.module').then( m => m.SplashPageModule)
+  },
+  {
+    path: 'confirmacion', component: ConfirmacionComponent
+  },
+  {
+    path: 'homeMozo',
+    loadChildren: () => import('./mozo/home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'listaMozo',
+    loadChildren: () => import('./mozo/lista/lista.module').then( m => m.ListaPageModule)
+  },
+  {
+    path: 'pedidosMozo',
+    loadChildren: () => import('./mozo/pedidos/pedidos.module').then( m => m.PedidosPageModule)
+  }
 
 
 

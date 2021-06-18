@@ -18,7 +18,7 @@ export class ListaClientesAprobarPage implements OnInit {
     private emailSv : EmailService) { }
 
   ngOnInit() {
-    this.db.obtenerUsuariosSinAprobar().subscribe(doc => {
+    this.db.obtenerUsuariosSinAprobar_no_order().subscribe(doc => {
       this.users=doc;
       if(this.users.length != 0){
         this.clienteSinAutorizar = true;

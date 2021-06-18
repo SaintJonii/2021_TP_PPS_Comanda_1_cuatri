@@ -9,7 +9,9 @@ export class StoreService {
   constructor(private db : AngularFirestore) { }
 
   addUser(form, fotoUrl:string, tipo:string, aprobado:boolean){
+
     let time = Date.now();
+
     this.db.collection("users").doc(form.value.dni).set({
       nombre: form.value.nombre,
       apellido: form.value.apellido,
@@ -29,8 +31,12 @@ export class StoreService {
     return this.db.collection('users').valueChanges();
   }
 
-  obtenerUsuariosSinAprobar(){
+  obtenerUsuariosSinAprobar_order(){
     return this.db.collection('users' , ref => ref.orderBy('time').where('aprobado','==',false).where('rechazado','==',false)).valueChanges();
+  }
+
+  obtenerUsuariosSinAprobar_no_order(){
+    return this.db.collection('users' , ref => ref.where('aprobado','==',false).where('rechazado','==',false)).valueChanges();
   }
 
   aceptarCliente(dni : string){
@@ -68,6 +74,43 @@ export class StoreService {
 
       time: time
     });
+  }
+
+  obtenerListaDeEspera(){
+    return this.db.collection('listaDeEspera').valueChanges();
+  }
+
+  obtenerMesasDisponibles(){
+    return this.db.collection('mesas', ref => ref.where('disponible', '==', true)).valueChanges();
+  }
+
+  obtenerPedidosAConfirmar(){
+    return this.db.collection('pedidos', ref => ref.where('estado', '==', 'pendiente_confirmacion')).valueChanges();
+  }
+
+  asignarMesa(id : string, dni : string){
+    this.db.collection("mesas").doc(id).update({
+      disponible: false,
+      dniCliente: dni
+    });
+  }
+
+  confirmacionCliente(pedido, mesa, cliente, total){
+    this.db.collection('pedidos').doc().set(
+      {
+        pedido: pedido,
+        estado: "pendiente_confirmacion",
+        total: total,
+        mesa: mesa,
+        cliente: cliente
+      }
+    );
+  }
+
+  despacharPedido(mesa){//HACE FALTAR DEFINIR MESA COMO ID DE DOCUMENTO
+    this.db.collection('pedidos').doc(mesa).update({
+      estado: "despachado"
+    })
   }
 
 }
