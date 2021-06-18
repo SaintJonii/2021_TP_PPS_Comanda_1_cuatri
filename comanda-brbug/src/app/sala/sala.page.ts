@@ -39,10 +39,16 @@ export class SalaPage implements OnInit {
       if (result.hasContent) {
         this.result = result.content.split("@");
         this.scanActive = false;
-        //consultar por el estado de la mesa
+        if(this.result[1] == "mesa"){
+          let nroMesa = this.result[2];
+          localStorage.setItem("nro_mesa", nroMesa);
+          this.route.navigateByUrl('menu');
+        }
+        else{
+          this.mostrarToast("QR Inválido");
+        }
       }
     }
-
   }
 
   async checkPermission() {

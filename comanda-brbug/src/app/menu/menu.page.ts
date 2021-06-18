@@ -19,9 +19,12 @@ export class MenuPage implements OnInit {
   mostrarSeleccion: Boolean;
   productoSel:Producto;
   pedido: Array<Pedido>;
+  mesaCLiente;
 
   constructor(private afs: AngularFirestore, private route : Router, public toastController: ToastController) {
     this.mostrarSeleccion = false;
+    this.mesaCLiente = localStorage.getItem("nro_mesa");
+    this.toastPedido("Asignado a mesa nro: " + this.mesaCLiente);
    }
 
   ngOnInit() {
@@ -82,7 +85,7 @@ export class MenuPage implements OnInit {
   enviarPedido(e){
     if(e!=null){
     this.pedido.push(e);
-    this.toastPedido();
+    this.toastPedido("Se agregó al pedido");
     }
     this.mostrarSeleccion = false;
   }
@@ -92,10 +95,10 @@ export class MenuPage implements OnInit {
     this.route.navigateByUrl('confirmacion');
   }
 
-  async toastPedido() {
+  async toastPedido(msg) {
     const toast = await this.toastController.create({
-      message: 'Se agregó al pedido',
-      duration: 2000
+      message: msg,
+      duration: 1500
     });
     toast.present();
   }

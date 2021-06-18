@@ -13,7 +13,14 @@ export class ConfirmacionPage implements OnInit {
 
   pedido: Array<Pedido>;
   total;
+  mesaCliente;
+  usuario;
+
   constructor(private routerNav: Router, private pedidoSvice: PedidoService, public toastController: ToastController) {
+    this.mesaCliente = localStorage.getItem("nro_mesa");
+  
+    this.usuario = JSON.parse(localStorage.getItem("usuarioActual"));
+
     this.pedido = JSON.parse(localStorage.getItem("pedidoActual"));
     this.calcularTotal();
   }
@@ -44,7 +51,8 @@ export class ConfirmacionPage implements OnInit {
   }
 
   confirmar(){
-    this.pedidoSvice.confirmacionCliente(this.pedido, "mesa", "dni_cliente", this.total);
+    debugger;
+    this.pedidoSvice.confirmacionCliente(this.pedido, this.mesaCliente, this.usuario.dni, this.total);
     localStorage.removeItem("pedidoActual");
     this.toastPedido();
     setTimeout(() => {

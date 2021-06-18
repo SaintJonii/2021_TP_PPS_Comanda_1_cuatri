@@ -24,7 +24,6 @@ export class AuthService {
 
 
   loginUser(email: string, password: string) {
-
     return this.auth.signInWithEmailAndPassword(email, password)
       .then(async resp => {
 
@@ -59,12 +58,9 @@ export class AuthService {
                 this.router.navigateByUrl('home-duenio');
               }
 
-              
-      
             });
           }
         }
-
 
       }).catch(function (e) {
         console.log(e);
@@ -91,6 +87,7 @@ export class AuthService {
             this.db.addUser(form, url, tipo, aprobado);   
         });
         console.log("Usuario creado!!");
+        this.router.navigateByUrl("login");
         resolve(user);
       })
       .catch(error => rejected(error));
