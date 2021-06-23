@@ -17,37 +17,19 @@
   </div>
 
   <div *ngIf="clienteSinAutorizar">
-    <div *ngFor="let user of users">
-      <ion-card>
-        <ion-item>
-          <div class="divImage">
-            <ion-avatar slot="start" class="avatarImage">
-              <img src="{{user.foto}}" alt="">
-            </ion-avatar>
-          </div><br>
-        </ion-item>
-        <ion-item>
-          <div>
-            <ion-grid>
-              <ion-row>
-                <ion-col>
-                  <ion-label>
-                    <p>Apellido: {{user.apellido}}</p>
-                    <p>Nombre: {{user.nombre}}</p>
-                    <p>DNI: {{user.dni}}</p>
-                    <p>Correo: {{user.email}}</p>
-                    <p>Fecha de creación: {{ user.time | date: 'short' }}</p>
-                  </ion-label>
-                </ion-col>
-                <ion-col>
-                  <ion-button expand="block" (click)="aceptar(user)" class="buttonAceptar">Aceptar</ion-button>
-                  <ion-button expand="block" (click)="rechazar(user)"class="buttonRechazar">Rechazar</ion-button>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </div>
-        </ion-item>
-      </ion-card>
-    </div>
+    <ion-card *ngFor="let user of users">
+      <ion-item>
+        <ion-avatar slot="start">
+          <img src="{{user.foto}}">
+        </ion-avatar>
+        <ion-label>
+          <h2 text-capitalize>{{user.apellido}} {{user.nombre}}</h2>
+          <p>DNI: {{user.dni}}</p>
+          <p>Correo: {{user.email}}</p>
+        </ion-label>
+        <ion-badge (click)="aceptar(user)" style="margin-right: 5px;" color="success"><ion-icon name="checkmark-sharp"></ion-icon></ion-badge>
+        <ion-badge (click)="rechazar(user)" color="danger"><ion-icon name="close-sharp"></ion-icon></ion-badge>
+      </ion-item>
+    </ion-card>
   </div>
 </ion-content>

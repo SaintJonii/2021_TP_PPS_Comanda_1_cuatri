@@ -1,0 +1,69 @@
+.divTitle{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #9200ff;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 10px;
+    .title{
+        font-family: Arial black;
+        font-size: 25px;
+        color: white;
+    }
+}
+
+.divEstado{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 2px solid;
+    border-color: #9200ff;
+    border-radius: 10px;
+    .text{
+        font-family: Arial black;
+        font-size: 15px;
+    }
+}
+.slide{
+    margin-left: 10px;
+    margin-right: 10px;
+    --bullet-background: #9200ff;
+    padding-bottom: 30px;
+}
+.pedido{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 10px;
+    //margin-left: 10px;
+    //margin-right: 10px;
+    //border: 2px solid;
+    //border-color: #9200ff;
+    //border-radius: 10px;
+    .text{
+        font-family: Arial black;
+        font-size: 15px;
+    }
+}
+
+.divButton{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    .buttonSalir{
+        margin-top: 5px; //35
+        height: 40px;
+        width: 270px;
+        font-size: 18px;
+        text-transform: initial;
+        --background: #9200ff;
+    }
+}

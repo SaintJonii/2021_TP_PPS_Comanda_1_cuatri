@@ -70,4 +70,9 @@ export class StoreService {
     });
   }
 
+
+  obtenerPedidoxNroMesa(mesa){
+    return this.db.collection('pedidos').doc(mesa).valueChanges();
+  }
+
 }

@@ -30,6 +30,14 @@ const routes: Routes = [
     path: 'encuesta',
     loadChildren: () => import('./encuesta/encuesta.module').then( m => m.EncuestaPageModule)
   },
+  {
+    path: 'estado-pedido',
+    loadChildren: () => import('./estado-pedido/estado-pedido.module').then( m => m.EstadoPedidoPageModule)
+  },
+  {
+    path: 'chat',
+    loadChildren: () => import('./chat/chat.module').then( m => m.ChatPageModule)
+  },
 
 
 
