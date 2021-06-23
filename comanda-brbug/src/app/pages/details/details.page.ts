@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { PushNotifications } from '@capacitor/push-notifications';
+
 
 @Component({
   selector: 'app-details',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailsPage implements OnInit {
 
-  constructor() { }
-
+  id = null;
+  constructor(private route: ActivatedRoute) { }
+ 
   ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      this.id = params.get('id');
+    });
+  }
+ 
+  resetBadgeCount() {
+  
+    PushNotifications.removeAllDeliveredNotifications();
+   
   }
 
 }

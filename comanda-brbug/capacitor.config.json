@@ -1,5 +1,5 @@
 {
-    "appId": "comanda.brbug",
+    "appId": "io.ionic.starter",
     "appName": "Comanda",
     "bundledWebRuntime": false,
     "linuxAndroidStudioPath": "/opt/android-studio/bin/studio.sh",
@@ -8,6 +8,10 @@
     "plugins": {
       "SplashScreen": {
         "launchShowDuration": 0
+      },
+      "PushNotifications": {
+        "presentationOptions": ["badge", "sound", "alert"]
       }
     }
+    
 }
