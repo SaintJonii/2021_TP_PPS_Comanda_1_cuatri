@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from "@angular/fire/firestore";
 import { Producto } from '../classes/producto';
 import { Imagen } from '../classes/imagen';
-import * as firebase from 'firebase';
+import firebase from 'firebase/app'
 import { Pedido } from '../classes/pedido';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
@@ -53,10 +53,9 @@ export class MenuPage implements OnInit {
   }
 
   traerImagenes() {
-
     this.imagenes = new Array<Imagen>();
 
-    var messagesRef = firebase.default.database().ref().child("productos");
+    var messagesRef = firebase.database().ref().child("productos");
     messagesRef.on("value", (snap) => {
       var data = snap.val();
 
@@ -78,6 +77,7 @@ export class MenuPage implements OnInit {
   }
 
   seleccion(p){
+    debugger;
     this.mostrarSeleccion = true;
     this.productoSel = p;
   } 

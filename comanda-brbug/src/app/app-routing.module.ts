@@ -1,7 +1,6 @@
 
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { ConfirmacionComponent } from './components/confirmacion/confirmacion.component';
 
 const routes: Routes = [
   {
@@ -53,9 +52,9 @@ const routes: Routes = [
     path: 'splash',
     loadChildren: () => import('./splash/splash.module').then( m => m.SplashPageModule)
   },
-  {
+  /* {
     path: 'confirmacion', component: ConfirmacionComponent
-  },
+  }, */
   {
     path: 'homeMozo',
     loadChildren: () => import('./mozo/home/home.module').then( m => m.HomePageModule)
@@ -67,12 +66,7 @@ const routes: Routes = [
   {
     path: 'pedidosMozo',
     loadChildren: () => import('./mozo/pedidos/pedidos.module').then( m => m.PedidosPageModule)
-  },
-  {
-    path: 'home/:id',
-    loadChildren: () => import('./pages/details/details.module').then( m => m.DetailsPageModule)
   }
-
 
 
 ];
