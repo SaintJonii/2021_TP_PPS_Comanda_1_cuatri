@@ -15,12 +15,15 @@
             <img [src]="p.imagen[0].referencia" width="220px" height="150px">
           </ion-col>
           <ion-col size="12">
+
             <ion-label>
-              {{p.nombre}}
+              <h2 style="font-weight:bold;">{{p.nombre}}</h2>
             </ion-label>
-            <ion-label color="secondary">
-              <h5> $ {{p.precio}}</h5>
+
+            <ion-label color="danger">
+              <h4 style="font-weight:bold;"> $ {{p.precio}}</h4>
             </ion-label>
+
           </ion-col>
 
           <ion-col size="12" class="ion-text-end">
@@ -40,6 +43,6 @@
       <ion-icon name="arrow-forward-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-  
+
   <app-seleccion [producto]="productoSel" (pedido)="enviarPedido($event)" *ngIf="mostrarSeleccion"></app-seleccion>
 </ion-content>

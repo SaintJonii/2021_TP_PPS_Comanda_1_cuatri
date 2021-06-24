@@ -13,7 +13,12 @@
 
 .calculator button {
     font-size: 40px;
-    color: #706967;
+    color: #000000;
     background-color: transparent;
     padding: 0 8px;
 }
+
+.opc_list {
+    max-height: 200px;
+    overflow-y: scroll;
+  }

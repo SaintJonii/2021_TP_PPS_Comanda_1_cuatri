@@ -1,20 +1,25 @@
-<ion-card style="margin-top: 10%;">
+<ion-card style="margin-top: 3%;">
 
   <ion-slides pager="true">
     <ion-slide *ngFor="let img of imagenes">
       <div>
-        <img [src]="img.referencia" height="250px" width="200px" />
+        <img [src]="img.referencia" style="width: 300px; ; height: 250px ;" />
       </div>
     </ion-slide>
   </ion-slides>
 
   <ion-card-header>
-    <ion-card-title>{{producto.nombre}}</ion-card-title>
+    <ion-card-title style="font-weight:bold;">{{producto.nombre}}</ion-card-title>
+    <ion-card-subtitle>{{producto.desc}}<h4 style="font-weight:bold;">${{producto.precio}}</h4></ion-card-subtitle>
   </ion-card-header>
-
+  
   <ion-card-content>
-    <h5>{{producto.desc}}</h5><br>
-    <h6>${{producto.precio}}</h6>
+    <ion-list class="opc_list">
+      <ion-item *ngFor="let opcion of producto.opciones">
+        <ion-label>{{opcion}}</ion-label>
+        <ion-checkbox slot="end"></ion-checkbox>
+      </ion-item>
+    </ion-list>
   </ion-card-content>
 
   <div class="calculator">
@@ -30,8 +35,8 @@
   </div>
 </ion-card>
 
-<ion-button style="margin-top: 10%;" shape="round" fill="outline" expand="full" (click)="enviarPedido()">Agregar al
+<ion-button style="margin-top: 2%;" shape="round" fill="outline" expand="full" (click)="enviarPedido()">Agregar al
   pedido</ion-button>
 
-<ion-button style="margin-top: 5%;" shape="round" fill="outline" expand="full" (click)="volver()">Volver al menú
+<ion-button style="margin-top: 2%;" shape="round" fill="outline" expand="full" (click)="volver()">Volver al menú
 </ion-button>
