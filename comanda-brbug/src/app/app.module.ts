@@ -26,7 +26,7 @@ import { Interception } from "./services/Interception";
     HttpClientModule
   ],
 
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, {provide: HTTP_INTERCEPTORS,useClass: Interception, multi: true}],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, {provide: HTTP_INTERCEPTORS, useClass: Interception, multi: true}],
 
   bootstrap: [AppComponent],
 })

@@ -34,6 +34,7 @@ export class PushService {
       'registration',
       (token: Token) => {
         console.log('My token: ' + JSON.stringify(token));
+        //Guardar token de usuario en firebase
         this.device_token = JSON.stringify(token);
       }
     );
@@ -79,8 +80,6 @@ export class PushService {
               }).subscribe(doc=>{
                 console.log(doc);
               });
-
-    
    
   }
 
