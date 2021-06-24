@@ -17,7 +17,10 @@ export class HomePage implements OnInit {
   scanActive: boolean = false;
 
 
-  constructor(public toastController: ToastController, private alertController : AlertController, private route : Router ) { }
+  constructor(public toastController: ToastController, private alertController : AlertController, private route : Router ) { 
+    debugger;
+    alert("sdadasd");
+  }
 
   ngOnInit() {
   }

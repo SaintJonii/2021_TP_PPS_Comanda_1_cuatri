@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 import { StoreService } from '../services/store.service';
+import { PushService } from '../services/push.service';
 
 
 @Component({
@@ -40,10 +41,13 @@ export class LoginPage implements OnInit {
   constructor(private route : Router,
     private auth : AuthService,
     private alertController : AlertController,
-    private db : StoreService){
+    private db : StoreService,
+    public pushService: PushService){
   }
 
   ngOnInit() {
+    debugger;
+    this.pushService.sendNotification("AASDAD", "SDASDA");
   }
 
   get correo(){

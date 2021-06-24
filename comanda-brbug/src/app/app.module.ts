@@ -10,7 +10,8 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
 
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { Interception } from "./services/Interception";
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,7 +26,7 @@ import { HttpClientModule } from "@angular/common/http";
     HttpClientModule
   ],
 
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, {provide: HTTP_INTERCEPTORS,useClass: Interception, multi: true}],
 
   bootstrap: [AppComponent],
 })
