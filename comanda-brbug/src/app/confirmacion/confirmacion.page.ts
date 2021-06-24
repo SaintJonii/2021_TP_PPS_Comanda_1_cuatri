@@ -51,7 +51,6 @@ export class ConfirmacionPage implements OnInit {
   }
 
   confirmar(){
-    debugger;
     this.pedidoSvice.confirmacionCliente(this.pedido, this.mesaCliente, this.usuario.dni, this.total);
     localStorage.removeItem("pedidoActual");
     this.toastPedido();

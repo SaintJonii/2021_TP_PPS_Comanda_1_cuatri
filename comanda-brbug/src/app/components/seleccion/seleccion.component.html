@@ -1,5 +1,13 @@
-<ion-card style="margin-top: 25%;">
-  <img [src]="producto.imagen" height="100%" width="100%" />
+<ion-card style="margin-top: 10%;">
+
+  <ion-slides pager="true">
+    <ion-slide *ngFor="let img of imagenes">
+      <div>
+        <img [src]="img.referencia" height="250px" width="200px" />
+      </div>
+    </ion-slide>
+  </ion-slides>
+
   <ion-card-header>
     <ion-card-title>{{producto.nombre}}</ion-card-title>
   </ion-card-header>
@@ -13,13 +21,17 @@
     <button (click)="restar()">
       <ion-icon name="remove-outline"></ion-icon>
     </button>
-    <div> <h2>{{unidades}} U</h2></div>
+    <div>
+      <h2>{{unidades}} U</h2>
+    </div>
     <button (click)="sumar()">
       <ion-icon name="add-outline"></ion-icon>
     </button>
   </div>
 </ion-card>
 
-<ion-button style="margin-top: 10%;" shape="round" fill="outline" expand="full" (click)="enviarPedido()" >Agregar al pedido</ion-button>
+<ion-button style="margin-top: 10%;" shape="round" fill="outline" expand="full" (click)="enviarPedido()">Agregar al
+  pedido</ion-button>
 
-<ion-button style="margin-top: 5%;" shape="round" fill="outline" expand="full" (click)="volver()">Volver al menú</ion-button>
+<ion-button style="margin-top: 5%;" shape="round" fill="outline" expand="full" (click)="volver()">Volver al menú
+</ion-button>

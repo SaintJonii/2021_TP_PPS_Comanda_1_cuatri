@@ -19,12 +19,14 @@ export class MenuPage implements OnInit {
   mostrarSeleccion: Boolean;
   productoSel:Producto;
   pedido: Array<Pedido>;
+  renderImages: Boolean;
   mesaCLiente;
 
   constructor(private afs: AngularFirestore, private route : Router, public toastController: ToastController) {
     this.mostrarSeleccion = false;
     this.mesaCLiente = localStorage.getItem("nro_mesa");
     this.toastPedido("Asignado a mesa nro: " + this.mesaCLiente);
+    this.renderImages = false;
    }
 
   ngOnInit() {
@@ -71,13 +73,13 @@ export class MenuPage implements OnInit {
 
   setImagenes(){
     this.productos.map((producto)=>{
-      let imagen = this.imagenes.find(x => x.id == producto.id);
-      producto.imagen = imagen != undefined ? imagen.referencia : "./../../assets/logo.jpeg";
+      let imagen: Array<Imagen> = this.imagenes.filter(x => x.id == producto.id);
+      producto.imagen = imagen != undefined ? imagen : null;
     });
+    this.renderImages = true;
   }
 
   seleccion(p){
-    debugger;
     this.mostrarSeleccion = true;
     this.productoSel = p;
   } 

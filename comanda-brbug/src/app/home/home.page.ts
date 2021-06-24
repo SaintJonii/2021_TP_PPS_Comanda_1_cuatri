@@ -18,8 +18,6 @@ export class HomePage implements OnInit {
 
 
   constructor(public toastController: ToastController, private alertController : AlertController, private route : Router ) { 
-    debugger;
-    alert("sdadasd");
   }
 
   ngOnInit() {

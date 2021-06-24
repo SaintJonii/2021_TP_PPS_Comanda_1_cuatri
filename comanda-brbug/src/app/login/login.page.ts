@@ -46,8 +46,6 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
-    debugger;
-    this.pushService.sendNotification("AASDAD", "SDASDA");
   }
 
   get correo(){

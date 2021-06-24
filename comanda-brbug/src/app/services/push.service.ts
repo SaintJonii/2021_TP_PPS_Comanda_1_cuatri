@@ -78,7 +78,6 @@ export class PushService {
                 to: 'e4h_zHjbTXyhfxOMmrc7BF:APA91bHWliFe5F9vvVdFw4YLLBAW_1xYKacgG8K_6BydvyqgjpLiY11mI17N_qdbrXBNR4y1L-KQhbz-dWrqsBqcQCqEYMWGXxMr0LSMemG21g1nBY1guaFXlOKbELc-8KN_a2SQMZHs'
               }).subscribe(doc=>{
                 console.log(doc);
-                debugger;
               });
 
     
