@@ -42,7 +42,36 @@ const routes: Routes = [
   {
     path: 'pedidosMozo',
     loadChildren: () => import('./mozo/pedidos/pedidos.module').then( m => m.PedidosPageModule)
+  },
+  {
+    path: 'pendientesMozo',
+    loadChildren: () => import('./mozo/pedidos-pendientes/pedidos-pendientes.module').then( m => m.PedidosPendientesPageModule)
+  },
+  {
+    path: 'homeCocina',
+    loadChildren: () => import('./cocina/home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'prepararCocina',
+    loadChildren: () => import('./cocina/pedidos/pedidos.module').then( m => m.PedidosPageModule)
+  },
+  {
+    path: 'entregasCocina',
+    loadChildren: () => import('./cocina/entregas/entregas.module').then( m => m.EntregasPageModule)
+  },
+  {
+    path: 'homeBarra',
+    loadChildren: () => import('./barra/home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'prepararBarra',
+    loadChildren: () => import('./barra/lista-pedidos/lista-pedidos.module').then( m => m.ListaPedidosPageModule)
+  },
+  {
+    path: 'entregasBarra',
+    loadChildren: () => import('./barra/lista-entregas/lista-entregas.module').then( m => m.ListaEntregasPageModule)
   }
+  
 
 
 ];

@@ -4,11 +4,11 @@ import { ModalController } from '@ionic/angular';
 import { StoreService } from 'src/app/services/store.service';
 
 @Component({
-  selector: 'app-detalle-pedido',
-  templateUrl: './detalle-pedido.component.html',
-  styleUrls: ['./detalle-pedido.component.scss'],
+  selector: 'app-pedido-modal',
+  templateUrl: './pedido-modal.component.html',
+  styleUrls: ['./pedido-modal.component.scss'],
 })
-export class DetallePedidoComponent implements OnInit {
+export class PedidoModalComponent implements OnInit {
   @Input() pedido: any;
 
   constructor(private modalCtrl: ModalController, private db: StoreService, private router: Router) { }
@@ -20,11 +20,11 @@ export class DetallePedidoComponent implements OnInit {
     this.modalCtrl.dismiss();
   }
 
-  despacharPedido(){
+  prepararPedido(){
     console.log(this.pedido.mesa);
-    this.db.despacharPedido(this.pedido.mesa);
+    this.db.prepararPedido(this.pedido.mesa, true);
     this.dismissModal();
-    this.router.navigateByUrl('pedidosMozo');
+    this.router.navigateByUrl('prepararCocina');
   }
 
 }

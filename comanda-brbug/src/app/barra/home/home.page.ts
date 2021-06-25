@@ -13,15 +13,11 @@ export class HomePage implements OnInit {
   ngOnInit() {
   }
 
-  irLista(){
-    this.router.navigateByUrl('listaMozo');
+  listaAPreparar(){
+    this.router.navigateByUrl('prepararBarra');
   }
 
-  irConfirmar(){
-    this.router.navigateByUrl('pedidosMozo');
-  }
-
-  irEntrega(){
-    this.router.navigateByUrl('pendientesMozo');
+  listaAEntregar(){
+    this.router.navigateByUrl('entregasBarra');
   }
 }

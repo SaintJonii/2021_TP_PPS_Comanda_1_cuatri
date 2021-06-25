@@ -1,21 +1,17 @@
+on-header{
+    text-align:center;
+}
 ion-toolbar{
     --background: #60238f;
 }
 ion-title{
-    padding-left: 0px;
     color: white;
     font-size: 18px;
     text-transform: initial;
 }
-
-
-.buttonDetallePedido{
-    font-size: 18px;
-    text-transform: initial;
-    --background: #60238f;
-    width: 200px;
+ion-button{
+    color: white;
 }
-
 
 .divMensaje{
     display: flex;
@@ -26,4 +22,12 @@ ion-title{
         font-size: 20px;
         text-transform: initial;
     }
+}
+
+.buttonDespacharPedido{
+    font-size: 18px;
+    text-transform: initial;
+    --background: #60238f;
+    width: 200px;
+    margin-left: 105px;
 }
