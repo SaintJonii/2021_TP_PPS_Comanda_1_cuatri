@@ -1,0 +1,23 @@
+<ion-content>
+  <div class="divTitle">
+    <h4 class="title">Estado de su pedido</h4>
+  </div>
+  <div class="divEstado">
+    <ion-text>
+      <p class="text">En preparación</p>
+    </ion-text>
+  </div>
+  <ion-slides pager={true} [options]="slideOpts" class="slide">
+      <ion-slide class="pedido" *ngFor="let pedido of pedido.pedido">
+          <ion-text>
+            <ion-img src="{{pedido.producto.imagen}}"></ion-img>
+            <p class="text">Precio unitario: $ {{pedido.producto.precio}} c/u</p>
+            <p class="text">Nombre: {{pedido.producto.nombre}}</p>
+            <p class="text">Cantidad: {{pedido.unidades}}</p>
+          </ion-text>
+      </ion-slide>
+  </ion-slides>
+  <div class="divButton">
+      <ion-button  class="buttonSalir" (click)="salir()">Salir</ion-button>
+  </div>
+</ion-content>

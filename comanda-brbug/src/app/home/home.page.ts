@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 import { ToastController, AlertController } from '@ionic/angular';
 const scanner = BarcodeScanner;
+import { EncuestaService } from '../services/encuesta.service';
 
 @Component({
   selector: 'app-home',
@@ -11,13 +12,12 @@ const scanner = BarcodeScanner;
 })
 export class HomePage implements OnInit {
 
-
   //Variables para el uso del escaner
   result: any = [];
   scanActive: boolean = false;
 
 
-  constructor(public toastController: ToastController, private alertController : AlertController, private route : Router ) { 
+  constructor(public toastController: ToastController, private alertController : AlertController, private route : Router, private encuestaSv : EncuestaService ) { 
   }
 
   ngOnInit() {
@@ -86,5 +86,11 @@ export class HomePage implements OnInit {
     });
     toast.present();
   }
+ 
+  ionViewDidEnter(){
+    this.encuestaSv.actualizarEncuestas();
+  }
+
+
 
 }

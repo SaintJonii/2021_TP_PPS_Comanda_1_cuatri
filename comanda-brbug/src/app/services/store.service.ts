@@ -6,9 +6,9 @@ import { AngularFirestore } from "@angular/fire/firestore";
 })
 export class StoreService {
 
-  constructor(private db : AngularFirestore) { }
+  constructor(private db: AngularFirestore) { }
 
-  addUser(form, fotoUrl:string, tipo:string, aprobado:boolean){
+  addUser(form, fotoUrl: string, tipo: string, aprobado: boolean) {
 
     let time = Date.now();
 
@@ -22,43 +22,43 @@ export class StoreService {
       tipo: tipo,       //El tipo puede ser: cliente, dueño, supervisor, mozo, etc.
       aprobado: aprobado, // El estado del cliente empezara con false. Si es otro tipo de usuario empezara con true.
       rechazado: false,
-      time : time
+      time: time
     });
-    
+
   }
 
-  obtenerUsuarios(){
+  obtenerUsuarios() {
     return this.db.collection('users').valueChanges();
   }
 
-  obtenerUsuariosSinAprobar_order(){
-    return this.db.collection('users' , ref => ref.orderBy('time').where('aprobado','==',false).where('rechazado','==',false)).valueChanges();
+  obtenerUsuariosSinAprobar_order() {
+    return this.db.collection('users', ref => ref.orderBy('time').where('aprobado', '==', false).where('rechazado', '==', false)).valueChanges();
   }
 
-  obtenerUsuariosSinAprobar_no_order(){
-    return this.db.collection('users' , ref => ref.where('aprobado','==',false).where('rechazado','==',false)).valueChanges();
+  obtenerUsuariosSinAprobar_no_order() {
+    return this.db.collection('users', ref => ref.where('aprobado', '==', false).where('rechazado', '==', false)).valueChanges();
   }
 
-  aceptarCliente(dni : string){
+  aceptarCliente(dni: string) {
     this.db.collection("users").doc(dni).update({
-      aprobado: true 
+      aprobado: true
     });
   }
 
-  rechazarCliente(dni : string){
+  rechazarCliente(dni: string) {
     this.db.collection("users").doc(dni).update({
-      rechazado: true 
+      rechazado: true
     });
   }
 
-  modificandoNombreApellidoAnonimo(nombre : string, apellido : string){
+  modificandoNombreApellidoAnonimo(nombre: string, apellido: string) {
     this.db.collection("users").doc("14444444").update({
       nombre: nombre,
       apellido: apellido
     });
   }
 
-  addEncuesta(encuesta : any){
+  addEncuesta(encuesta: any) {
     let time = Date.now();
     this.db.collection("encuestas").add({
       velocidad: encuesta.velocidad,
@@ -76,26 +76,26 @@ export class StoreService {
     });
   }
 
-  obtenerListaDeEspera(){
+  obtenerListaDeEspera() {
     return this.db.collection('listaDeEspera').valueChanges();
   }
 
-  obtenerMesasDisponibles(){
+  obtenerMesasDisponibles() {
     return this.db.collection('mesas', ref => ref.where('disponible', '==', true)).valueChanges();
   }
 
-  obtenerPedidosAConfirmar(){
+  obtenerPedidosAConfirmar() {
     return this.db.collection('pedidos', ref => ref.where('estado', '==', 'pendiente_confirmacion')).valueChanges();
   }
 
-  asignarMesa(id : string, dni : string){
+  asignarMesa(id: string, dni: string) {
     this.db.collection("mesas").doc(id).update({
       disponible: false,
       dniCliente: dni
     });
   }
 
-  confirmacionCliente(pedido, mesa, cliente, total){
+  confirmacionCliente(pedido, mesa, cliente, total) {
     this.db.collection('pedidos').doc().set(
       {
         pedido: pedido,
@@ -107,10 +107,15 @@ export class StoreService {
     );
   }
 
-  despacharPedido(mesa){//HACE FALTAR DEFINIR MESA COMO ID DE DOCUMENTO
+  despacharPedido(mesa) {//HACE FALTAR DEFINIR MESA COMO ID DE DOCUMENTO
     this.db.collection('pedidos').doc(mesa).update({
       estado: "despachado"
     })
+  }
+
+
+  obtenerPedidoxNroMesa(mesa) {
+    return this.db.collection('pedidos').doc(mesa).valueChanges();
   }
 
 }

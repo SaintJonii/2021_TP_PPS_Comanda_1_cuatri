@@ -66,10 +66,19 @@ const routes: Routes = [
   {
     path: 'pedidosMozo',
     loadChildren: () => import('./mozo/pedidos/pedidos.module').then( m => m.PedidosPageModule)
-  }
-
-
-];
+  },
+  {
+    path: 'estado-pedido',
+    loadChildren: () => import('./estado-pedido/estado-pedido.module').then( m => m.EstadoPedidoPageModule)
+  },
+  {
+    path: 'chat',
+    loadChildren: () => import('./chat/chat.module').then( m => m.ChatPageModule)
+  },
+  {
+    path: 'encuestas-grafico',
+    loadChildren: () => import('./encuestas-grafico/encuestas-grafico.module').then( m => m.EncuestasGraficoPageModule)
+  }];
 
 @NgModule({
   imports: [

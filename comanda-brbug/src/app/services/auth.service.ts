@@ -87,7 +87,7 @@ export class AuthService {
             this.db.addUser(form, url, tipo, aprobado);   
         });
         console.log("Usuario creado!!");
-        this.router.navigateByUrl("login");
+        this.router.navigateByUrl('login');  
         resolve(user);
       })
       .catch(error => rejected(error));
