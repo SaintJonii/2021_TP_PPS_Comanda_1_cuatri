@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     margin-top: 50%;
-    .buttonLista{
+    .buttonPreparar{
         margin-top: 5px;
         height: 40px;
         width: 250px;
@@ -11,20 +11,14 @@
         text-transform: initial;
         --background: #cc3f96;
     }
-    .buttonConfirmar{
-        margin-top: 40px;
-        height: 40px;
-        width: 250px;
-        font-size: 18px;
-        text-transform: initial;
-        --background: rgb(67, 41, 90);
-    }
     .buttonEntregar{
         margin-top: 40px;
         height: 40px;
         width: 250px;
         font-size: 18px;
         text-transform: initial;
-        --background: #88165c;
+
+    
+        --background: rgb(67, 41, 90);
     }
 }

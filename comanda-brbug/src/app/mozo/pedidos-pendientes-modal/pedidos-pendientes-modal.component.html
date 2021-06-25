@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Detalle Pedido</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div *ngFor="let producto of pedido.pedido">
+      <ion-card>
+        <ion-item>
+          <div>
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <ion-label>
+                    <span>{{producto.producto.nombre}}</span>
+                  </ion-label>
+                </ion-col>
+                <ion-col>
+                  <ion-label>
+                    <span>{{producto.unidades}}x</span>
+                  </ion-label>
+                </ion-col>
+                <ion-col>
+                  <ion-label>
+                    <span>${{producto.producto.precio}}</span>
+                  </ion-label>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+        </ion-item>
+      </ion-card>
+    </div>
+    <div style="text-align: center;">
+      <h1>Total: ${{pedido.total}}</h1>
+    </div>
+    <div *ngIf="pedidoPendiente">
+      <ion-item>
+        <p>Estado sector cocina: {{pedido.estado_cocina}}</p>
+      </ion-item>
+      <ion-item>
+        <p>Estado sector barra: {{pedido.estado_bebidas}}</p>
+      </ion-item>
+    </div>
+    <div *ngIf="estado == 'listo_para_servir'" style="text-align: center;">
+      <ion-button expand="block" (click)="despacharPedido()" class="buttonDespacharPedido">Servir pedido</ion-button>
+    </div>
+    
+</ion-content>

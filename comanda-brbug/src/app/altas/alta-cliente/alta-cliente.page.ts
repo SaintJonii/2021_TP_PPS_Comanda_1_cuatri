@@ -5,6 +5,8 @@ import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 import { AuthService } from 'src/app/services/auth.service';
 import { Camera, CameraResultType, CameraSource} from '@capacitor/camera';
 import { Capacitor } from '@capacitor/core';
+import { LoadingController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 
 const scanner = BarcodeScanner; 
@@ -76,7 +78,9 @@ export class AltaClientePage implements OnInit {
 
   constructor(public toastController: ToastController, 
     private alertController : AlertController,
-    private auth : AuthService) { }
+    private auth : AuthService,
+    private loadingController: LoadingController,
+    private router : Router) { }
 
   ngOnInit() {
   }
@@ -128,6 +132,11 @@ export class AltaClientePage implements OnInit {
       if(altaform.value.password == altaform.value.passwordConfirm){
         if(this.dataUrl!=null){
           this.auth.createUser(altaform, "cliente", this.dataUrl, false);
+          this.presentLoading();
+          setTimeout(() => {
+            this.router.navigateByUrl('login');
+          }, 3000);
+           
         }
         else{
           this.mostrarToast("Error: Foto invalida");
@@ -205,6 +214,16 @@ export class AltaClientePage implements OnInit {
         resolve(false);
       }
     });
+  }
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'Procesando el alta',
+      duration: 2700
+    });
+    await loading.present();
+    const { role, data } = await loading.onDidDismiss();
   }
 
 }
