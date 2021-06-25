@@ -4,6 +4,7 @@ import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 import { ToastController, AlertController } from '@ionic/angular';
 const scanner = BarcodeScanner;
 import { EncuestaService } from '../services/encuesta.service';
+import { StoreService } from '../services/store.service'
 
 @Component({
   selector: 'app-home',
@@ -15,12 +16,18 @@ export class HomePage implements OnInit {
   //Variables para el uso del escaner
   result: any = [];
   scanActive: boolean = false;
+  usuario;
 
-
-  constructor(public toastController: ToastController, private alertController : AlertController, private route : Router, private encuestaSv : EncuestaService ) { 
+  constructor(public toastController: ToastController,
+              private alertController : AlertController,
+              private route : Router,
+              private encuestaSv : EncuestaService,
+              private storeSv: StoreService ) { 
   }
 
   ngOnInit() {
+    this.usuario = JSON.parse(localStorage.getItem("usuarioActual"));
+    //Ver si tiene pedido en curso, ir directamente a la sala
   }
 
   //FUNCIONES DEL ESCANER
@@ -41,6 +48,7 @@ export class HomePage implements OnInit {
         this.scanActive = false;
         if(this.result[1] == "sala-espera"){
           this.route.navigateByUrl('sala');
+          this.storeSv.guardarEnLista(this.usuario.email, this.usuario.nombre, this.usuario.apellido, this.usuario.dni);
         }
         else{
           this.mostrarToast("QR Inválido");

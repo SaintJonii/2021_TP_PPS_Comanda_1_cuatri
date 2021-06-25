@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 import { ToastController, AlertController } from '@ionic/angular';
+import { PedidoService } from '../services/pedido.service'
 const scanner = BarcodeScanner;
 
 
@@ -11,16 +12,21 @@ const scanner = BarcodeScanner;
   styleUrls: ['./sala.page.scss'],
 })
 export class SalaPage implements OnInit {
-   //Variables para el uso del escaner
    result: any = [];
    scanActive: boolean = false;
+   usuario;
+   tienePedido: Boolean;
 
-  constructor(public toastController: ToastController, private alertController : AlertController, private route : Router) { }
+  constructor(public toastController: ToastController,
+              private alertController : AlertController,
+              private route : Router,
+              private pedidoSvce: PedidoService) {
+                
+                this.tienePedido = false;
+               }
 
   ngOnInit() {
-    setTimeout(() => {
-      this.mostrarToast("El mozo asignará su mesa");
-    }, 1000);
+    this.pedidoEnCurso();
   }
  
   //FUNCIONES DEL ESCANER
@@ -81,6 +87,22 @@ export class SalaPage implements OnInit {
         resolve(false);
       }
     });
+  }
+
+  pedidoEnCurso(){
+   debugger;
+   this.usuario = JSON.parse(localStorage.getItem("usuarioActual"));
+   this.pedidoSvce.buscarPedido(this.usuario.dni).subscribe(doc =>{
+      let pedido: any = doc[0];
+      if(pedido){
+        this.tienePedido = true;
+        this.mostrarToast("Ya tenés un pedido en curso");
+      }
+      else{
+        this.mostrarToast("El mozo le asignará una mesa");
+      }
+   });
+  
   }
 
   async mostrarToast(mensaje) {

@@ -20,7 +20,10 @@ export class PedidoService {
         cliente: cliente
       }
     );
+  }
 
+  buscarPedido(dni){
+    return this.afs.collection('pedidos', ref => ref.where('cliente', '==', dni)).valueChanges();
   }
 
 

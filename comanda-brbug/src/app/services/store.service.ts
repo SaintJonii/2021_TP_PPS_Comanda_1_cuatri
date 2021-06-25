@@ -76,6 +76,15 @@ export class StoreService {
     });
   }
 
+  guardarEnLista(email, nombre, apellido, dni) {
+    this.db.collection("listaDeEspera").doc().set({
+      email: email,
+      nombre: nombre,
+      apellido: apellido,
+      dni: dni
+    });
+  }
+
   obtenerListaDeEspera() {
     return this.db.collection('listaDeEspera').valueChanges();
   }

@@ -53,9 +53,15 @@ export class AuthService {
               if(this.usuarioActual.tipo == "cliente"){
                 this.router.navigateByUrl('home');
               }else if (this.usuarioActual.tipo == "mozo"){
-                this.router.navigateByUrl('home');  
+                this.router.navigateByUrl('homeMozo');  
               }else if (this.usuarioActual.tipo == "dueño"){
                 this.router.navigateByUrl('home-duenio');
+              }
+              else if (this.usuarioActual.tipo == "cocina"){
+                this.router.navigateByUrl('homeCocina');
+              }
+              else if (this.usuarioActual.tipo == "barra"){
+                this.router.navigateByUrl('homeBarra');
               }
 
             });
