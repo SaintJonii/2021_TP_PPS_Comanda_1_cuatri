@@ -15,26 +15,34 @@
         <div *ngFor="let p of pedido">
           <ion-item>
             <ion-avatar slot="start">
-              <img [src]="p.producto.imagen">
+              <img [src]="p.producto.imagen[0].referencia">
             </ion-avatar>
             <ion-label>
               <h2>{{p.producto.nombre}}</h2>
               <p>{{p.unidades}} X ${{p.producto.precio}}</p>
               <h5 style="font-weight: bold;">$ {{p.unidades * p.producto.precio}}</h5>
             </ion-label>
-            <ion-icon name="trash" slot="end" color="secondary" (click)="eliminarItem(p)"></ion-icon>
+            <ion-icon name="trash" slot="end" color="danger" (click)="eliminarItem(p)"></ion-icon>
           </ion-item>
         </div>
       </ion-list>
       <label>
-        <h2>TOTAL: $ {{total}} </h2>
+        <h2 style="font-weight: bold;">TOTAL: $ {{total}} </h2>
       </label>
     </ion-card-content>
   </ion-card>
 
-  <ion-button style="margin-top: 10%;" shape="round" fill="outline" expand="full" (click)="confirmar()">Confirmar
-    pedido</ion-button>
-
-  <ion-button style="margin-top: 5%;" shape="round" fill="outline" expand="full" (click)="volver()">Volver al menú
-  </ion-button>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+
+    <ion-button color="danger" shape="round" fill="outline" expand="full" (click)="confirmar()">
+      Confirmar Pedido
+    </ion-button>
+
+    <ion-button style="margin-top: 2%;" shape="round" fill="outline" expand="full" (click)="volver()">Volver al menú
+    </ion-button>
+
+  </ion-toolbar>
+</ion-footer>

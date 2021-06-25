@@ -6,6 +6,7 @@ import firebase from 'firebase/app'
 import { Pedido } from '../classes/pedido';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-menu',
@@ -21,11 +22,11 @@ export class MenuPage implements OnInit {
   pedido: Array<Pedido>;
   renderImages: Boolean;
   mesaCLiente;
+  total;
 
-  constructor(private afs: AngularFirestore, private route : Router, public toastController: ToastController) {
+  constructor(private afs: AngularFirestore, private route : Router, public toastController: ToastController, public loadingController: LoadingController) {
     this.mostrarSeleccion = false;
     this.mesaCLiente = localStorage.getItem("nro_mesa");
-    this.toastPedido("Asignado a mesa nro: " + this.mesaCLiente);
     this.renderImages = false;
    }
 
@@ -35,10 +36,13 @@ export class MenuPage implements OnInit {
     if(localStorage.getItem("pedidoActual") != null){
       this.pedido =  JSON.parse(localStorage.getItem("pedidoActual"));
     }
+
+    if(!this.imagenes){
+      this.presentLoading();
+    }
     
     this.getProducts();
   }
-
 
   getProducts() {
     this.productos = new Array<Producto>();
@@ -77,6 +81,7 @@ export class MenuPage implements OnInit {
       producto.imagen = imagen != undefined ? imagen : null;
     });
     this.renderImages = true;
+    this.toastPedido("Asignado a mesa nro: " + this.mesaCLiente);
   }
 
   seleccion(p){
@@ -87,9 +92,9 @@ export class MenuPage implements OnInit {
   enviarPedido(e){
     if(e!=null){
     this.pedido.push(e);
-    this.toastPedido("Se agregó al pedido");
     }
     this.mostrarSeleccion = false;
+    this.calcularTotal();
   }
 
   confirmarPedido(){
@@ -97,18 +102,43 @@ export class MenuPage implements OnInit {
     this.route.navigateByUrl('confirmacion');
   }
 
+  ionViewWillEnter(){
+    if(localStorage.getItem("pedidoActual") != null){
+      this.pedido =  JSON.parse(localStorage.getItem("pedidoActual"));
+      this.calcularTotal();
+    }
+  }
+
+  calcularTotal() {
+    let totales = [];
+    totales = this.pedido.map(function (x) {
+      return x.unidades * x.producto.precio;
+    });
+
+    let sum=0;
+    totales.forEach(function (numero) {
+      sum += numero;
+    });
+    this.total = sum;
+  }
+
+
   async toastPedido(msg) {
     const toast = await this.toastController.create({
       message: msg,
-      duration: 1500
+      duration: 2000
     });
     toast.present();
   }
 
-  ionViewWillEnter(){
-    if(localStorage.getItem("pedidoActual") != null){
-      this.pedido =  JSON.parse(localStorage.getItem("pedidoActual"));
-    }
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'Espere por favor',
+      duration: 2500
+    });
+    await loading.present();
+    const { role, data } = await loading.onDidDismiss();
   }
 
 }
