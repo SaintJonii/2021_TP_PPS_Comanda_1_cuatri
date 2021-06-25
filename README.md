@@ -42,14 +42,16 @@ DIAGRAMA DE PANTALLAS PARA MOZO
 
 
 QR'S
+* Mesa 1
 
-Mesa 1
 ![qr_mesa_1](https://user-images.githubusercontent.com/17880462/123358875-a3f17400-d542-11eb-8373-74142d7343a7.png)
 
-Mesa 2
+* Mesa 2
+ 
 ![qr_mesa_2](https://user-images.githubusercontent.com/17880462/123358877-a48a0a80-d542-11eb-943e-211d44add339.png)
 
-Sala de espera
+*Sala de espera
+
 ![qr_sala-espera](https://user-images.githubusercontent.com/17880462/123358878-a522a100-d542-11eb-8676-27e30d365589.png)
 
 
