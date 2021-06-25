@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EncuestaService } from '../services/encuesta.service';
 import { StoreService } from '../services/store.service';
 
 @Component({
@@ -45,7 +46,7 @@ export class EncuestaPage implements OnInit {
   encuesta : any = null;
 
 
-  constructor(private db : StoreService) { }
+  constructor(private db : StoreService, private encuestaSv : EncuestaService) { }
 
   ngOnInit() {
   }
@@ -65,15 +66,7 @@ export class EncuestaPage implements OnInit {
     }
 
     this.db.addEncuesta(this.encuesta);
-    /*console.log(this.velocidad);
-    console.log(this.atencion);
-    console.log(this.comida);
-    console.log(this.limpieza);
-    console.log(this.respuestaGustoComida);
-    console.log(this.respuestaDisgustoComida);
-    console.log(this.respuestabebida);
-    console.log(this.respuestaPersonal);
-    console.log(this.respuestaUltima);*/
+    this.encuestaSv.actualizarEncuestas();
   }
 
   rateVelocidad(value : number){

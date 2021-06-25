@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
+import { EncuestaService } from '../services/encuesta.service';
 
 @Component({
   selector: 'app-home',
@@ -8,9 +8,14 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HomePage implements OnInit {
 
-  constructor(private auth: AuthService) {}
+  constructor(private encuestaSv : EncuestaService) {}
 
-  ngOnInit(){
-    this.auth.loginUser("saint.jonii@gmail.com", "111111");
+  ngOnInit(){}
+
+  ionViewDidEnter(){
+    this.encuestaSv.actualizarEncuestas();
   }
+
+
+
 }
