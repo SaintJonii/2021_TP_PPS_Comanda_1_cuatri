@@ -3,19 +3,18 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
-
-import { MenuPageRoutingModule } from './menu-routing.module';
-
-import { MenuPage } from './menu.page';
 import { NavComponent } from './../components/nav/nav.component';
+import { SeleccionProdPageRoutingModule } from './seleccion-prod-routing.module';
+
+import { SeleccionProdPage } from './seleccion-prod.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MenuPageRoutingModule
+    SeleccionProdPageRoutingModule
   ],
-  declarations: [MenuPage, NavComponent]
+  declarations: [SeleccionProdPage, NavComponent]
 })
-export class MenuPageModule {}
+export class SeleccionProdPageModule {}

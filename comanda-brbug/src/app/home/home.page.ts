@@ -16,6 +16,7 @@ export class HomePage implements OnInit {
   //Variables para el uso del escaner
   result: any = [];
   scanActive: boolean = false;
+  titulo= "Home";
   usuario;
 
   constructor(public toastController: ToastController,

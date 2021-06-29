@@ -1,0 +1,11 @@
+<ion-toolbar color="dark">
+  <ion-buttons slot="start">
+    <ion-back-button  defaultHref="/" color="danger"> </ion-back-button>
+  </ion-buttons>
+  <ion-buttons slot="primary">
+    <ion-button (click)="logout()">
+      <ion-icon slot="icon-only" name="exit-outline" color="danger"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  <ion-title class="ion-text-center">{{titulo}}</ion-title>
+</ion-toolbar>

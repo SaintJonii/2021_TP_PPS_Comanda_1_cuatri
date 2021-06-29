@@ -12,10 +12,11 @@ const scanner = BarcodeScanner;
   styleUrls: ['./sala.page.scss'],
 })
 export class SalaPage implements OnInit {
-   result: any = [];
-   scanActive: boolean = false;
-   usuario;
-   tienePedido: Boolean;
+  result: any = [];
+  scanActive: boolean = false;
+  usuario;
+  tienePedido: Boolean;
+  titulo= "Sala de espera";
 
   constructor(public toastController: ToastController,
               private alertController : AlertController,

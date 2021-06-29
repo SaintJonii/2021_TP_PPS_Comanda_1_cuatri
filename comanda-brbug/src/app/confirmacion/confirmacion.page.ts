@@ -12,6 +12,7 @@ import { LoadingController } from '@ionic/angular';
 })
 export class ConfirmacionPage implements OnInit {
 
+  titulo= "Mi Pedido";
   pedido: Array<Pedido>;
   total;
   mesaCliente;

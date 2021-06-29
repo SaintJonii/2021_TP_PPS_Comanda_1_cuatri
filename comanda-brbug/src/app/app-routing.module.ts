@@ -106,6 +106,10 @@ const routes: Routes = [
   {
     path: 'entregasBarra',
     loadChildren: () => import('./barra/lista-entregas/lista-entregas.module').then( m => m.ListaEntregasPageModule)
+  },
+  {
+    path: 'seleccion-prod',
+    loadChildren: () => import('./seleccion-prod/seleccion-prod.module').then( m => m.SeleccionProdPageModule)
   }
 ];
 

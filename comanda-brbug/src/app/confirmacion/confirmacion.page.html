@@ -1,11 +1,9 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Confirmación del Pedido</ion-title>
-  </ion-toolbar>
+  <app-nav [titulo]="titulo"></app-nav>
 </ion-header>
 
 <ion-content>
-  <ion-card style="margin-top: 25%;">
+  <ion-card style="margin-top: 5%;">
     <ion-card-header>
       <ion-card-title>Detalle del Pedido</ion-card-title>
     </ion-card-header>
@@ -39,10 +37,7 @@
 
     <ion-button color="danger" shape="round" fill="outline" expand="full" (click)="confirmar()">
       Confirmar Pedido
+      <ion-icon slot="start" name="checkmark-sharp"></ion-icon>
     </ion-button>
-
-    <ion-button style="margin-top: 2%;" shape="round" fill="outline" expand="full" (click)="volver()">Volver al menú
-    </ion-button>
-
   </ion-toolbar>
 </ion-footer>

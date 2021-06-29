@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
-
+import { NavComponent } from './../components/nav/nav.component';
 import { SalaPageRoutingModule } from './sala-routing.module';
 
 import { SalaPage } from './sala.page';
@@ -15,6 +15,6 @@ import { SalaPage } from './sala.page';
     IonicModule,
     SalaPageRoutingModule
   ],
-  declarations: [SalaPage]
+  declarations: [SalaPage, NavComponent]
 })
 export class SalaPageModule {}

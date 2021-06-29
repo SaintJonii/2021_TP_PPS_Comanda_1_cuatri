@@ -1,12 +1,11 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Menu</ion-title>
-  </ion-toolbar>
+<ion-header [translucent]="true">
+  <app-nav [titulo]="titulo"></app-nav>
 </ion-header>
+
 
 <ion-content>
 
-  <ion-grid *ngIf="!mostrarSeleccion && renderImages">
+  <ion-grid *ngIf="renderImages">
     <ion-row *ngIf="renderImages">
       <ion-col sizeLg="4" sizeMd="4" sizeXs="6" class="line" *ngFor="let p of productos">
 
@@ -32,11 +31,9 @@
     </ion-row>
   </ion-grid>
 
-
-  <app-seleccion [producto]="productoSel" (pedido)="enviarPedido($event)" *ngIf="mostrarSeleccion"></app-seleccion>
 </ion-content>
 
-<ion-footer *ngIf="pedido.length > 0 && !mostrarSeleccion">
+<ion-footer *ngIf="pedido.length > 0">
   <ion-toolbar>
     
     <ion-button color="danger" shape="round" fill="outline" expand="full" (click)="confirmarPedido()">
