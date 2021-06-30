@@ -28,8 +28,16 @@
 
 <ion-footer [hidden]="scanActive">
   <ion-toolbar>
-    <ion-button color="danger" shape="round" fill="outline" expand="full" (click)="escanear()">
+    <ion-button color="danger" shape="round" fill="outline" expand="full" (click)="escanear()" *ngIf="!mostrarBotones">
       <ion-icon name="qr-code-sharp" slot="end"></ion-icon>Escanear QR
+    </ion-button>
+
+    <ion-button color="primary" shape="round" fill="outline" expand="full"  *ngIf="mostrarBotones">
+      <ion-icon name="qr-code-sharp" slot="end"></ion-icon>Estado del pedido
+    </ion-button>
+
+    <ion-button color="secondary" shape="round" fill="outline" expand="full"  *ngIf="mostrarBotones">
+      <ion-icon name="qr-code-sharp" slot="end"></ion-icon>Acceder a encuesta
     </ion-button>
   </ion-toolbar>
 </ion-footer>

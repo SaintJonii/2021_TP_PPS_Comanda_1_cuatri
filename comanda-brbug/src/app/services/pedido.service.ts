@@ -26,5 +26,9 @@ export class PedidoService {
     return this.afs.collection('pedidos', ref => ref.where('cliente', '==', dni)).valueChanges();
   }
 
+  buscarMesa(nroMesa){
+    return this.afs.collection('mesas').doc(nroMesa).valueChanges();
+  }
+
 
 }

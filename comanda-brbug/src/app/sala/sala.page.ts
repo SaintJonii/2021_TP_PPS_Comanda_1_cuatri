@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 import { ToastController, AlertController } from '@ionic/angular';
 import { PedidoService } from '../services/pedido.service'
+import { StoreService } from '../services/store.service'
 const scanner = BarcodeScanner;
 
 
@@ -16,20 +17,25 @@ export class SalaPage implements OnInit {
   scanActive: boolean = false;
   usuario;
   tienePedido: Boolean;
-  titulo= "Sala de espera";
+  titulo = "Sala de espera";
+  nroMesa;
+  mostrarBotones: Boolean;
 
   constructor(public toastController: ToastController,
-              private alertController : AlertController,
-              private route : Router,
-              private pedidoSvce: PedidoService) {
-                
-                this.tienePedido = false;
-               }
+    private alertController: AlertController,
+    private route: Router,
+    private pedidoSvce: PedidoService,
+    private storeSv: StoreService) {
+
+    this.tienePedido = false;
+    this.mostrarBotones = false;
+    this.nroMesa = "";
+  }
 
   ngOnInit() {
     this.pedidoEnCurso();
   }
- 
+
   //FUNCIONES DEL ESCANER
   stopScanner() {
     scanner.stopScan();
@@ -37,24 +43,19 @@ export class SalaPage implements OnInit {
   }
 
   async escanear() {
-
     const allowed = this.checkPermission();
     if (allowed) {
       this.scanActive = true;
       const result = await scanner.startScan();
-      console.log(result);
+
       if (result.hasContent) {
         this.result = result.content.split("@");
         this.scanActive = false;
-        if(this.result[1] == "mesa"){
-          let nroMesa = this.result[2];
 
-          //GUARDAR EN FIRE MESA-CLIENTE: ESTADO DE LA MESA
-          
-          localStorage.setItem("nro_mesa", nroMesa);
-          this.route.navigateByUrl('menu');
+        if (this.result[1] == "mesa") {
+          this.manejarMesa(this.result[2]);
         }
-        else{
+        else {
           this.mostrarToast("QR Inválido");
         }
       }
@@ -90,20 +91,50 @@ export class SalaPage implements OnInit {
     });
   }
 
-  pedidoEnCurso(){
-   this.usuario = JSON.parse(localStorage.getItem("usuarioActual"));
-   this.pedidoSvce.buscarPedido(this.usuario.dni).subscribe(doc =>{
+  pedidoEnCurso() {
+    debugger;
+    this.usuario = JSON.parse(localStorage.getItem("usuarioActual"));
+    this.pedidoSvce.buscarPedido(this.usuario.dni).subscribe(doc => {
       let pedido: any = doc[0];
-      if(pedido){
+      if (pedido) {
         this.tienePedido = true;
+        this.nroMesa = pedido.mesa;
+        localStorage.setItem("nro_mesa", pedido.mesa);
         this.mostrarToast("Ya tenés un pedido en curso");
+
+        this.manejarMesa("2");
       }
-      else{
+      else {
         this.mostrarToast("El mozo le asignará una mesa");
       }
-   });
-  
+    });
   }
+
+  manejarMesa(mesaEscaneada) {
+   
+    this.pedidoSvce.buscarMesa(mesaEscaneada).subscribe(doc =>{
+      let mesa: any = doc;
+      debugger;
+      if(mesa.disponible && !this.tienePedido){
+        this.storeSv.asignarMesa(mesa.id, this.usuario.dni);
+        localStorage.setItem("nro_mesa", mesa.id);
+        this.route.navigateByUrl('menu');
+      }
+      else if (this.tienePedido && mesa.id == this.nroMesa ) {
+        this.mostrarBotones = true;
+      }
+      else if (this.tienePedido && mesa.id != this.nroMesa) {
+        this.mostrarToast("Tu mesa asignada es la número "+this.nroMesa+" !!");
+      }
+      else if(!mesa.disponible){
+        this.mostrarToast("La mesa no está disponible");
+      }
+
+     });
+    
+  }
+
+  
 
   async mostrarToast(mensaje) {
     const toast = await this.toastController.create({
@@ -111,6 +142,6 @@ export class SalaPage implements OnInit {
       duration: 3000
     });
     toast.present();
-  } 
+  }
 
 }
