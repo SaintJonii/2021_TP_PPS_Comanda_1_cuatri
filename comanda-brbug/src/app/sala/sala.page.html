@@ -10,14 +10,10 @@
   </ion-header>
 
   <div id="container" [hidden]="scanActive">
+    <img src="./../../assets/logo_bodegon.png">
     <strong>El Mozo le asignará una mesa</strong>
-    <p>Podrá escanearla y acceder al menú</p>
-  </div>
-
-  <div id="container-button" [hidden]="scanActive">
-    <ion-button color="primary" shape="round" fill="outline" (click)="escanear()">
-      <ion-icon name="qr-code-sharp" slot="end"></ion-icon>Escanear QR Mesa
-    </ion-button>
+    <p style="margin-top: 2%;">Podrá escanearla y acceder al menú.
+    </p>
   </div>
 
   <!-- Aparece cuando el scanner esta activado-->
@@ -28,5 +24,12 @@
     </ion-col>
   </ion-row>
 
-
 </ion-content>
+
+<ion-footer [hidden]="scanActive">
+  <ion-toolbar>
+    <ion-button color="danger" shape="round" fill="outline" expand="full" (click)="escanear()">
+      <ion-icon name="qr-code-sharp" slot="end"></ion-icon>Escanear QR
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

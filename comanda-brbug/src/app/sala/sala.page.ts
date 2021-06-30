@@ -91,7 +91,6 @@ export class SalaPage implements OnInit {
   }
 
   pedidoEnCurso(){
-   debugger;
    this.usuario = JSON.parse(localStorage.getItem("usuarioActual"));
    this.pedidoSvce.buscarPedido(this.usuario.dni).subscribe(doc =>{
       let pedido: any = doc[0];
