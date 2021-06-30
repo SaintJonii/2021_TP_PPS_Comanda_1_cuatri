@@ -64,6 +64,7 @@ export class AuthService {
                 this.router.navigateByUrl('homeBarra');
               }
 
+              // Guardar el token del device para mandar notificaciones
             });
           }
         }

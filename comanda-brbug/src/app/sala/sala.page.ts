@@ -101,8 +101,6 @@ export class SalaPage implements OnInit {
         this.nroMesa = pedido.mesa;
         localStorage.setItem("nro_mesa", pedido.mesa);
         this.mostrarToast("Ya tenés un pedido en curso");
-
-        this.manejarMesa("2");
       }
       else {
         this.mostrarToast("El mozo le asignará una mesa");
@@ -133,9 +131,7 @@ export class SalaPage implements OnInit {
      });
     
   }
-
   
-
   async mostrarToast(mensaje) {
     const toast = await this.toastController.create({
       message: mensaje,
