@@ -1,16 +1,16 @@
 .divTitle{
-    margin-top: 20px;
-    display: flex;
+    text-align: center;
     flex-direction: column;
+    display: flex;
     align-items: center;
-    background: #9200ff;
-    margin-left: 10px;
-    margin-right: 10px;
-    border-radius: 10px;
+    border-radius: 30px;
+    border: 2px solid;
+    background-color: var(--ion-color-danger);
+    border-color: var(--ion-color-danger);
     .title{
-        font-family: Arial black;
-        font-size: 30px;
+        padding-bottom: 10px;
         color: white;
+        font-family: arial;
     }
 }
 
@@ -23,7 +23,7 @@
     margin-left: 10px;
     margin-right: 10px;
     border: 2px solid;
-    border-color: #9200ff;
+    border-color: var(--ion-color-danger);
     border-radius: 10px;
 }
 
@@ -35,7 +35,7 @@
     margin-top: 10px;
     margin-left: 10px;
     margin-right: 10px;
-    background: #9200ff;
+    background: var(--ion-color-danger);
     color: white;
     border-radius: 10px;
 }
@@ -70,7 +70,7 @@
     align-items: center;
     justify-content: center;
     border: 2px solid;
-    border-color: #9200ff;
+    border-color: var(--ion-color-danger);
     border-radius: 10px;
     ion-icon{
         font-size: 25px;

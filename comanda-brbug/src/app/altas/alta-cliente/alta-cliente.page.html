@@ -1,13 +1,15 @@
 <ion-header [hidden]="scanActive">
-  <ion-toolbar>
+  <ion-toolbar color="dark">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="login" color="light"></ion-back-button>
+      <ion-back-button defaultHref="login" color="danger" icon="arrow-back-circle-outline"></ion-back-button>
     </ion-buttons>
     <ion-title>Registro</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [style.--background]="scanActive ? '#00000000' : '#fff'">
+
+  <ion-button [hidden]="scanActive" color="danger" shape="round" fill="outline" expand="full" (click)="escanearQr()" type="button" class="ion-margin" ><p>Escanear DNI</p><ion-icon slot="start" name="qr-code-outline"></ion-icon></ion-button>
 
   <div class="divImage" [hidden]="scanActive">
     <ion-avatar class="avatarImage">
@@ -17,11 +19,11 @@
 
   <form [hidden]="scanActive" id="form" [formGroup]="altaForm" (ngSubmit)="alta(altaForm)">
 
-    <div class="divButton">
-      <ion-button  class="buttonQr" (click)="tomarFoto()" type="button" ><p>Tomar foto</p><ion-icon style="color: black;" name="camera-sharp"></ion-icon></ion-button>
-    </div>
+    
+    <ion-button color="danger" shape="round" fill="outline" expand="full" (click)="tomarFoto()" type="button" ><p>Tomar foto</p><ion-icon slot="start" name="camera-outline"></ion-icon></ion-button>
 
     <ion-item class="ion-margin-bottom ion-margin-top">
+      <ion-icon name="person-outline" color="danger" slot="start"></ion-icon>
       <ion-input formControlName="apellido" [value]='apellidoStr' placeholder="Apellidos"></ion-input>
     </ion-item>
     <div *ngFor="let error of errorMessages.apellido">
@@ -31,6 +33,7 @@
     </div><br>
 
     <ion-item class="ion-margin-bottom">
+      <ion-icon name="person-outline" color="danger" slot="start"></ion-icon>
       <ion-input formControlName="nombre" [value]='nombreStr' placeholder="Nombres"></ion-input>
     </ion-item>
     <div *ngFor="let error of errorMessages.nombre">
@@ -40,6 +43,7 @@
     </div><br>
 
     <ion-item class="ion-margin-bottom">
+      <ion-icon name="card-outline" color="danger" slot="start"></ion-icon>
       <ion-input formControlName="dni" [value]='dniStr' placeholder="DNI" maxlength="8"></ion-input>
     </ion-item>
     <div *ngFor="let error of errorMessages.dni">
@@ -49,6 +53,7 @@
     </div><br>
 
     <ion-item class="ion-margin-bottom">
+      <ion-icon name="mail-outline" color="danger" slot="start"></ion-icon>
       <ion-input formControlName="email" placeholder="Correo"></ion-input>
     </ion-item>
     <div *ngFor="let error of errorMessages.email">
@@ -58,6 +63,7 @@
     </div><br>
 
     <ion-item class="ion-margin-bottom">
+      <ion-icon name="key-outline" color="danger" slot="start"></ion-icon>
       <ion-input formControlName="password" type="password" placeholder="Contraseña"></ion-input>
     </ion-item>
     <div *ngFor="let error of errorMessages.password">
@@ -67,6 +73,7 @@
     </div><br>
 
     <ion-item class="ion-margin-bottom">
+      <ion-icon name="key-outline" color="danger" slot="start"></ion-icon>
       <ion-input formControlName="passwordConfirm" type="password" placeholder="Confirmar contraseña"></ion-input>
     </ion-item>
     <div *ngFor="let error of errorMessages.passwordConfirm">
@@ -75,11 +82,7 @@
       </ng-container>
     </div><br>
 
-    <div class="divButton">
-      <ion-button  class="buttonAlta" type="submit" >Registrarse</ion-button>
-      <ion-button  class="buttonQr" (click)="escanearQr()" type="button" ><p>QR DOC</p><ion-icon style="color: black;" name="scan-sharp"></ion-icon></ion-button>
-    </div>
-
+    <ion-button color="danger" shape="round" expand="full" style="margin-bottom: 20px;" type="submit" >Registrarse</ion-button>
   </form>
 
 
@@ -87,7 +90,7 @@
   <div class="scan-box" [hidden]="!scanActive"></div>
   <ion-row class="scanner-buttons" [hidden]="!scanActive">
     <ion-col class="ion-no-padding">
-      <ion-button (click)="stopScanner()">Salir</ion-button>
+      <ion-button (click)="stopScanner()" color="danger" shape="round" expand="full">Salir</ion-button>
     </ion-col>
   </ion-row>
 

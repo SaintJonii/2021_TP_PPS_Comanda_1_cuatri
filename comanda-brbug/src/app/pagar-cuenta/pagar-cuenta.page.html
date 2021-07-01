@@ -1,0 +1,68 @@
+<ion-toolbar color="dark" [hidden]="scanActive">
+  <ion-buttons slot="start">
+    <ion-back-button color="danger" icon="arrow-back-circle-outline"></ion-back-button>
+  </ion-buttons>
+  <ion-buttons slot="primary">
+    <ion-button color="danger" (click)="logout()">
+      <ion-icon slot="icon-only" name="log-in-outline"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  <ion-title>Mesa {{numeroMesa}}</ion-title>
+</ion-toolbar>
+
+<ion-content [style.--background]="scanActive ? '#00000000' : '#fff'">
+  <div class="ion-margin divTitle" [hidden]="scanActive">
+    <h2 class="title">Detalle de la cuenta</h2>
+  </div>
+  <div class='line' [hidden]="scanActive"></div>
+
+  <ion-grid [hidden]="scanActive">
+    <ion-row *ngFor="let p of pedidos.pedido">
+      <ion-col size="3"><ion-avatar><img [src]="p.producto.imagen[0].referencia"></ion-avatar></ion-col>
+      <ion-col size="4">{{ p.producto.nombre }}</ion-col>
+      <ion-col size="1">{{ p.unidades }}</ion-col>
+      <ion-col size="4">${{ p.producto.precio }} c/u</ion-col>
+      <div class='line'></div>
+    </ion-row>
+    <ion-row>
+      <ion-col size="8">Subtotal:</ion-col>
+      <ion-col size="4">${{pedidos.total}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="8">Descuento:</ion-col>
+      <ion-col size="4">${{pedidos.total * descuento}} ({{descuentoPorcentaje}}%)</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="8">Propina:</ion-col>
+      <ion-col size="4">${{pedidos.total * propina}} ({{propinaPorcentaje}}%)</ion-col>
+      <div class='line'></div>
+    </ion-row>
+    <ion-row>
+      <ion-col size="8"><b>Total:</b></ion-col>
+      <ion-col size="4"><b>${{pedidos.total + (pedidos.total * propina) - (pedidos.total * descuento)}}</b></ion-col>
+      <div class='line'></div>
+    </ion-row>
+  </ion-grid>
+
+  <div class="ion-margin divTitle" [hidden]="scanActive" *ngIf="imagenElegida != null">
+    <h4 class="title">Nivel de satisfacción: {{satifaccion}}</h4>
+    <ion-img src="{{imagenElegida}}" style="height: 50px; width: 50px;" class="ion-margin"></ion-img>
+  </div>
+
+  <ion-button [hidden]="scanActive" (click)="ingresarPropina()" color="danger" shape="round" fill="outline" expand="full" class="ion-margin">
+    Ingresar propina
+    <ion-icon slot="start" name="qr-code-outline"></ion-icon>
+  </ion-button>
+  <ion-button [hidden]="scanActive" color="danger" shape="round" expand="full" class="ion-margin">
+    Pagar
+  </ion-button>
+
+  <!-- Aparece cuando el scanner esta activado-->
+  <div class="scan-box" [hidden]="!scanActive"></div>
+  <ion-row class="scanner-buttons" [hidden]="!scanActive">
+    <ion-col class="ion-no-padding">
+      <ion-button (click)="stopScanner()" color="danger" shape="round" expand="full">Salir</ion-button>
+    </ion-col>
+  </ion-row>
+
+</ion-content>

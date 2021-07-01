@@ -1,16 +1,16 @@
 .divTitle{
-    margin-top: 20px;
-    display: flex;
+    text-align: center;
     flex-direction: column;
+    display: flex;
     align-items: center;
-    background: #9200ff;
-    margin-left: 10px;
-    margin-right: 10px;
-    border-radius: 10px;
+    border-radius: 30px;
+    border: 2px solid;
+    background-color: var(--ion-color-danger);
+    border-color: var(--ion-color-danger);
     .title{
-        font-family: Arial black;
-        font-size: 25px;
+        padding-bottom: 10px;
         color: white;
+        font-family: arial;
     }
 }
 
@@ -19,21 +19,18 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin-top: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
     border: 2px solid;
-    border-color: #9200ff;
+    border-color: var(--ion-color-danger);
     border-radius: 10px;
     .text{
-        font-family: Arial black;
-        font-size: 15px;
+        font-family: arial black; 
     }
 }
 .slide{
     margin-left: 10px;
     margin-right: 10px;
-    --bullet-background: #9200ff;
+    --bullet-background: var(--ion-color-danger);
+    --bullet-background-active: var(--ion-color-danger);
     padding-bottom: 30px;
 }
 .pedido{

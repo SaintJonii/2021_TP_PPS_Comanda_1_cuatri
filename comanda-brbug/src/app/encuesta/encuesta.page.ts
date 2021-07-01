@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 import { EncuestaService } from '../services/encuesta.service';
 import { StoreService } from '../services/store.service';
 
@@ -45,10 +47,22 @@ export class EncuestaPage implements OnInit {
 
   encuesta : any = null;
 
+  mesa : string = null;
 
-  constructor(private db : StoreService, private encuestaSv : EncuestaService) { }
+
+  constructor(private db : StoreService,
+    private encuestaSv : EncuestaService,
+    private auth : AuthService,
+    private route : Router) { 
+    this.mesa=localStorage.getItem("nro_mesa");
+  }
 
   ngOnInit() {
+  }
+
+  logout(){
+    this.auth.logout();
+    this.route.navigateByUrl('login');
   }
 
   enviarEncuesta(){
@@ -67,6 +81,7 @@ export class EncuestaPage implements OnInit {
 
     this.db.addEncuesta(this.encuesta);
     this.encuestaSv.actualizarEncuestas();
+    this.route.navigateByUrl('sala');
   }
 
   rateVelocidad(value : number){

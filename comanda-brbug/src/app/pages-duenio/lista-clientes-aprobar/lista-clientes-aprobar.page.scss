@@ -11,6 +11,29 @@ ion-title{
     text-transform: initial;
 }
 
+.divTitle{
+    text-align: center;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    border-radius: 30px;
+    border: 2px solid;
+    background-color: var(--ion-color-danger);
+    border-color: var(--ion-color-danger);
+    .title{
+        padding-bottom: 10px;
+        color: white;
+        font-family: arial;
+    }
+}
+
+.img{
+    text-align: center;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+}
+
 
 .divImage{
     display: flex;

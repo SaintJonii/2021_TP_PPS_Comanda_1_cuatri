@@ -1,23 +1,33 @@
+<ion-toolbar color="dark">
+  <ion-buttons slot="start">
+    <ion-back-button color="danger" icon="arrow-back-circle-outline"></ion-back-button>
+  </ion-buttons>
+  <ion-buttons slot="primary">
+    <ion-button color="danger" (click)="logout()">
+      <ion-icon slot="icon-only" name="log-in-outline"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  <ion-title>Mesa {{mesa}}</ion-title>
+</ion-toolbar>
+
 <ion-content>
-  <div class="divTitle">
-    <h4 class="title">Estado de su pedido</h4>
+  <div class="ion-margin divTitle">
+    <h2 class="title">Estado de su pedido</h2>
   </div>
-  <div class="divEstado">
+  <div class="ion-margin divEstado">
     <ion-text>
-      <p class="text">En preparación</p>
+      <p class="text">{{pedido.estado | titlecase}}</p>
     </ion-text>
   </div>
   <ion-slides pager={true} [options]="slideOpts" class="slide">
       <ion-slide class="pedido" *ngFor="let pedido of pedido.pedido">
           <ion-text>
-            <ion-img src="{{pedido.producto.imagen}}"></ion-img>
+            <ion-img src="{{pedido.producto.imagen[0].referencia}}"></ion-img>
             <p class="text">Precio unitario: $ {{pedido.producto.precio}} c/u</p>
             <p class="text">Nombre: {{pedido.producto.nombre}}</p>
             <p class="text">Cantidad: {{pedido.unidades}}</p>
+            <p class="text">Tiempo: {{pedido.producto.tiempo}} min</p>
           </ion-text>
       </ion-slide>
   </ion-slides>
-  <div class="divButton">
-      <ion-button  class="buttonSalir" (click)="salir()">Salir</ion-button>
-  </div>
 </ion-content>

@@ -1,18 +1,18 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="dark">
     <ion-title>Lista de clientes sin aprobar</ion-title>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="home-duenio" color="light"></ion-back-button>
+      <ion-back-button defaultHref="home-duenio" color="danger" icon="arrow-back-circle-outline"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div *ngIf="!clienteSinAutorizar" class="divMensaje">
-    <h4 class="mensaje">No hay clientes por aprobar</h4>
-    <br>
-    <br>
-    <br>
+
+  <div *ngIf="!clienteSinAutorizar" class="ion-margin divTitle">
+    <h2 class="title">No hay clientes por aprobar</h2>
+  </div>
+  <div *ngIf="!clienteSinAutorizar" class="img">
     <img style="width: 70vw;" src="assets/logo.jpeg">
   </div>
 

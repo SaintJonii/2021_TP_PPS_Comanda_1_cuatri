@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 import { StoreService } from '../services/store.service';
 
 @Component({
@@ -49,14 +51,18 @@ export class EstadoPedidoPage implements OnInit {
   ;*/
 
   pedido : any = {};
+  mesa : string = null;
 
   slideOpts = {
     initialSlide: 1,
     speed: 400
   };
 
-  constructor(private db : StoreService) {
+  constructor(private db : StoreService,
+    private auth : AuthService,
+    private route : Router) {
     let mesa=localStorage.getItem("nro_mesa");
+    this.mesa=mesa;
     this.db.obtenerPedidoxNroMesa(mesa).subscribe( doc => {
       console.log(doc);
       this.pedido=doc;
@@ -67,8 +73,9 @@ export class EstadoPedidoPage implements OnInit {
   ngOnInit() {
   }
 
-  salir(){
-    console.log("salir");
+  logout(){
+    this.auth.logout();
+    this.route.navigateByUrl('login');
   }
 
 }
