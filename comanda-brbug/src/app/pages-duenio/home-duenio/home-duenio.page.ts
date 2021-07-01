@@ -9,12 +9,13 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HomeDuenioPage implements OnInit {
 
-  nombre : string = null;
   objetoJSON : string = null;
+  titulo : string = null;
 
   constructor(private route : Router, private auth : AuthService) {
     this.objetoJSON=localStorage.getItem("usuarioActual");
-    this.nombre=JSON.parse(this.objetoJSON).nombre;
+    let nombre=JSON.parse(this.objetoJSON).nombre;
+    this.titulo="Bienvenido "+nombre;
   }
 
   ngOnInit() {
@@ -28,11 +29,6 @@ export class HomeDuenioPage implements OnInit {
   }
   listaClientes(){
     this.route.navigateByUrl('lista-clientes-aprobar');
-  }
-
-  logout(){
-    this.auth.logout();
-    this.route.navigateByUrl('login');
   }
 
 }

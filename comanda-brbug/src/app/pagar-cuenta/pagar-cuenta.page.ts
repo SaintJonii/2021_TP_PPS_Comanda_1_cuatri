@@ -15,7 +15,7 @@ const scanner = BarcodeScanner;
 export class PagarCuentaPage implements OnInit {
 
   pedidos : any = {};
-  numeroMesa : string = null;
+  titulo : string = null;
 
   descuento : number = 0;
   descuentoPorcentaje : number = 0;
@@ -46,7 +46,7 @@ export class PagarCuentaPage implements OnInit {
     private toastController: ToastController, ) {
 
     let mesa=localStorage.getItem("nro_mesa");
-    this.numeroMesa=mesa;
+    this.titulo="Mesa "+mesa;
     this.db.obtenerPedidoxNroMesa(mesa).subscribe( doc => {
       console.log(doc);
       this.pedidos=doc;
@@ -62,11 +62,6 @@ export class PagarCuentaPage implements OnInit {
   }
   ngOnDestroy(){
     scanner.stopScan();
-  }
-
-  logout(){
-    this.authSv.logout();
-    this.route.navigateByUrl('login');
   }
 
   ingresarPropina(){

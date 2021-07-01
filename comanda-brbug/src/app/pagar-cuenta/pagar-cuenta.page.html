@@ -1,14 +1,6 @@
-<ion-toolbar color="dark" [hidden]="scanActive">
-  <ion-buttons slot="start">
-    <ion-back-button color="danger" icon="arrow-back-circle-outline"></ion-back-button>
-  </ion-buttons>
-  <ion-buttons slot="primary">
-    <ion-button color="danger" (click)="logout()">
-      <ion-icon slot="icon-only" name="log-in-outline"></ion-icon>
-    </ion-button>
-  </ion-buttons>
-  <ion-title>Mesa {{numeroMesa}}</ion-title>
-</ion-toolbar>
+<ion-header [translucent]="true">
+  <app-nav [titulo]="titulo"></app-nav>
+</ion-header>
 
 <ion-content [style.--background]="scanActive ? '#00000000' : '#fff'">
   <div class="ion-margin divTitle" [hidden]="scanActive">

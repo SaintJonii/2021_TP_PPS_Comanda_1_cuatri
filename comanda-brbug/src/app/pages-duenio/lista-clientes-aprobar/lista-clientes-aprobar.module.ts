@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { ListaClientesAprobarPageRoutingModule } from './lista-clientes-aprobar-routing.module';
 
 import { ListaClientesAprobarPage } from './lista-clientes-aprobar.page';
+import { NavComponent } from 'src/app/components/nav/nav.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { ListaClientesAprobarPage } from './lista-clientes-aprobar.page';
     IonicModule,
     ListaClientesAprobarPageRoutingModule
   ],
-  declarations: [ListaClientesAprobarPage]
+  declarations: [ListaClientesAprobarPage, NavComponent]
 })
 export class ListaClientesAprobarPageModule {}

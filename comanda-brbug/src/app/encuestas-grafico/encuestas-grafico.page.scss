@@ -1,15 +1,4 @@
-ion-header{
-    text-align:center;
-}
-ion-toolbar{
-    --background: #9200ff;
-}
-ion-title{
-    padding-right: 70px;
-    color: white;
-    font-size: 18px;
-    text-transform: initial;
-}
+
 
 .chart{
     margin-right: 10px;
@@ -17,25 +6,22 @@ ion-title{
     margin-top: 10px;
     padding-bottom: 5px;
     border: 2px solid;
-    border-color: #9200ff;
+    border-color: var(--ion-color-danger);
     border-radius: 10px;
 
 
 }
 
 .divTitle{
-    margin-top: 20px;
-    display: flex;
+    text-align: center;
     flex-direction: column;
+    display: flex;
     align-items: center;
-    background: #9200ff;
-    margin-left: 10px;
-    margin-right: 10px;
-    border-radius: 10px;
+    border-radius: 30px;
+    border: 2px solid;
+    border-color: var(--ion-color-danger);
     .title{
-        font-family: Arial black;
-        font-size: 30px;
-        color: white;
+        color: var(--ion-color-danger);
     }
 }
 

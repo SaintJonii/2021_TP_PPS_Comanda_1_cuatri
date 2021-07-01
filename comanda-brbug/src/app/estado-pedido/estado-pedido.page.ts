@@ -51,7 +51,7 @@ export class EstadoPedidoPage implements OnInit {
   ;*/
 
   pedido : any = {};
-  mesa : string = null;
+  titulo : string = null;
 
   slideOpts = {
     initialSlide: 1,
@@ -62,7 +62,7 @@ export class EstadoPedidoPage implements OnInit {
     private auth : AuthService,
     private route : Router) {
     let mesa=localStorage.getItem("nro_mesa");
-    this.mesa=mesa;
+    this.titulo="Mesa"+mesa;
     this.db.obtenerPedidoxNroMesa(mesa).subscribe( doc => {
       console.log(doc);
       this.pedido=doc;
@@ -73,9 +73,5 @@ export class EstadoPedidoPage implements OnInit {
   ngOnInit() {
   }
 
-  logout(){
-    this.auth.logout();
-    this.route.navigateByUrl('login');
-  }
 
 }

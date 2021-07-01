@@ -6,6 +6,7 @@
   <form id="form" [formGroup]="loginForm" (ngSubmit)="login(loginForm)">
 
     <ion-item class="ion-margin-bottom ion-margin-top">
+      <ion-icon name="mail-outline" color="danger" slot="start"></ion-icon>
       <ion-input [value]="email" formControlName="correo" placeholder="Correo" name="correo"></ion-input>
     </ion-item>
     <div *ngFor="let error of errorMessages.correo">
@@ -15,6 +16,7 @@
     </div><br>
 
     <ion-item class="ion-margin-bottom">
+      <ion-icon name="key-outline" color="danger" slot="start"></ion-icon>
       <ion-input [value]="contrasenia" formControlName="password" type="password" placeholder="Contraseña"></ion-input>
     </ion-item>
     <div *ngFor="let error of errorMessages.password">
@@ -23,11 +25,17 @@
       </ng-container>
     </div><br>
 
-    <div class="divButton">
-      <ion-button  class="buttonAlta" type="submit" >Ingresar</ion-button>
-      <ion-button  class="buttonQr" (click)="registrarse()" type="button">Registrarse</ion-button>
-      <ion-button  class="buttonQr" (click)="modoAnonimo()" type="button">Modo anónimo</ion-button>
-    </div>
+    
+    <ion-button class="ion-margin" color="danger" shape="round" expand="full" type="submit">
+      <ion-icon slot="start" name="enter-outline"></ion-icon>
+      Ingresar</ion-button>
+    <ion-button class="ion-margin" color="danger" shape="round" fill="outline" expand="full" (click)="registrarse()" type="button">
+      <ion-icon slot="start" name="reader-outline"></ion-icon>
+      Registrarse</ion-button>
+    <ion-button class="ion-margin" color="danger" shape="round" fill="outline" expand="full" (click)="modoAnonimo()" type="button">
+      <ion-icon slot="start" name="person-circle-outline"></ion-icon>
+      Modo anónimo</ion-button>
+    
 
     <div class="alert show" *ngIf="alert">
       <span class="msg">{{alertMsj}}</span>
@@ -36,16 +44,22 @@
   </form>
 
 
-  <ion-fab vertical="bottom" horizontal="start">
+  <ion-fab vertical="top" horizontal="end">
     <ion-fab-button size="small" class="fabButton">
-      <ion-icon name="arrow-forward-outline"></ion-icon>
+      <ion-icon name="chevron-down-circle-outline"></ion-icon>
     </ion-fab-button>
-    <ion-fab-list side="end">
-      <ion-fab-button (click)="loginMozo()" data-desc="Mozo" class="mozo">
-        <ion-icon name="person-sharp" color="light"></ion-icon>
+    <ion-fab-list side="bottom">
+      <ion-fab-button (click)="loginDuenio()" data-desc="Dueño">
+        <img id=titulo src="assets/login/jefe.png" style="height: 40px;width: 40px;">
       </ion-fab-button>
-      <ion-fab-button (click)="loginDuenio()" data-desc="Dueño" class="duenio">
-        <ion-icon name="person-sharp" color="light"></ion-icon>
+      <ion-fab-button (click)="loginMozo()" data-desc="Mozo">
+        <img id=titulo src="assets/login/mesero.png" style="height: 35px;width: 35px;">
+      </ion-fab-button>
+      <ion-fab-button (click)="loginCocina()" data-desc="Cocina">
+        <img id=titulo src="assets/login/cocina.png" style="height: 35px;width: 35px;">
+      </ion-fab-button>
+      <ion-fab-button (click)="loginBarra()" data-desc="Barra">
+        <img id=titulo src="assets/login/bartender.png" style="height: 35px;width: 35px;">
       </ion-fab-button>
     </ion-fab-list>
   </ion-fab>

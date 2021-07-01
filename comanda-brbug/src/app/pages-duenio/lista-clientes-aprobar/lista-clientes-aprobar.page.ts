@@ -12,6 +12,7 @@ export class ListaClientesAprobarPage implements OnInit {
 
   public users : any [] = [];
   public clienteSinAutorizar : boolean = false;
+  public titulo : string = "Lista de clientes";
 
   constructor(private db : StoreService, 
     private toastController : ToastController,
@@ -20,7 +21,7 @@ export class ListaClientesAprobarPage implements OnInit {
   ngOnInit() {
     this.db.obtenerUsuariosSinAprobar_no_order().subscribe(doc => {
       this.users=doc;
-      if(this.users[0].length != 0){
+      if(this.users.length != 0){
         this.clienteSinAutorizar = true;
       }
       else{

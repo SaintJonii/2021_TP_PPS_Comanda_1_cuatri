@@ -9,6 +9,8 @@ import { ChatService } from '../services/chat.service';
 })
 export class ChatPage implements OnInit {
 
+  titulo : string = "Consulta";
+
   messages : any []= [];
 
   currentUser=this.chatSv.usuarioActual;
@@ -37,8 +39,5 @@ export class ChatPage implements OnInit {
 
   }
 
-  salir(){
-    console.log("salir")
-  }
 
 }

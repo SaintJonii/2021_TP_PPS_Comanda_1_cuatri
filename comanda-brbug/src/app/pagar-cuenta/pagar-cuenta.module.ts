@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { PagarCuentaPageRoutingModule } from './pagar-cuenta-routing.module';
 
 import { PagarCuentaPage } from './pagar-cuenta.page';
+import { NavComponent } from './../components/nav/nav.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { PagarCuentaPage } from './pagar-cuenta.page';
     IonicModule,
     PagarCuentaPageRoutingModule
   ],
-  declarations: [PagarCuentaPage]
+  declarations: [PagarCuentaPage, NavComponent]
 })
 export class PagarCuentaPageModule {}

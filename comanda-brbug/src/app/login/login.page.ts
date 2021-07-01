@@ -95,11 +95,19 @@ export class LoginPage implements OnInit {
 
   loginMozo(){
     this.email="mozo@mozo.com";
-    this.contrasenia="mozo123";
+    this.contrasenia="123456";
   }
   loginDuenio(){
     this.email="admin@admin.com";
     this.contrasenia="admin123";
+  }
+  loginCocina(){
+    this.email="cocina@cocina.com";
+    this.contrasenia="123456";
+  }
+  loginBarra(){
+    this.email="barra@barra.com";
+    this.contrasenia="123456";
   }
   modoAnonimo(){
     this.presentAlert();

@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { EstadoPedidoPageRoutingModule } from './estado-pedido-routing.module';
 
 import { EstadoPedidoPage } from './estado-pedido.page';
+import { NavComponent } from '../components/nav/nav.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { EstadoPedidoPage } from './estado-pedido.page';
     IonicModule,
     EstadoPedidoPageRoutingModule
   ],
-  declarations: [EstadoPedidoPage]
+  declarations: [EstadoPedidoPage,NavComponent]
 })
 export class EstadoPedidoPageModule {}

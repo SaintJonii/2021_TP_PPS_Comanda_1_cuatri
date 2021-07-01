@@ -26,6 +26,8 @@ export class EncuestasGraficoPage implements OnInit {
   promedioComida : string = null;
   promedioLimpieza : string = null;
 
+  titulo : string = "Calificaciones";
+
   constructor(private encuestaSv : EncuestaService) {
   }
 

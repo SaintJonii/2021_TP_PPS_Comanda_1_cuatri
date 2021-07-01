@@ -1,14 +1,6 @@
-<ion-toolbar color="dark">
-  <ion-buttons slot="start">
-    <ion-back-button color="danger" icon="arrow-back-circle-outline"></ion-back-button>
-  </ion-buttons>
-  <ion-buttons slot="primary">
-    <ion-button color="danger" (click)="logout()">
-      <ion-icon slot="icon-only" name="log-in-outline"></ion-icon>
-    </ion-button>
-  </ion-buttons>
-  <ion-title>Mesa {{mesa}}</ion-title>
-</ion-toolbar>
+<ion-header [translucent]="true">
+  <app-nav [titulo]="titulo"></app-nav>
+</ion-header>
 
 <ion-content>
   <div class="ion-margin divTitle">

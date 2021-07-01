@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { EncuestasGraficoPageRoutingModule } from './encuestas-grafico-routing.module';
 
 import { EncuestasGraficoPage } from './encuestas-grafico.page';
+import { NavComponent } from '../components/nav/nav.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { EncuestasGraficoPage } from './encuestas-grafico.page';
     IonicModule,
     EncuestasGraficoPageRoutingModule
   ],
-  declarations: [EncuestasGraficoPage]
+  declarations: [EncuestasGraficoPage, NavComponent]
 })
 export class EncuestasGraficoPageModule {}

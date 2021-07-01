@@ -1,17 +1,13 @@
-<ion-header [hidden]="scanActive">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="home" color="light"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Calificaciones</ion-title>
-  </ion-toolbar>
+<ion-header [translucent]="true">
+  <app-nav [titulo]="titulo"></app-nav>
 </ion-header>
 
 <ion-content>
 
   <div style="margin-right: 10px; margin-left: 10px; margin-top: 10px;">
-    <div class="divTitle">
+    <div class="divTitle ion-margin">
       <h4 class="title">Velocidad: {{promedioVelocidad}}</h4>
+      <ion-img src="assets/encuestas/velocidad.png" style="height: 50px; width: 50px;" class="ion-margin"></ion-img>
     </div>
     <div class="chart">
       <canvas #barCanvas style="height: 150px;"></canvas>
@@ -19,8 +15,9 @@
   </div>
 
   <div style="margin-right: 10px; margin-left: 10px; margin-top: 10px;">
-    <div class="divTitle">
+    <div class="divTitle ion-margin">
       <h4 class="title">Atención: {{promedioAtencion}}</h4>
+      <ion-img src="assets/encuestas/restaurante.png" style="height: 50px; width: 50px;" class="ion-margin"></ion-img>
     </div>
     <div class="chart">
       <canvas #pieCanvas style="height: 150px;"></canvas>
@@ -28,8 +25,9 @@
   </div>
 
   <div style="margin-right: 10px; margin-left: 10px; margin-top: 10px;">
-    <div class="divTitle">
+    <div class="divTitle ion-margin">
       <h4 class="title">Comida: {{promedioComida}}</h4>
+      <ion-img src="assets/encuestas/hamburguesa.png" style="height: 50px; width: 50px;" class="ion-margin"></ion-img>
     </div>
     <div class="chart">
       <canvas #doughnutCanvas style="height: 150px;"></canvas>
@@ -37,8 +35,9 @@
   </div>
 
   <div style="margin-right: 10px; margin-left: 10px; margin-top: 10px;">
-    <div class="divTitle">
+    <div class="divTitle ion-margin">
       <h4 class="title">Limpieza: {{promedioLimpieza}}</h4>
+      <ion-img src="assets/encuestas/familiar.png" style="height: 50px; width: 50px;" class="ion-margin"></ion-img>
     </div>
     <div class="chart">
       <canvas #polarAreaCanvas style="height: 150px;"></canvas>

@@ -47,14 +47,14 @@ export class EncuestaPage implements OnInit {
 
   encuesta : any = null;
 
-  mesa : string = null;
+  titulo : string = null;
 
 
   constructor(private db : StoreService,
     private encuestaSv : EncuestaService,
     private auth : AuthService,
     private route : Router) { 
-    this.mesa=localStorage.getItem("nro_mesa");
+    this.titulo="Mesa "+localStorage.getItem("nro_mesa");
   }
 
   ngOnInit() {
