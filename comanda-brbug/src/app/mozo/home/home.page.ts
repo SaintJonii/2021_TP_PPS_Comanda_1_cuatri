@@ -20,4 +20,8 @@ export class HomePage implements OnInit {
   irConfirmar(){
     this.router.navigateByUrl('pedidosMozo');
   }
+
+  irEntrega(){
+    this.router.navigateByUrl('pendientesMozo');
+  }
 }

@@ -53,11 +53,18 @@ export class AuthService {
               if(this.usuarioActual.tipo == "cliente"){
                 this.router.navigateByUrl('home');
               }else if (this.usuarioActual.tipo == "mozo"){
-                this.router.navigateByUrl('home');  
+                this.router.navigateByUrl('homeMozo');  
               }else if (this.usuarioActual.tipo == "dueño"){
                 this.router.navigateByUrl('home-duenio');
               }
+              else if (this.usuarioActual.tipo == "cocina"){
+                this.router.navigateByUrl('homeCocina');
+              }
+              else if (this.usuarioActual.tipo == "barra"){
+                this.router.navigateByUrl('homeBarra');
+              }
 
+              // Guardar el token del device para mandar notificaciones
             });
           }
         }
@@ -86,8 +93,6 @@ export class AuthService {
             //Almacenar Usuario
             this.db.addUser(form, url, tipo, aprobado);   
         });
-        console.log("Usuario creado!!");
-        this.router.navigateByUrl('login');  
         resolve(user);
       })
       .catch(error => rejected(error));

@@ -82,6 +82,39 @@ const routes: Routes = [
   {
     path: 'pagar-cuenta',
     loadChildren: () => import('./pagar-cuenta/pagar-cuenta.module').then( m => m.PagarCuentaPageModule)
+  },
+  {
+    path: 'pendientesMozo',
+    loadChildren: () => import('./mozo/pedidos-pendientes/pedidos-pendientes.module').then( m => m.PedidosPendientesPageModule)
+  },
+  {
+    path: 'homeCocina',
+    loadChildren: () => import('./cocina/home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'prepararCocina',
+    loadChildren: () => import('./cocina/pedidos/pedidos.module').then( m => m.PedidosPageModule)
+  },
+  {
+    path: 'entregasCocina',
+    loadChildren: () => import('./cocina/entregas/entregas.module').then( m => m.EntregasPageModule)
+  },
+  {
+    path: 'homeBarra',
+    loadChildren: () => import('./barra/home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'prepararBarra',
+    loadChildren: () => import('./barra/lista-pedidos/lista-pedidos.module').then( m => m.ListaPedidosPageModule)
+  },
+  {
+    path: 'entregasBarra',
+    loadChildren: () => import('./barra/lista-entregas/lista-entregas.module').then( m => m.ListaEntregasPageModule)
+  },
+  {
+    path: 'seleccion-prod',
+    loadChildren: () => import('./seleccion-prod/seleccion-prod.module').then( m => m.SeleccionProdPageModule)
+
   }
 ];
 

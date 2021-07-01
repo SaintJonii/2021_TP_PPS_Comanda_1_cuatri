@@ -20,7 +20,7 @@ export class ListaClientesAprobarPage implements OnInit {
   ngOnInit() {
     this.db.obtenerUsuariosSinAprobar_no_order().subscribe(doc => {
       this.users=doc;
-      if(this.users.length != 0){
+      if(this.users[0].length != 0){
         this.clienteSinAutorizar = true;
       }
       else{

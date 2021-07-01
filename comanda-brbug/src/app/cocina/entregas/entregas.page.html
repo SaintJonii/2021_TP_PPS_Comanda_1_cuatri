@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Lista de pedidos</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="homeCocina" color="light"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="!pedidosPendientes" class="divMensaje">
+      <h4 class="mensaje">No hay pedidos para cocinar</h4>
+      <br>
+      <br>
+      <br>
+      <img style="width: 70vw;" src="assets/logo.jpeg">
+    </div>
+  
+    <div *ngIf="pedidosPendientes" >
+      <div *ngFor="let pedido of pedidos">
+        <div *ngFor="let producto of pedido.pedido">
+          <ion-card>
+            <ion-item>
+              <div>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col>
+                      <ion-label>
+                        <span>{{producto.producto.nombre}}</span>
+                      </ion-label>
+                    </ion-col>
+                    <ion-col>
+                      <ion-label>
+                        <span>{{producto.unidades}}x</span>
+                      </ion-label>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </div>
+            </ion-item>
+          </ion-card>
+        </div>
+        <div style="text-align: center;">
+          <ion-button expand="block" (click)="entregarPedido(pedido)" class="buttonEntregarPedido">Entregar pedido</ion-button>
+        </div>
+      </div>
+    </div>
+</ion-content>

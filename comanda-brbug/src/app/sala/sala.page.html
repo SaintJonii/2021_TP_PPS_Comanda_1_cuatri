@@ -1,9 +1,5 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Sala
-    </ion-title>
-  </ion-toolbar>
+  <app-nav [titulo]="titulo"></app-nav>
 </ion-header>
 
 <ion-content fullscreen [style.--background]="scanActive ? '#ffffff00' : '#ffffff'"  >
@@ -14,14 +10,10 @@
   </ion-header>
 
   <div id="container" [hidden]="scanActive">
-    <strong>Sala de Espera</strong>
-    <p>El mozo le asignará una mesa</p>
-  </div>
-
-  <div id="container-button" [hidden]="scanActive">
-    <ion-button color="primary" shape="round" fill="outline" (click)="escanear()">
-      <ion-icon name="qr-code-sharp" slot="end"></ion-icon>Escanear QR Mesa
-    </ion-button>
+    <img src="./../../assets/logo_bodegon.png">
+    <strong>El Mozo le asignará una mesa</strong>
+    <p style="margin-top: 2%;">Podrá escanearla y acceder al menú.
+    </p>
   </div>
 
   <!-- Aparece cuando el scanner esta activado-->
@@ -32,5 +24,20 @@
     </ion-col>
   </ion-row>
 
-
 </ion-content>
+
+<ion-footer [hidden]="scanActive">
+  <ion-toolbar>
+    <ion-button color="danger" shape="round" fill="outline" expand="full" (click)="escanear()" *ngIf="!mostrarBotones">
+      <ion-icon name="qr-code-sharp" slot="end"></ion-icon>Escanear QR
+    </ion-button>
+
+    <ion-button color="primary" shape="round" fill="outline" expand="full"  *ngIf="mostrarBotones">
+      <ion-icon name="qr-code-sharp" slot="end"></ion-icon>Estado del pedido
+    </ion-button>
+
+    <ion-button color="secondary" shape="round" fill="outline" expand="full"  *ngIf="mostrarBotones">
+      <ion-icon name="qr-code-sharp" slot="end"></ion-icon>Acceder a encuesta
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

@@ -76,6 +76,15 @@ export class StoreService {
     });
   }
 
+  guardarEnLista(email, nombre, apellido, dni) {
+    this.db.collection("listaDeEspera").doc().set({
+      email: email,
+      nombre: nombre,
+      apellido: apellido,
+      dni: dni
+    });
+  }
+
   obtenerListaDeEspera() {
     return this.db.collection('listaDeEspera').valueChanges();
   }
@@ -88,7 +97,31 @@ export class StoreService {
     return this.db.collection('pedidos', ref => ref.where('estado', '==', 'pendiente_confirmacion')).valueChanges();
   }
 
-  asignarMesa(id: string, dni: string) {
+  obtenerBebidasAPreparar(){
+    return this.db.collection('pedidos', ref => ref.where('estado_bebidas', '==', 'despachado')).valueChanges();
+  }
+
+  obtenerPedidosAPreparar(){
+    return this.db.collection('pedidos', ref => ref.where('estado_cocina', '==', 'despachado')).valueChanges();
+  }
+
+  obtenerPedidosAEntregar(){
+    return this.db.collection('pedidos', ref => ref.where('estado_cocina', '==', 'preparandolo')).valueChanges();
+  }
+
+  obtenerBebidasAEntregar(){
+    return this.db.collection('pedidos', ref => ref.where('estado_bebidas', '==', 'preparandolo')).valueChanges();
+  }
+
+  obtenerPedidos(){
+    return this.db.collection('pedidos').valueChanges();
+  }
+
+  obtenerPedido(mesa){
+    return this.db.collection('pedidos', ref => ref.where('mesa', '==', mesa)).valueChanges();
+  }
+
+  asignarMesa(id : string, dni : string){
     this.db.collection("mesas").doc(id).update({
       disponible: false,
       dniCliente: dni
@@ -107,15 +140,70 @@ export class StoreService {
     );
   }
 
-  despacharPedido(mesa) {//HACE FALTAR DEFINIR MESA COMO ID DE DOCUMENTO
+  despacharPedido(mesa){
     this.db.collection('pedidos').doc(mesa).update({
-      estado: "despachado"
+      estado: "despachado",
+      estado_bebidas: "despachado",
+      estado_cocina: "despachado"
+    });
+  }
+
+  prepararPedido(mesa, esCocina){
+    var pedido : any [] = [];
+    this.obtenerPedido(mesa).subscribe(data  => {
+      pedido = data;
+      if(esCocina){
+        this.db.collection('pedidos').doc(mesa).update({
+          estado_cocina: "preparandolo"
+        });
+      }
+      else{
+        this.db.collection('pedidos').doc(mesa).update({
+          estado_bebidas: "preparandolo"
+        });
+      }
+      if(pedido[0].estado_bebidas == "preparandolo" && pedido[0].estado_cocina == "preparandolo"){
+        this.db.collection('pedidos').doc(mesa).update({
+          estado: "preparandolo"
+        });
+      }
     })
   }
+
 
 
   obtenerPedidoxNroMesa(mesa) {
     return this.db.collection('pedidos').doc(mesa).valueChanges();
   }
 
+  entregarPedido(mesa, esCocina){
+    var pedido : any [] = [];
+    this.obtenerPedido(mesa).subscribe(data  => {
+      pedido = data;
+      if(esCocina){
+        this.db.collection('pedidos').doc(mesa).update({
+          estado_cocina: "listo_para_servir"
+        });
+      }
+      else{
+        this.db.collection('pedidos').doc(mesa).update({
+          estado_bebidas: "listo_para_servir"
+        });
+      }
+      if(pedido[0].estado_bebidas == "listo_para_servir" && pedido[0].estado_cocina == "listo_para_servir"){
+        this.db.collection('pedidos').doc(mesa).update({
+          estado: "listo_para_servir"
+        });
+      }
+    })
+  }
+
+  servirPedido(mesa){
+    this.db.collection('pedidos').doc(mesa).update({
+      estado: "servido",
+      estado_bebidas: "servido",
+      estado_cocina: "servido"
+    });
+  }
+  
 }

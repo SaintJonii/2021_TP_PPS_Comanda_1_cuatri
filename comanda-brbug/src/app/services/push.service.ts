@@ -62,7 +62,7 @@ export class PushService {
     );
   }
 
-  sendNotification(title, mensaje){
+  sendNotification(title, mensaje, deviceToken){
     
     let res = this.http.post('https://fcm.googleapis.com/fcm/send', {
                 notification: {
@@ -76,7 +76,7 @@ export class PushService {
                   },
                   id: '1:355095454257:android:46cf037c9d28fd4d306b10',
                 },
-                to: 'e4h_zHjbTXyhfxOMmrc7BF:APA91bHWliFe5F9vvVdFw4YLLBAW_1xYKacgG8K_6BydvyqgjpLiY11mI17N_qdbrXBNR4y1L-KQhbz-dWrqsBqcQCqEYMWGXxMr0LSMemG21g1nBY1guaFXlOKbELc-8KN_a2SQMZHs'
+                to: deviceToken
               }).subscribe(doc=>{
                 console.log(doc);
               });

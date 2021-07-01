@@ -1,0 +1,32 @@
+ion-header{
+    text-align:center;
+}
+ion-toolbar{
+    --background: #60238f;
+}
+ion-title{
+    padding-left: 0px;
+    color: white;
+    font-size: 18px;
+    text-transform: initial;
+}
+
+
+.buttonEntregarPedido{
+    font-size: 18px;
+    text-transform: initial;
+    --background: #60238f;
+    width: 200px;
+    margin-left: 105px;
+}
+
+.divMensaje{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    .mensaje{
+        font-size: 20px;
+        text-transform: initial;
+    }
+}

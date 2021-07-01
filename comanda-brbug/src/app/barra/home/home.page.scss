@@ -1,0 +1,24 @@
+.divButtons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50%;
+    .buttonPreparar{
+        margin-top: 5px;
+        height: 40px;
+        width: 250px;
+        font-size: 18px;
+        text-transform: initial;
+        --background: #cc3f96;
+    }
+    .buttonEntregar{
+        margin-top: 40px;
+        height: 40px;
+        width: 250px;
+        font-size: 18px;
+        text-transform: initial;
+
+    
+        --background: rgb(67, 41, 90);
+    }
+}

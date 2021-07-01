@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { LoadingController } from '@ionic/angular';
 
+
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.page.html',
@@ -17,15 +18,14 @@ export class MenuPage implements OnInit {
 
   imagenes:Array<Imagen>;
   productos:Array<Producto>;
-  mostrarSeleccion: Boolean;
   productoSel:Producto;
   pedido: Array<Pedido>;
   renderImages: Boolean;
+  titulo= "Menu";
   mesaCLiente;
   total;
 
-  constructor(private afs: AngularFirestore, private route : Router, public toastController: ToastController, public loadingController: LoadingController) {
-    this.mostrarSeleccion = false;
+  constructor(private afs: AngularFirestore, private router : Router, public toastController: ToastController, public loadingController: LoadingController) {
     this.mesaCLiente = localStorage.getItem("nro_mesa");
     this.renderImages = false;
    }
@@ -85,7 +85,14 @@ export class MenuPage implements OnInit {
   }
 
   seleccion(p){
-    this.mostrarSeleccion = true;
+    this.router.navigate(['seleccion-prod'], { queryParams: { producto: JSON.stringify(p) } })
+    .then(data => {
+      console.log("SE ENVIO EL PROD");
+    })
+    .catch(e => {
+      console.log(e);
+    });
+
     this.productoSel = p;
   } 
 
@@ -93,13 +100,12 @@ export class MenuPage implements OnInit {
     if(e!=null){
     this.pedido.push(e);
     }
-    this.mostrarSeleccion = false;
     this.calcularTotal();
   }
 
   confirmarPedido(){
     localStorage.setItem("pedidoActual", JSON.stringify(this.pedido));
-    this.route.navigateByUrl('confirmacion');
+    this.router.navigateByUrl('confirmacion');
   }
 
   ionViewWillEnter(){
