@@ -14,6 +14,7 @@ export class PedidoModalComponent implements OnInit {
   constructor(private modalCtrl: ModalController, private db: StoreService, private router: Router) { }
 
   ngOnInit() {
+    console.log(this.pedido);
   }
 
   dismissModal(){
@@ -21,7 +22,6 @@ export class PedidoModalComponent implements OnInit {
   }
 
   prepararPedido(){
-    console.log(this.pedido.mesa);
     this.db.prepararPedido(this.pedido.mesa, true);
     this.dismissModal();
     this.router.navigateByUrl('prepararCocina');

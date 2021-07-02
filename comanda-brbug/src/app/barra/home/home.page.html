@@ -1,4 +1,10 @@
+<ion-header [translucent]="true">
+  <app-nav [titulo]="titulo"></app-nav>
+</ion-header>
 <ion-content>
+  <div class="divMensaje">
+    <img style="width: 70vw;" src="assets/logo.jpeg">
+  </div>
   <div class="divButtons">
     <ion-button class="buttonPreparar" (click)="listaAPreparar()" type="button" >Pedidos para preparar</ion-button>
     <ion-button class="buttonEntregar" (click)="listaAEntregar()" type="button">Pedidos para entregar</ion-button>

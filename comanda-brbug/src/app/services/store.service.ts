@@ -114,7 +114,7 @@ export class StoreService {
   }
 
   obtenerPedidos(){
-    return this.db.collection('pedidos').valueChanges();
+    return this.db.collection('pedidos', ref => ref.where('estado_bebidas', '!=', 'pendiente_confirmacion')).valueChanges();
   }
 
   obtenerPedido(mesa){
@@ -149,25 +149,19 @@ export class StoreService {
   }
 
   prepararPedido(mesa, esCocina){
-    var pedido : any [] = [];
-    this.obtenerPedido(mesa).subscribe(data  => {
-      pedido = data;
-      if(esCocina){
-        this.db.collection('pedidos').doc(mesa).update({
-          estado_cocina: "preparandolo"
-        });
-      }
-      else{
-        this.db.collection('pedidos').doc(mesa).update({
-          estado_bebidas: "preparandolo"
-        });
-      }
-      if(pedido[0].estado_bebidas == "preparandolo" && pedido[0].estado_cocina == "preparandolo"){
-        this.db.collection('pedidos').doc(mesa).update({
-          estado: "preparandolo"
-        });
-      }
-    })
+    if(esCocina){
+      console.log('b2');
+      this.db.collection('pedidos').doc(mesa).update({
+        estado_cocina: "preparandolo",
+        estado: "preparandolo"
+      });
+    }
+    else{
+      this.db.collection('pedidos').doc(mesa).update({
+        estado_bebidas: "preparandolo",
+        estado: "preparandolo"
+      });
+   }
   }
 
 
@@ -179,23 +173,29 @@ export class StoreService {
   entregarPedido(mesa, esCocina){
     var pedido : any [] = [];
     this.obtenerPedido(mesa).subscribe(data  => {
-      pedido = data;
-      if(esCocina){
-        this.db.collection('pedidos').doc(mesa).update({
-          estado_cocina: "listo_para_servir"
-        });
+      pedido = data;      
+    });
+    var intervalo = setInterval(() => {
+      //console.log(pedido);
+      if(pedido != null){
+        if(esCocina){
+          this.db.collection('pedidos').doc(mesa).update({
+            estado_cocina: "listo_para_servir"
+          });
+        }
+        else{
+          this.db.collection('pedidos').doc(mesa).update({
+            estado_bebidas: "listo_para_servir"
+          });
+        }
+        if(pedido[0].estado_bebidas == "listo_para_servir" && pedido[0].estado_cocina == "listo_para_servir"){
+          this.db.collection('pedidos').doc(mesa).update({
+            estado: "listo_para_servir"
+          });
+        }
+        clearInterval(intervalo);
       }
-      else{
-        this.db.collection('pedidos').doc(mesa).update({
-          estado_bebidas: "listo_para_servir"
-        });
-      }
-      if(pedido[0].estado_bebidas == "listo_para_servir" && pedido[0].estado_cocina == "listo_para_servir"){
-        this.db.collection('pedidos').doc(mesa).update({
-          estado: "listo_para_servir"
-        });
-      }
-    })
+    }, 2000);
   }
 
   servirPedido(mesa){

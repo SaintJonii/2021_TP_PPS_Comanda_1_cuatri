@@ -10,7 +10,8 @@ import { PedidoModalComponent } from '../pedido-modal/pedido-modal.component';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  
+  titulo = "Inicio";
+
   constructor(private router: Router) { }
 
   ngOnInit() {

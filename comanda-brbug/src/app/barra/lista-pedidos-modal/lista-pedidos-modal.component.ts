@@ -14,6 +14,7 @@ export class ListaPedidosModalComponent implements OnInit {
   constructor(private modalCtrl: ModalController, private db: StoreService, private router: Router) { }
 
   ngOnInit() {
+    
   }
 
   dismissModal(){

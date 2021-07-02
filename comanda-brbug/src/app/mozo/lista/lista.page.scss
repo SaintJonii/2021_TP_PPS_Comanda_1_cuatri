@@ -1,9 +1,3 @@
-on-header{
-    text-align:center;
-}
-ion-toolbar{
-    --background: #60238f;
-}
 ion-title{
     padding-left: 0px;
     color: white;
@@ -15,7 +9,7 @@ ion-title{
 .buttonAsignarMesa{
     font-size: 18px;
     text-transform: initial;
-    --background: #60238f;
+    --background: #720707;
     width: 200px;
 }
 
@@ -30,3 +24,20 @@ ion-title{
         text-transform: initial;
     }
 }
+
+.label{
+    width: 210px;
+}
+
+.texto{
+    font-size: 15px;
+}
+
+.my-custom-class {
+    --background: rgb(0, 0, 0);
+    background-color: black;
+    
+    --spinner-color: #fff;
+    --backdrop-opacity: 100%;
+    color: #fff;
+  }

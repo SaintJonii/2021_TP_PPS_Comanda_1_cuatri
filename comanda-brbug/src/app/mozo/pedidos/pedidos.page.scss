@@ -12,7 +12,7 @@ ion-title{
 .buttonDetallePedido{
     font-size: 18px;
     text-transform: initial;
-    --background: #60238f;
+    --background: #991c1c;
     width: 200px;
 }
 
@@ -27,3 +27,15 @@ ion-title{
         text-transform: initial;
     }
 }
+p{
+    font-size: 18px;
+}
+
+.my-custom-class {
+    --background: rgb(0, 0, 0);
+    background-color: black;
+    
+    --spinner-color: #fff;
+    --backdrop-opacity: 100%;
+    color: #fff;
+  }

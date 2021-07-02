@@ -1,22 +1,15 @@
-ion-toolbar{
-    --background: #60238f;
-}
 ion-title{
     padding-left: 0px;
     color: white;
     font-size: 18px;
     text-transform: initial;
 }
-
-
 .buttonDetallePedido{
     font-size: 18px;
     text-transform: initial;
-    --background: #60238f;
+    --background: #991c1c;
     width: 200px;
 }
-
-
 .divMensaje{
     display: flex;
     flex-direction: column;
@@ -27,3 +20,14 @@ ion-title{
         text-transform: initial;
     }
 }
+p{
+    font-size: 18px;
+}
+.my-custom-class {
+    --background: rgb(0, 0, 0);
+    background-color: black;
+    
+    --spinner-color: #fff;
+    --backdrop-opacity: 100%;
+    color: #fff;
+  }

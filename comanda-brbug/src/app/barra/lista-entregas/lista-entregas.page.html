@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="dark">
     <ion-title>Lista de pedidos</ion-title>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="homeBarra" color="light"></ion-back-button>
@@ -8,8 +8,9 @@
 </ion-header>
 
 <ion-content>
-  <div *ngIf="!pedidosPendientes" class="divMensaje">
-      <h4 class="mensaje">No hay pedidos para cocinar</h4>
+  <div *ngIf="!spinner">
+    <div *ngIf="!pedidosPendientes" class="divMensaje">
+      <h4 class="mensaje">No hay bebidas para entregar</h4>
       <br>
       <br>
       <br>
@@ -25,7 +26,7 @@
                 <ion-grid>
                   <ion-row>
                     <ion-col>
-                      <ion-label>
+                      <ion-label  style="width: 295px;">
                         <span>{{producto.producto.nombre}}</span>
                       </ion-label>
                     </ion-col>
@@ -45,4 +46,5 @@
         </div>
       </div>
     </div>
+  </div>
 </ion-content>
