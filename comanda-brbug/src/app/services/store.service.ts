@@ -205,5 +205,15 @@ export class StoreService {
       estado_cocina: "servido"
     });
   }
+
+  actualizarToken(dniCliente, deviceToken){
+    this.db.collection("users").doc(dniCliente).update({
+      token: deviceToken
+    });
+  }
+
+  obtenerTokenMozo(){
+    return this.db.collection('users', ref => ref.where('tipo', '==', "mozo")).valueChanges();
+  }
   
 }

@@ -13,7 +13,7 @@ export class ChatPage implements OnInit {
 
   messages : any []= [];
 
-  currentUser=this.chatSv.usuarioActual;
+  currentUser= this.chatSv.usuarioActual;
   newMsg = '';
   @ViewChild(IonContent) content: IonContent;
 

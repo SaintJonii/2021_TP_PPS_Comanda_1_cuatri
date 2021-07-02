@@ -92,7 +92,6 @@ export class SalaPage implements OnInit {
   }
 
   pedidoEnCurso() {
-    debugger;
     this.usuario = JSON.parse(localStorage.getItem("usuarioActual"));
     this.pedidoSvce.buscarPedido(this.usuario.dni).subscribe(doc => {
       let pedido: any = doc[0];
@@ -112,7 +111,6 @@ export class SalaPage implements OnInit {
    
     this.pedidoSvce.buscarMesa(mesaEscaneada).subscribe(doc =>{
       let mesa: any = doc;
-      debugger;
       if(mesa.disponible && !this.tienePedido){
         this.storeSv.asignarMesa(mesa.id, this.usuario.dni);
         localStorage.setItem("nro_mesa", mesa.id);
@@ -131,7 +129,19 @@ export class SalaPage implements OnInit {
      });
     
   }
-  
+
+  irEstado(){
+    this.route.navigateByUrl('estado-pedido');
+  }
+
+  irEncuesta(){
+    this.route.navigateByUrl('encuesta');
+  }
+
+  chat(){
+    this.route.navigateByUrl('chat');
+  }
+
   async mostrarToast(mensaje) {
     const toast = await this.toastController.create({
       message: mensaje,

@@ -65,6 +65,10 @@ export class ConfirmacionPage implements OnInit {
     this.routerNav.navigateByUrl('menu');
   }
 
+  chat(){
+    this.routerNav.navigateByUrl('chat');
+  }
+
   ionViewWillEnter(){
     if(localStorage.getItem("pedidoActual") != null){
       this.pedido =  JSON.parse(localStorage.getItem("pedidoActual"));

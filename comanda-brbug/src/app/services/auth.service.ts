@@ -50,6 +50,8 @@ export class AuthService {
                 'foto': this.usuarioActual.foto
               };
               localStorage.setItem("usuarioActual", JSON.stringify(userData));
+              this.guardarToken(this.usuarioActual.dni);
+
               if(this.usuarioActual.tipo == "cliente"){
                 this.router.navigateByUrl('home');
               }else if (this.usuarioActual.tipo == "mozo"){
@@ -103,6 +105,10 @@ export class AuthService {
     this.auth.signOut(); 
   }
 
+  guardarToken(dniCliente){
+    let deviceToken = localStorage.getItem("deviceToken");
+    this.db.actualizarToken(dniCliente, deviceToken);
+  }
   
 
 

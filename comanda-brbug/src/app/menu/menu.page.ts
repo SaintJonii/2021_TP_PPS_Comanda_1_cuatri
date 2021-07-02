@@ -147,4 +147,8 @@ export class MenuPage implements OnInit {
     const { role, data } = await loading.onDidDismiss();
   }
 
+  chat(){
+    this.router.navigateByUrl('chat');
+  }
+
 }

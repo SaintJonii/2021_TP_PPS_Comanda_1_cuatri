@@ -1,6 +1,6 @@
 {
     "appId": "io.ionic.starter",
-    "appName": "Comanda",
+    "appName": "Bodegon La Estancia",
     "bundledWebRuntime": false,
     "linuxAndroidStudioPath": "/opt/android-studio/bin/studio.sh",
     "npmClient": "npm",

@@ -34,8 +34,7 @@ export class PushService {
       'registration',
       (token: Token) => {
         console.log('My token: ' + JSON.stringify(token));
-        //Guardar token de usuario en firebase
-        this.device_token = JSON.stringify(token);
+        localStorage.setItem("deviceToken", JSON.stringify(token));
       }
     );
 
@@ -63,7 +62,6 @@ export class PushService {
   }
 
   sendNotification(title, mensaje, deviceToken){
-    
     let res = this.http.post('https://fcm.googleapis.com/fcm/send', {
                 notification: {
                   title: title,
@@ -82,6 +80,7 @@ export class PushService {
               });
    
   }
+  
 
 
 }
