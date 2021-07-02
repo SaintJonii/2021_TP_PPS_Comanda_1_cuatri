@@ -8,6 +8,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 
 import { HomePage } from './home.page';
 import { ListaPedidosModalComponent } from '../lista-pedidos-modal/lista-pedidos-modal.component';
+import { NavComponent } from 'src/app/components/nav/nav.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,7 @@ import { ListaPedidosModalComponent } from '../lista-pedidos-modal/lista-pedidos
     IonicModule,
     HomePageRoutingModule
   ],
-  declarations: [HomePage, ListaPedidosModalComponent],
+  declarations: [HomePage, ListaPedidosModalComponent, NavComponent],
   entryComponents: [ListaPedidosModalComponent]
 })
 export class HomePageModule {}

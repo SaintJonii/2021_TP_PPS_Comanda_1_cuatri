@@ -8,6 +8,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 
 import { HomePage } from './home.page';
 import { PedidoModalComponent } from '../pedido-modal/pedido-modal.component';
+import { NavComponent } from 'src/app/components/nav/nav.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,7 @@ import { PedidoModalComponent } from '../pedido-modal/pedido-modal.component';
     IonicModule,
     HomePageRoutingModule
   ],
-  declarations: [HomePage, PedidoModalComponent],
+  declarations: [HomePage, PedidoModalComponent, NavComponent],
   entryComponents: [PedidoModalComponent]
 })
 export class HomePageModule {}

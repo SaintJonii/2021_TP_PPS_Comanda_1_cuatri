@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
+  titulo = "Inicio";
 
   constructor(private router: Router) { }
 

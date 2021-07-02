@@ -26,3 +26,12 @@ ion-title{
         text-transform: initial;
     }
 }
+
+.my-custom-class {
+    --background: rgb(0, 0, 0);
+    background-color: black;
+    
+    --spinner-color: #fff;
+    --backdrop-opacity: 100%;
+    color: #fff;
+  }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { LoadingController, ModalController } from '@ionic/angular';
 import { StoreService } from 'src/app/services/store.service';
 import { PedidoModalComponent } from '../pedido-modal/pedido-modal.component';
 
@@ -11,10 +11,12 @@ import { PedidoModalComponent } from '../pedido-modal/pedido-modal.component';
 export class PedidosPage implements OnInit {
   public pedidos : any [] = [];
   public pedidosPendientes : boolean = false;
+  public spinner : boolean = true;
 
-  constructor(private db : StoreService, private modalCtrl: ModalController) { }
+  constructor(private db : StoreService, private modalCtrl: ModalController, public loadingController: LoadingController) { }
 
   ngOnInit() {
+    this.presentLoading();
     this.db.obtenerPedidosAPreparar().subscribe(data => {
       this.pedidos = data;
       if(this.pedidos.length != 0){
@@ -35,4 +37,16 @@ export class PedidosPage implements OnInit {
     await modal.present();
   }
 
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'Espere por favor',
+    });
+    loading.present();
+
+    setTimeout(() => {
+      loading.dismiss();
+      this.spinner = false;
+    }, 2000);
+  }
 }

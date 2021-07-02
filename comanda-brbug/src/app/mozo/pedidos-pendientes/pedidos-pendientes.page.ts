@@ -11,11 +11,13 @@ import { PedidosPendientesModalComponent } from '../pedidos-pendientes-modal/ped
 export class PedidosPendientesPage implements OnInit {
   public pedidos : any [] = [];
   public pedidosPendientes : boolean = false;
+  public spinner : boolean = true;
 
   constructor(private db : StoreService, private modalCtrl: ModalController, public loadingController: LoadingController) { }
 
   ngOnInit() {
     this.presentLoading();
+        
     this.db.obtenerPedidos().subscribe(data => {
       this.pedidos = data;
       if(this.pedidos.length != 0){
@@ -23,7 +25,7 @@ export class PedidosPendientesPage implements OnInit {
       }
       else{
         this.pedidosPendientes = false;
-      }
+      }      
     })
   }
 
@@ -40,10 +42,12 @@ export class PedidosPendientesPage implements OnInit {
     const loading = await this.loadingController.create({
       cssClass: 'my-custom-class',
       message: 'Espere por favor',
-      duration: 2000
     });
-    await loading.present();
-    const { role, data } = await loading.onDidDismiss();
-  }
+    loading.present();
 
+    setTimeout(() => {
+      loading.dismiss();
+      this.spinner = false;
+    }, 2000);
+  }
 }

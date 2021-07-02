@@ -8,33 +8,35 @@
 </ion-header>
 
 <ion-content>
-  <div *ngIf="!pedidosPendientes" class="divMensaje">
-    <h4 class="mensaje">No hay pedidos pendientes</h4>
-    <br>
-    <br>
-    <br>
-    <img style="width: 70vw;" src="assets/logo.jpeg">
-  </div>
-  
-    <div *ngIf="pedidosPendientes" >
-      <div *ngFor="let pedido of pedidos">
-        <ion-card>
-          <ion-item>
-            <div>
-              <ion-grid style="text-align: center; margin-left: 80px;">
-                <ion-row>
-                  <ion-col>
-                    <ion-label>
-                      <p>DNI Cliente: {{pedido.cliente}}</p>
-                      <p>Mesa: {{pedido.mesa}}</p>
-                    </ion-label>
-                  </ion-col>
-                </ion-row>
-                <ion-button expand="block" (click)="openModal(pedido)" class="buttonDetallePedido">Revisar pedido</ion-button>
-              </ion-grid>
-            </div>
-          </ion-item>
-        </ion-card>
-      </div>
+  <div *ngIf="!spinner">
+    <div *ngIf="!pedidosPendientes" class="divMensaje">
+      <h4 class="mensaje">No hay pedidos pendientes</h4>
+      <br>
+      <br>
+      <br>
+      <img style="width: 70vw;" src="assets/logo.jpeg">
     </div>
+    
+      <div *ngIf="pedidosPendientes" >
+        <div *ngFor="let pedido of pedidos">
+          <ion-card>
+            <ion-item>
+              <div>
+                <ion-grid style="text-align: center; margin-left: 80px;">
+                  <ion-row>
+                    <ion-col>
+                      <ion-label>
+                        <p>DNI Cliente: {{pedido.cliente}}</p>
+                        <p>Mesa: {{pedido.mesa}}</p>
+                      </ion-label>
+                    </ion-col>
+                  </ion-row>
+                  <ion-button expand="block" (click)="openModal(pedido)" class="buttonDetallePedido">Revisar pedido</ion-button>
+                </ion-grid>
+              </div>
+            </ion-item>
+          </ion-card>
+        </div>
+      </div>
+  </div>
 </ion-content>
