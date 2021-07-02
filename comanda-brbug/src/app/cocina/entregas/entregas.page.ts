@@ -22,12 +22,12 @@ export class EntregasPage implements OnInit {
       else{
         this.pedidosPendientes = false;
       }
-      console.log(this.pedidos);
     })
   }
 
   entregarPedido(pedido){
     this.db.entregarPedido(pedido.mesa, true);
+    console.log('aaa');
   }
 
 }

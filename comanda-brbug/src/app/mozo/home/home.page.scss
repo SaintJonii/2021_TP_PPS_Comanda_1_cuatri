@@ -2,29 +2,40 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 50%;
+    margin-top: 10%;
     .buttonLista{
         margin-top: 5px;
-        height: 40px;
-        width: 250px;
+        height: 70px;
+        width: 300px;
         font-size: 18px;
         text-transform: initial;
-        --background: #cc3f96;
+        --background: #720707;
     }
     .buttonConfirmar{
         margin-top: 40px;
-        height: 40px;
-        width: 250px;
+        height: 70px;
+        width: 300px;
         font-size: 18px;
         text-transform: initial;
-        --background: rgb(67, 41, 90);
+        --background: #991c1c;
     }
     .buttonEntregar{
         margin-top: 40px;
-        height: 40px;
-        width: 250px;
+        height: 70px;
+        width: 300px;
         font-size: 18px;
         text-transform: initial;
-        --background: #88165c;
+        --background: #d82222;
+    }
+}
+
+.divMensaje{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    .mensaje{
+        font-size: 20px;
+        text-transform: initial;
     }
 }

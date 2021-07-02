@@ -2,23 +2,32 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 50%;
+    margin-top: 10%;
     .buttonPreparar{
         margin-top: 5px;
-        height: 40px;
-        width: 250px;
+        height: 70px;
+        width: 300px;
         font-size: 18px;
         text-transform: initial;
-        --background: #cc3f96;
+        --background: #720707;
     }
     .buttonEntregar{
         margin-top: 40px;
-        height: 40px;
-        width: 250px;
+        height: 70px;
+        width: 300px;
         font-size: 18px;
         text-transform: initial;
+        --background: #991c1c;
+    }
+}
 
-    
-        --background: rgb(67, 41, 90);
+.divMensaje{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    .mensaje{
+        font-size: 20px;
+        text-transform: initial;
     }
 }

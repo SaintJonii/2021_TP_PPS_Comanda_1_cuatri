@@ -34,4 +34,9 @@ export class PedidosPendientesModalComponent implements OnInit {
     this.router.navigateByUrl('pendientesMozo');
   }
 
+  capitalizeFirstLetter(string) {
+    var s = string.charAt(0).toUpperCase() + string.slice(1);
+    return s.split('_').join(' ');
+  }
+
 }
