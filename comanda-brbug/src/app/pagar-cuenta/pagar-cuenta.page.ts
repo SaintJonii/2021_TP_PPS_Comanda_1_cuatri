@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController, ToastController } from '@ionic/angular';
+import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 import { StoreService } from '../services/store.service';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
@@ -38,12 +38,15 @@ export class PagarCuentaPage implements OnInit {
   imagenElegida : string = null;
   satifaccion : string = null;
 
+  validar : boolean = false;
+
 
   constructor(private db : StoreService, 
     private authSv : AuthService,
     private route : Router,
     private alertController : AlertController,
-    private toastController: ToastController, ) {
+    private toastController: ToastController,
+    private loadingController : LoadingController ) {
 
     let mesa=localStorage.getItem("nro_mesa");
     this.titulo="Mesa "+mesa;
@@ -55,6 +58,7 @@ export class PagarCuentaPage implements OnInit {
   }
 
   ngOnInit() {
+    this.presentLoading();
   }
 
   ngAfterViewInit(){
@@ -66,6 +70,25 @@ export class PagarCuentaPage implements OnInit {
 
   ingresarPropina(){
     this.startScanner();
+  }
+
+  pagar(){
+    if(this.validar){
+      this.route.navigateByUrl('login');
+    }
+    else{
+      this.mostrarToast("Error: Ingrese propina");
+    }
+  }
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'Espere por favor',
+      duration: 2700
+    });
+    await loading.present();
+    const { role, data } = await loading.onDidDismiss();
   }
 
 
@@ -124,6 +147,7 @@ export class PagarCuentaPage implements OnInit {
         this.result = result.content.split("@");
         this.scanActive = false;
         if(this.result[1] == "propina"){
+          this.validar=true;
           let propina = this.result[2];
           this.propinaPorcentaje=propina;
           this.propina=Number(propina)/100;

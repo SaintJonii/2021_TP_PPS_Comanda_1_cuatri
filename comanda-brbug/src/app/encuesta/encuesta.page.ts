@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoadingController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 import { EncuestaService } from '../services/encuesta.service';
 import { StoreService } from '../services/store.service';
@@ -53,7 +54,8 @@ export class EncuestaPage implements OnInit {
   constructor(private db : StoreService,
     private encuestaSv : EncuestaService,
     private auth : AuthService,
-    private route : Router) { 
+    private route : Router,
+    private loadingController : LoadingController) { 
     this.titulo="Mesa "+localStorage.getItem("nro_mesa");
   }
 
@@ -81,7 +83,20 @@ export class EncuestaPage implements OnInit {
 
     this.db.addEncuesta(this.encuesta);
     this.encuestaSv.actualizarEncuestas();
-    this.route.navigateByUrl('sala');
+    this.presentLoading();
+    setTimeout(() => {
+      this.route.navigateByUrl('sala');
+    }, 3000);
+  }
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'Espere por favor',
+      duration: 2700
+    });
+    await loading.present();
+    const { role, data } = await loading.onDidDismiss();
   }
 
   rateVelocidad(value : number){

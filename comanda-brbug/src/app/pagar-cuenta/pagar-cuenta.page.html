@@ -45,7 +45,7 @@
     Ingresar propina
     <ion-icon slot="start" name="qr-code-outline"></ion-icon>
   </ion-button>
-  <ion-button [hidden]="scanActive" color="danger" shape="round" expand="full" class="ion-margin">
+  <ion-button [hidden]="scanActive" color="danger" shape="round" expand="full" class="ion-margin" (click)="pagar()">
     Pagar
   </ion-button>
 

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IonContent } from '@ionic/angular';
+import { IonContent, LoadingController } from '@ionic/angular';
 import { ChatService } from '../services/chat.service';
 
 @Component({
@@ -17,9 +17,11 @@ export class ChatPage implements OnInit {
   newMsg = '';
   @ViewChild(IonContent) content: IonContent;
 
-  constructor(private chatSv : ChatService) { }
+  constructor(private chatSv : ChatService,
+    private loadingController : LoadingController) { }
 
   ngOnInit() {
+    this.presentLoading();
     this.chatSv.ObtenerMensajes().subscribe(doc => {
       this.messages=doc;
     });
@@ -37,6 +39,16 @@ export class ChatPage implements OnInit {
       this.content.scrollToBottom(0);
     },1500);
 
+  }
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'Espere por favor',
+      duration: 2700
+    });
+    await loading.present();
+    const { role, data } = await loading.onDidDismiss();
   }
 
 

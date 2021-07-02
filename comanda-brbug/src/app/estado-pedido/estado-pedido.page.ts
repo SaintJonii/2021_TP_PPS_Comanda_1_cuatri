@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoadingController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 import { StoreService } from '../services/store.service';
 
@@ -59,8 +60,7 @@ export class EstadoPedidoPage implements OnInit {
   };
 
   constructor(private db : StoreService,
-    private auth : AuthService,
-    private route : Router) {
+    private loadingController : LoadingController) {
     let mesa=localStorage.getItem("nro_mesa");
     this.titulo="Mesa"+mesa;
     this.db.obtenerPedidoxNroMesa(mesa).subscribe( doc => {
@@ -71,6 +71,17 @@ export class EstadoPedidoPage implements OnInit {
   }
 
   ngOnInit() {
+    this.presentLoading();
+  }
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'Espere por favor',
+      duration: 2700
+    });
+    await loading.present();
+    const { role, data } = await loading.onDidDismiss();
   }
 
 
