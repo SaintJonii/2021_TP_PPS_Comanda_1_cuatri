@@ -1,0 +1,113 @@
+<ion-content>
+  <div class="divTitle">
+    <h4 class="title">Encuesta</h4>
+  </div>
+  <div class="divText">
+    <ion-text>
+      <p>Por favor, le rogamos que dedique un 
+        momento a completar esta pequeña encuesta, 
+        la información que nos proporcione será utilizada para mejorar nuestro servicio.</p>
+    </ion-text>
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col class="centerCol"><h4 class="font">Velocidad</h4></ion-col>
+      <ion-col class="centerCol">
+        <ion-icon name="star-sharp" (click)="rateVelocidad(1)" [ngClass]="{'rate':starVelocidad1}"></ion-icon>
+        <ion-icon name="star-sharp" (click)="rateVelocidad(2)" [ngClass]="{'rate':starVelocidad2}"></ion-icon>
+        <ion-icon name="star-sharp" (click)="rateVelocidad(3)" [ngClass]="{'rate':starVelocidad3}"></ion-icon>
+        <ion-icon name="star-sharp" (click)="rateVelocidad(4)" [ngClass]="{'rate':starVelocidad4}"></ion-icon>
+        <ion-icon name="star-sharp" (click)="rateVelocidad(5)" [ngClass]="{'rate':starVelocidad5}"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col class="centerCol"><h4 class="font">Atención</h4></ion-col>
+      <ion-col class="centerCol">
+        <ion-icon name="star-sharp" (click)="rateAtencion(1)" [ngClass]="{'rate':starAtencion1}"></ion-icon>
+        <ion-icon name="star-sharp" (click)="rateAtencion(2)" [ngClass]="{'rate':starAtencion2}"></ion-icon>
+        <ion-icon name="star-sharp" (click)="rateAtencion(3)" [ngClass]="{'rate':starAtencion3}"></ion-icon>
+        <ion-icon name="star-sharp" (click)="rateAtencion(4)" [ngClass]="{'rate':starAtencion4}"></ion-icon>
+        <ion-icon name="star-sharp" (click)="rateAtencion(5)" [ngClass]="{'rate':starAtencion5}"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col class="centerCol"><h4 class="font">Comida</h4></ion-col>
+      <ion-col class="centerCol">
+        <ion-icon name="star-sharp" (click)="rateComida(1)" [ngClass]="{'rate':starComida1}"></ion-icon>
+        <ion-icon name="star-sharp" (click)="rateComida(2)" [ngClass]="{'rate':starComida2}"></ion-icon>
+        <ion-icon name="star-sharp" (click)="rateComida(3)" [ngClass]="{'rate':starComida3}"></ion-icon>
+        <ion-icon name="star-sharp" (click)="rateComida(4)" [ngClass]="{'rate':starComida4}"></ion-icon>
+        <ion-icon name="star-sharp" (click)="rateComida(5)" [ngClass]="{'rate':starComida5}"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+
+    <ion-row>
+      <ion-col class="centerCol"><h4 class="font">Limpieza</h4></ion-col>
+      <ion-col class="centerCol">
+        <ion-icon name="star-sharp" (click)="rateLimpieza(1)" [ngClass]="{'rate':starlimpieza1}"></ion-icon>
+        <ion-icon name="star-sharp" (click)="rateLimpieza(2)" [ngClass]="{'rate':starlimpieza2}"></ion-icon>
+        <ion-icon name="star-sharp" (click)="rateLimpieza(3)" [ngClass]="{'rate':starlimpieza3}"></ion-icon>
+        <ion-icon name="star-sharp" (click)="rateLimpieza(4)" [ngClass]="{'rate':starlimpieza4}"></ion-icon>
+        <ion-icon name="star-sharp" (click)="rateLimpieza(5)" [ngClass]="{'rate':starlimpieza5}"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div class="divPregunta">
+    <ion-text>
+      <p>¿Qué le gustó de nuestro menú de comida?</p>
+    </ion-text>
+  </div>
+  <div class="divRespuesta">
+    <textarea autosize maxRows="4" [(ngModel)]="respuestaGustoComida" class="respuesta-input"></textarea>
+  </div>
+
+  <div class="divPregunta">
+    <ion-text>
+      <p>¿Qué le disgustó de nuestro menú de comida?</p>
+    </ion-text>
+  </div>
+  <div class="divRespuesta">
+    <textarea autosize maxRows="4" [(ngModel)]="respuestaDisgustoComida" class="respuesta-input"></textarea>
+  </div>
+
+  <div class="divPregunta">
+    <ion-text>
+      <p>¿Hay alguna bebida que le gustaría ver en nuestro menú?</p>
+    </ion-text>
+  </div>
+  <div class="divRespuesta">
+    <textarea autosize maxRows="4" [(ngModel)]="respuestabebida" class="respuesta-input"></textarea>
+  </div>
+
+  <div class="divPregunta">
+    <ion-text>
+      <p>¿Cómo le fue con nuestro personal?</p>
+    </ion-text>
+  </div>
+  <div class="divRespuesta">
+    <textarea autosize maxRows="4" [(ngModel)]="respuestaPersonal" class="respuesta-input"></textarea>
+  </div>
+
+  <div class="divPregunta">
+    <ion-text>
+      <p>¿Comería de nuevo aquí?</p>
+    </ion-text>
+  </div>
+  <div class="divRespuesta">
+    <textarea autosize maxRows="4" [(ngModel)]="respuestaUltima" class="respuesta-input"></textarea>
+  </div>
+
+  <div class="divButton">
+    <ion-button class="buttonEncuesta" (click)="enviarEncuesta()">Enviar encuesta</ion-button>
+  </div>
+</ion-content>

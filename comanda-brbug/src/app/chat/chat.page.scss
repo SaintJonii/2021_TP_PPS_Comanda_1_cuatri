@@ -1,0 +1,57 @@
+.divButton{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    .buttonSalir{
+        height: 40px;
+        width: 100%;
+        font-size: 18px;
+        text-transform: initial;
+        --background: #9200ff;
+    }
+}
+
+.message{
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 4px;
+    white-space: pre-wrap;
+}
+
+.other-message{
+    background: #a29bfe;
+    color: rgb(0, 0, 0);
+}
+
+.my-message{
+    background: #ffeaa7;
+    color: rgb(0, 0, 0);
+}
+
+.time{
+    color: rgb(0, 0, 0);
+    float: right;
+    font-size: small;
+}
+
+.message-input{
+    width: 100%;
+    border: 1px solid var(--ion-color-medium);
+    border-radius: 10px;
+    background: #fff;
+    resize: none;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.msg-btn{
+    --padding-start: 0.5em;
+    --padding-end: 0.5em;
+}
+
+ion-content{
+    --background: url('/assets/logo.jpeg') 50% 50%/350px 350px no-repeat;
+}

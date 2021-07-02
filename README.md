@@ -16,7 +16,13 @@ PRIMER SPRINT
 
 SEGUNDO SPRINT
 *********************************************************************************
-![image](https://user-images.githubusercontent.com/17880462/120907093-2f0ed680-c635-11eb-9d4c-52c5714c169c.png)
+![sprint_2](https://user-images.githubusercontent.com/17880462/122080776-edb8bc80-cdd4-11eb-8065-baa7c1b8d511.png)
+
+
+TERCER SPRINT
+*********************************************************************************
+![sprint_3](https://user-images.githubusercontent.com/17880462/122080811-f4dfca80-cdd4-11eb-8961-28ba81b1145f.png)
+
 
 DIAGRAMA DE PROCESOS Y ESTADOS
 

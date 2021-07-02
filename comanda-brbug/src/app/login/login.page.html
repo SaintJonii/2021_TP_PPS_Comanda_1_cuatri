@@ -6,16 +6,27 @@
   <form id="form" [formGroup]="loginForm" (ngSubmit)="login(loginForm)">
 
     <ion-item class="ion-margin-bottom ion-margin-top">
-      <ion-input formControlName="correo" placeholder="Correo"></ion-input>
+      <ion-input [value]="email" formControlName="correo" placeholder="Correo" name="correo"></ion-input>
     </ion-item>
+    <div *ngFor="let error of errorMessages.correo">
+      <ng-container *ngIf="correo.hasError(error.type) && (correo.dirty || correo.touched)">
+        <small class="error-message">{{error.message}}</small>
+      </ng-container>
+    </div><br>
 
     <ion-item class="ion-margin-bottom">
-      <ion-input formControlName="password" type="password" placeholder="Contraseña"></ion-input>
+      <ion-input [value]="contrasenia" formControlName="password" type="password" placeholder="Contraseña"></ion-input>
     </ion-item>
+    <div *ngFor="let error of errorMessages.password">
+      <ng-container *ngIf="password.hasError(error.type) && (password.dirty || password.touched)">
+        <small class="error-message">{{error.message}}</small>
+      </ng-container>
+    </div><br>
 
     <div class="divButton">
       <ion-button  class="buttonAlta" type="submit" >Ingresar</ion-button>
       <ion-button  class="buttonQr" (click)="registrarse()" type="button">Registrarse</ion-button>
+      <ion-button  class="buttonQr" (click)="modoAnonimo()" type="button">Modo anónimo</ion-button>
     </div>
 
     <div class="alert show" *ngIf="alert">
@@ -23,4 +34,19 @@
     </div>
 
   </form>
+
+
+  <ion-fab vertical="bottom" horizontal="start">
+    <ion-fab-button size="small" class="fabButton">
+      <ion-icon name="arrow-forward-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="end">
+      <ion-fab-button (click)="loginMozo()" data-desc="Mozo" class="mozo">
+        <ion-icon name="person-sharp" color="light"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button (click)="loginDuenio()" data-desc="Dueño" class="duenio">
+        <ion-icon name="person-sharp" color="light"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
 </ion-content>

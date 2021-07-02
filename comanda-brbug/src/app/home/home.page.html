@@ -1,12 +1,8 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Home
-    </ion-title>
-  </ion-toolbar>
+  <app-nav [titulo]="titulo"></app-nav>
 </ion-header>
 
-<ion-content [fullscreen]="true" >
+<ion-content fullscreen [style.--background]="scanActive ? '#ffffff00' : '#ffffff'" >
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Home</ion-title>
@@ -14,23 +10,31 @@
   </ion-header>
 
   <div id="container" [hidden]="scanActive">
+    <img src="./../../assets/logo_bodegon.png">
     <strong>Bienvenido a La Estancia</strong>
-    <p>Escanee el QR para ingresar a la sala de espera</p>
-  </div>
+    <p style="margin-top: 2%;">Ofrecemos un menú completo, reuniendo lo mejor de los clásicos porteños
+      y con productos de primera calidad.
+    </p>
 
-  <div id="container-button" [hidden]="scanActive">
-    <ion-button color="primary" shape="round" fill="outline" (click)="escanear()">
-      <ion-icon name="qr-code-sharp" slot="end"></ion-icon>Escanear QR
-    </ion-button>
+    <p style="margin-top: 10%; font-weight:bold;">Para ingresar, escanee el QR de la Sala de espera
+    </p>
+
   </div>
 
   <!-- Aparece cuando el scanner esta activado-->
   <div class="scan-box" [hidden]="!scanActive"></div>
   <ion-row class="scanner-buttons" [hidden]="!scanActive">
     <ion-col class="ion-no-padding">
-      <ion-button color="primary" shape="round" (click)="stopScanner()">Salir</ion-button>
+      <ion-button color="danger" shape="round" (click)="stopScanner()">Salir</ion-button>
     </ion-col>
   </ion-row>
 
-
 </ion-content>
+
+<ion-footer [hidden]="scanActive">
+  <ion-toolbar>
+    <ion-button color="danger" shape="round" fill="outline" expand="full" (click)="escanear()">
+      <ion-icon name="qr-code-sharp" slot="end"></ion-icon>Escanear QR
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

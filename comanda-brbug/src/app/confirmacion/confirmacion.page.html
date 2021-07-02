@@ -1,0 +1,43 @@
+<ion-header>
+  <app-nav [titulo]="titulo"></app-nav>
+</ion-header>
+
+<ion-content>
+  <ion-card style="margin-top: 5%;">
+    <ion-card-header>
+      <ion-card-title>Detalle del Pedido</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list>
+        <div *ngFor="let p of pedido">
+          <ion-item>
+            <ion-avatar slot="start">
+              <img [src]="p.producto.imagen[0].referencia">
+            </ion-avatar>
+            <ion-label>
+              <h2>{{p.producto.nombre}}</h2>
+              <p>{{p.unidades}} X ${{p.producto.precio}}</p>
+              <h5 style="font-weight: bold;">$ {{p.unidades * p.producto.precio}}</h5>
+            </ion-label>
+            <ion-icon name="trash" slot="end" color="danger" (click)="eliminarItem(p)"></ion-icon>
+          </ion-item>
+        </div>
+      </ion-list>
+      <label>
+        <h2 style="font-weight: bold;">TOTAL: $ {{total}} </h2>
+      </label>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+
+    <ion-button color="danger" shape="round" fill="outline" expand="full" (click)="confirmar()">
+      Confirmar Pedido
+      <ion-icon slot="start" name="checkmark-sharp"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

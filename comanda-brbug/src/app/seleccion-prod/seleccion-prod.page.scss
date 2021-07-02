@@ -1,0 +1,24 @@
+.calculator {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+    min-width: 100px;
+    height: 40px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 6px 10px 0 rgb(128 98 96 / 16%);
+    margin: 15px;
+}
+
+.calculator button {
+    font-size: 40px;
+    color: #000000;
+    background-color: transparent;
+    padding: 0 8px;
+}
+
+.opc_list {
+    max-height: 200px;
+    overflow-y: scroll;
+  }
