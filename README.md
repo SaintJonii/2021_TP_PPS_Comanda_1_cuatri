@@ -21,7 +21,16 @@ SEGUNDO SPRINT
 
 TERCER SPRINT
 *********************************************************************************
-![sprint_3](https://user-images.githubusercontent.com/17880462/122080811-f4dfca80-cdd4-11eb-8961-28ba81b1145f.png)
+![image](https://user-images.githubusercontent.com/17880462/123705977-08138100-d83e-11eb-81da-a3859130849f.png)
+
+CUARTO SPRINT
+*********************************************************************************
+![image](https://user-images.githubusercontent.com/17880462/123705727-b3700600-d83d-11eb-805c-7038773adda0.png)
+
+QUINTO SPRINT
+*********************************************************************************
+![image](https://user-images.githubusercontent.com/17880462/123705885-e5816800-d83d-11eb-8bfd-4938436ad1de.png)
+
 
 
 DIAGRAMA DE PROCESOS Y ESTADOS
@@ -40,6 +49,19 @@ DIAGRAMA DE PANTALLAS PARA MOZO
 
 ![image](https://user-images.githubusercontent.com/17880462/120906866-56fd3a80-c633-11eb-86b5-dcf3c31fb6ae.png)
 
+
+QR'S
+* Mesa 1
+
+![qr_mesa_1](https://user-images.githubusercontent.com/17880462/123358875-a3f17400-d542-11eb-8373-74142d7343a7.png)
+
+* Mesa 2
+ 
+![qr_mesa_2](https://user-images.githubusercontent.com/17880462/123358877-a48a0a80-d542-11eb-943e-211d44add339.png)
+
+*Sala de espera
+
+![qr_sala-espera](https://user-images.githubusercontent.com/17880462/123358878-a522a100-d542-11eb-8676-27e30d365589.png)
 
 
 
