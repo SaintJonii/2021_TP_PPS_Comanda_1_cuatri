@@ -29,7 +29,11 @@ CUARTO SPRINT
 
 QUINTO SPRINT
 *********************************************************************************
-![image](https://user-images.githubusercontent.com/17880462/123705885-e5816800-d83d-11eb-8bfd-4938436ad1de.png)
+![image](https://user-images.githubusercontent.com/17880462/124507688-b2daf080-dda4-11eb-8864-8e74b20999ea.png)
+
+SEXTO SPRINT
+*********************************************************************************
+
 
 
 
