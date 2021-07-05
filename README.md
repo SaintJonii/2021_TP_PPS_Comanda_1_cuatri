@@ -76,6 +76,31 @@ QR'S
 ![qr_sala-espera](https://user-images.githubusercontent.com/17880462/123358878-a522a100-d542-11eb-8676-27e30d365589.png)
 
 
+QR'S PROPINAS
+
+* Malo
+
+![propina-malo](https://user-images.githubusercontent.com/17880462/124508263-f71ac080-dda5-11eb-9253-e1617a58ec4f.png)
+
+
+* Regular
+
+![propina-regular](https://user-images.githubusercontent.com/17880462/124508314-11549e80-dda6-11eb-9598-694986d6dc62.png)
+
+
+* Bien
+
+![propina-bien](https://user-images.githubusercontent.com/17880462/124508338-1ade0680-dda6-11eb-85be-da60da3aa80e.png)
+
+
+* Muy bien 
+
+![propina-muyBien](https://user-images.githubusercontent.com/17880462/124508346-1dd8f700-dda6-11eb-806e-e30061a6b92e.png)
+
+
+* Excelente
+
+![propina-excelente](https://user-images.githubusercontent.com/17880462/124508353-216c7e00-dda6-11eb-8b3f-b05f128d91bb.png)
 
 
 
