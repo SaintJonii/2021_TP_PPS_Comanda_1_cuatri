@@ -5,6 +5,8 @@ import { ToastController, AlertController } from '@ionic/angular';
 const scanner = BarcodeScanner;
 import { EncuestaService } from '../services/encuesta.service';
 import { StoreService } from '../services/store.service'
+import { PedidoService } from '../services/pedido.service'
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -23,12 +25,14 @@ export class HomePage implements OnInit {
               private alertController : AlertController,
               private route : Router,
               private encuestaSv : EncuestaService,
-              private storeSv: StoreService ) { 
+              private storeSv: StoreService,
+              private pedidoSvce: PedidoService,
+              private loadingController: LoadingController ) { 
   }
 
   ngOnInit() {
     this.usuario = JSON.parse(localStorage.getItem("usuarioActual"));
-    //Ver si tiene pedido en curso, ir directamente a la sala
+    this.pedidoEnCurso();
   }
 
   //FUNCIONES DEL ESCANER
@@ -98,6 +102,31 @@ export class HomePage implements OnInit {
  
   ionViewDidEnter(){
     this.encuestaSv.actualizarEncuestas();
+  }
+
+  pedidoEnCurso() {
+    this.usuario = JSON.parse(localStorage.getItem("usuarioActual"));
+    this.pedidoSvce.buscarPedido(this.usuario.dni).subscribe(doc => {
+      let pedido: any = doc[0];
+      if (pedido) {
+        this.presentLoading();
+        localStorage.setItem("nro_mesa", pedido.mesa);
+        setTimeout(() => {
+          this.route.navigateByUrl('sala');
+        }, 2500);
+        
+      }
+    });
+  }
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'Usted tiene un pedido en curso',
+      duration: 2200
+    });
+    await loading.present();
+    const { role, data } = await loading.onDidDismiss();
   }
 
 

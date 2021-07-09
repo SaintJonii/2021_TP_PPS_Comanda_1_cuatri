@@ -77,12 +77,16 @@ export class StoreService {
   }
 
   guardarEnLista(email, nombre, apellido, dni) {
-    this.db.collection("listaDeEspera").doc().set({
+    this.db.collection("listaDeEspera").doc(dni).set({
       email: email,
       nombre: nombre,
       apellido: apellido,
       dni: dni
     });
+  }
+
+  borrarDeLista(dni) {
+    this.db.collection('listaDeEspera').doc(dni).delete();
   }
 
   obtenerListaDeEspera() {
@@ -126,6 +130,8 @@ export class StoreService {
       disponible: false,
       dniCliente: dni
     });
+
+    this.borrarDeLista(dni);
   }
 
   confirmacionCliente(pedido, mesa, cliente, total) {

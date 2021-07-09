@@ -46,6 +46,7 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
+    this.pushService.initPush();
   }
 
   get correo(){

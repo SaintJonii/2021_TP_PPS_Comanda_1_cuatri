@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { PushService } from './services/push.service';
+
 
 @Component({
   selector: 'app-root',
@@ -8,13 +8,12 @@ import { PushService } from './services/push.service';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor(public router: Router, public pushService: PushService) {
+  constructor(public router: Router) {
     this.initializeApp();
   }
 
   initializeApp(){
-    this.router.navigateByUrl('splash');
-    this.pushService.initPush();
+    //this.router.navigateByUrl('splash');
    
   }
 }

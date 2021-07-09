@@ -24,7 +24,7 @@
     </ion-col>
   </ion-row>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="mostrarBotones">
     <ion-fab-button  color="danger" (click)="chat()">
       <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
     </ion-fab-button>

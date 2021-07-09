@@ -99,7 +99,7 @@ export class SalaPage implements OnInit {
         this.tienePedido = true;
         this.nroMesa = pedido.mesa;
         localStorage.setItem("nro_mesa", pedido.mesa);
-        this.mostrarToast("Ya tenés un pedido en curso");
+        this.mostrarToast("Escanee para acceder a opciones de la mesa");
       }
       else {
         this.mostrarToast("El mozo le asignará una mesa");
