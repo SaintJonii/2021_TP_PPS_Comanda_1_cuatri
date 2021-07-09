@@ -3,16 +3,13 @@
 </ion-header>
 
 <ion-content [style.--background]="scanActive ? '#00000000' : '#fff'">
-  <div class="ion-margin divTitle" [hidden]="scanActive">
-    <h2 class="title">Detalle de la cuenta</h2>
-  </div>
   <div class='line' [hidden]="scanActive"></div>
 
   <ion-grid [hidden]="scanActive">
     <ion-row *ngFor="let p of pedidos.pedido">
       <ion-col size="3"><ion-avatar><img [src]="p.producto.imagen[0].referencia"></ion-avatar></ion-col>
       <ion-col size="4">{{ p.producto.nombre }}</ion-col>
-      <ion-col size="1">{{ p.unidades }}</ion-col>
+      <ion-col size="1">x{{ p.unidades }}</ion-col>
       <ion-col size="4">${{ p.producto.precio }} c/u</ion-col>
       <div class='line'></div>
     </ion-row>

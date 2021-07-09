@@ -24,11 +24,13 @@
     border-radius: 10px;
     .text{
         font-family: arial black; 
+        text-transform: capitalize;
     }
 }
 .slide{
-    margin-left: 10px;
-    margin-right: 10px;
+    border: 2px solid;
+    border-color: var(--ion-color-danger);
+    border-radius: 10px;
     --bullet-background: var(--ion-color-danger);
     --bullet-background-active: var(--ion-color-danger);
     padding-bottom: 30px;
@@ -38,29 +40,14 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin-top: 10px;
-    //margin-left: 10px;
-    //margin-right: 10px;
-    //border: 2px solid;
-    //border-color: #9200ff;
-    //border-radius: 10px;
     .text{
         font-family: Arial black;
         font-size: 15px;
     }
 }
 
-.divButton{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 10px;
-    .buttonSalir{
-        margin-top: 5px; //35
-        height: 40px;
-        width: 270px;
-        font-size: 18px;
-        text-transform: initial;
-        --background: #9200ff;
-    }
+.img-slide{
+    width: 100%;
+    height: 250px;
+    border-radius: 10px;
 }

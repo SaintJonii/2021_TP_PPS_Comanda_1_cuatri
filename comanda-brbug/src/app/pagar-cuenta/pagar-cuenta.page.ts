@@ -15,7 +15,7 @@ const scanner = BarcodeScanner;
 export class PagarCuentaPage implements OnInit {
 
   pedidos : any = {};
-  titulo : string = null;
+  titulo : string = "Detalle de la cuenta";
 
   descuento : number = 0;
   descuentoPorcentaje : number = 0;
@@ -49,7 +49,6 @@ export class PagarCuentaPage implements OnInit {
     private loadingController : LoadingController ) {
 
     let mesa=localStorage.getItem("nro_mesa");
-    this.titulo="Mesa "+mesa;
     this.db.obtenerPedidoxNroMesa(mesa).subscribe( doc => {
       console.log(doc);
       this.pedidos=doc;

@@ -12,6 +12,7 @@ import { environment } from '../environments/environment';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { Interception } from "./services/Interception";
+import { PipesModule } from './pipes/pipes/pipes.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,7 +24,8 @@ import { Interception } from "./services/Interception";
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    HttpClientModule
+    HttpClientModule,
+    PipesModule
   ],
 
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, {provide: HTTP_INTERCEPTORS, useClass: Interception, multi: true}],

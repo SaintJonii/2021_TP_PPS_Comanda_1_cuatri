@@ -48,7 +48,7 @@ export class EncuestaPage implements OnInit {
 
   encuesta : any = null;
 
-  titulo : string = null;
+  titulo : string = "Encuesta";
 
 
   constructor(private db : StoreService,
@@ -56,7 +56,6 @@ export class EncuestaPage implements OnInit {
     private auth : AuthService,
     private route : Router,
     private loadingController : LoadingController) { 
-    this.titulo="Mesa "+localStorage.getItem("nro_mesa");
   }
 
   ngOnInit() {
