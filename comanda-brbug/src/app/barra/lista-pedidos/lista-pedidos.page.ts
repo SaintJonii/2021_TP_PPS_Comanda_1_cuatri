@@ -12,15 +12,18 @@ export class ListaPedidosPage implements OnInit {
   public pedidos : any [] = [];
   public pedidosPendientes : boolean = false;
   public spinner : boolean = true;
-
+  titulo = "Lista de Pedidos";
+  public hayBebidas : boolean = false;
+  
   constructor(private db : StoreService, private modalCtrl: ModalController, public loadingController: LoadingController) { }
 
   ngOnInit() {
     this.presentLoading();
     this.db.obtenerBebidasAPreparar().subscribe(data => {
       this.pedidos = data;
-      console.log(this.pedidos);
-      if(this.pedidos.length != 0){
+      console.log(data);
+      this.tieneBebidas(this.pedidos[0].pedido);
+      if(this.pedidos.length != 0 && this.hayBebidas){
         this.pedidosPendientes = true;
       }
       else{
@@ -49,6 +52,14 @@ export class ListaPedidosPage implements OnInit {
       loading.dismiss();
       this.spinner = false;
     }, 2000);
+  }
+
+  tieneBebidas(productos){
+    productos.forEach(producto => {
+      if(producto.producto.sector == 'barra'){
+        this.hayBebidas = true;
+      }
+    });
   }
 
 }

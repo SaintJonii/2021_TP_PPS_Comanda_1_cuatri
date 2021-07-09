@@ -25,7 +25,7 @@ export class ListaPedidosModalComponent implements OnInit {
     console.log(this.pedido.mesa);
     this.db.prepararPedido(this.pedido.mesa, false);
     this.dismissModal();
-    this.router.navigateByUrl('prepararBarra');
+    this.router.navigateByUrl('homeBarra');
   }
 
 }

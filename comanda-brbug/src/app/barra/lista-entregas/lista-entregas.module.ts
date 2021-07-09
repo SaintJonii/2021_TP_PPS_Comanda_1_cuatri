@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { ListaEntregasPageRoutingModule } from './lista-entregas-routing.module';
 
 import { ListaEntregasPage } from './lista-entregas.page';
+import { NavComponent } from 'src/app/components/nav/nav.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { ListaEntregasPage } from './lista-entregas.page';
     IonicModule,
     ListaEntregasPageRoutingModule
   ],
-  declarations: [ListaEntregasPage]
+  declarations: [ListaEntregasPage, NavComponent]
 })
 export class ListaEntregasPageModule {}

@@ -1,12 +1,6 @@
-<ion-header>
-  <ion-toolbar color="dark">
-    <ion-title>Lista de pedidos</ion-title>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="homeCocina" color="light"></ion-back-button>
-    </ion-buttons>
-  </ion-toolbar>
+<ion-header [translucent]="true">
+  <app-nav [titulo]="titulo"></app-nav>
 </ion-header>
-
 <ion-content>
   <div *ngIf="!spinner">
     <div *ngIf="!pedidosPendientes" class="divMensaje">
@@ -20,13 +14,13 @@
     <div *ngIf="pedidosPendientes" >
       <div *ngFor="let pedido of pedidos">
         <div *ngFor="let producto of pedido.pedido">
-          <ion-card>
+          <ion-card *ngIf="producto.producto.sector === 'cocina'">
             <ion-item>
               <div>
                 <ion-grid>
                   <ion-row>
                     <ion-col>
-                      <ion-label style="width: 295px;">
+                      <ion-label style="width: 240px;">
                         <span>{{producto.producto.nombre}}</span>
                       </ion-label>
                     </ion-col>
@@ -41,7 +35,7 @@
             </ion-item>
           </ion-card>
         </div>
-        <div style="text-align: center;">
+        <div style="text-align: center;display: flex;flex-direction: column;align-items: center;">
           <ion-button expand="block" (click)="entregarPedido(pedido)" class="buttonEntregarPedido">Entregar pedido</ion-button>
         </div>
       </div>
