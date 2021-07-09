@@ -221,5 +221,9 @@ export class StoreService {
   obtenerTokenMozo(){
     return this.db.collection('users', ref => ref.where('tipo', '==', "mozo")).valueChanges();
   }
+
+  obtenerTokenAdmin(){
+    return this.db.collection('users', ref => ref.where('tipo', '==', "dueño")).valueChanges();
+  }
   
 }

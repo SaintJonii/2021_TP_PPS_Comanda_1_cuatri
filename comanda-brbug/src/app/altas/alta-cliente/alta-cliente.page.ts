@@ -7,6 +7,8 @@ import { Camera, CameraResultType, CameraSource} from '@capacitor/camera';
 import { Capacitor } from '@capacitor/core';
 import { LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { PushService } from 'src/app/services/push.service';
+import { StoreService } from 'src/app/services/store.service';
 
 
 const scanner = BarcodeScanner; 
@@ -80,7 +82,9 @@ export class AltaClientePage implements OnInit {
     private alertController : AlertController,
     private auth : AuthService,
     private loadingController: LoadingController,
-    private router : Router) { }
+    private router : Router,
+    private pushService : PushService,
+    private storeSvce : StoreService) { }
 
   ngOnInit() {
   }
@@ -134,6 +138,7 @@ export class AltaClientePage implements OnInit {
           this.auth.createUser(altaform, "cliente", this.dataUrl, false);
           this.presentLoading();
           setTimeout(() => {
+            this.enviarNotificacionSupervisor();
             this.router.navigateByUrl('login');
           }, 3000);
            
@@ -224,6 +229,15 @@ export class AltaClientePage implements OnInit {
     });
     await loading.present();
     const { role, data } = await loading.onDidDismiss();
+  }
+
+  enviarNotificacionSupervisor(){
+    this.storeSvce.obtenerTokenAdmin().subscribe(doc => {
+      let docAux: any = doc[0];
+      let token = JSON.parse(docAux.token).value;
+      this.pushService.sendNotification("Nuevo Registro", "Nuevo cliente a ser aprobado", token);
+    }
+    );
   }
 
 }
