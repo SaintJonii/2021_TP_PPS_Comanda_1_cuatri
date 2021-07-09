@@ -1,9 +1,9 @@
-<ion-content>
-  <div class="divImage">
+<ion-content class="fondo">
+  <!--<div class="divImage">
     <ion-img src="assets/logo.jpeg"></ion-img>
-  </div>
+  </div>-->
 
-  <form id="form" [formGroup]="loginForm" (ngSubmit)="login(loginForm)">
+  <!--<form id="form" [formGroup]="loginForm" (ngSubmit)="login(loginForm)">
 
     <ion-item class="ion-margin-bottom ion-margin-top">
       <ion-icon name="mail-outline" color="danger" slot="start"></ion-icon>
@@ -41,26 +41,82 @@
       <span class="msg">{{alertMsj}}</span>
     </div>
 
-  </form>
+  </form>-->
 
 
-  <ion-fab vertical="top" horizontal="end">
+  <ion-fab vertical="bottom" horizontal="start">
     <ion-fab-button size="small" class="fabButton">
-      <ion-icon name="chevron-down-circle-outline"></ion-icon>
+      <ion-icon name="chevron-forward-circle-outline"></ion-icon>
     </ion-fab-button>
-    <ion-fab-list side="bottom">
-      <ion-fab-button (click)="loginDuenio()" data-desc="Dueño">
+    <ion-fab-list side="end">
+      <ion-fab-button (click)="loginDuenio()" data-desc="Dueño" class="duenio">
         <img id=titulo src="assets/login/jefe.png" style="height: 40px;width: 40px;">
       </ion-fab-button>
-      <ion-fab-button (click)="loginMozo()" data-desc="Mozo">
+      <ion-fab-button (click)="loginMozo()" data-desc="Mozo" class="mozo">
         <img id=titulo src="assets/login/mesero.png" style="height: 35px;width: 35px;">
       </ion-fab-button>
-      <ion-fab-button (click)="loginCocina()" data-desc="Cocina">
+      <ion-fab-button (click)="loginCocina()" data-desc="Cocina" class="cocina">
         <img id=titulo src="assets/login/cocina.png" style="height: 35px;width: 35px;">
       </ion-fab-button>
-      <ion-fab-button (click)="loginBarra()" data-desc="Barra">
+      <ion-fab-button (click)="loginBarra()" data-desc="Barra" class="barra">
         <img id=titulo src="assets/login/bartender.png" style="height: 35px;width: 35px;">
       </ion-fab-button>
     </ion-fab-list>
   </ion-fab>
+
+  <form class="divContent" id="form" [formGroup]="loginForm" (ngSubmit)="login(loginForm)" style="text-align: center;">
+    <strong>¡Bienvenido!</strong>
+    <p class="text">Nos alegramos mucho que haya elegido nuestro establecimiento</p>
+    <ion-item class="ion-margin-bottom ion-margin-top">
+      <ion-icon name="mail-outline" color="danger" slot="start"></ion-icon>
+      <ion-input [value]="email" formControlName="correo" placeholder="Correo" name="correo"></ion-input>
+    </ion-item>
+    <div *ngFor="let error of errorMessages.correo">
+      <ng-container *ngIf="correo.hasError(error.type) && (correo.dirty || correo.touched)">
+        <small class="error-message">{{error.message}}</small>
+      </ng-container>
+    </div><br>
+
+    <ion-item class="ion-margin-bottom">
+      <ion-icon name="key-outline" color="danger" slot="start"></ion-icon>
+      <ion-input [value]="contrasenia" formControlName="password" type="password" placeholder="Contraseña"></ion-input>
+    </ion-item>
+    <div *ngFor="let error of errorMessages.password">
+      <ng-container *ngIf="password.hasError(error.type) && (password.dirty || password.touched)">
+        <small class="error-message">{{error.message}}</small>
+      </ng-container>
+    </div><br>
+
+    <ion-button class="ion-margin" color="danger" shape="round" expand="full" type="submit">
+      <ion-icon slot="start" name="enter-outline"></ion-icon>
+      Ingresar</ion-button>
+    <ion-button class="ion-margin" color="danger" shape="round" fill="outline" expand="full" (click)="modoAnonimo()" type="button">
+      <ion-icon slot="start" name="person-circle-outline"></ion-icon>
+      Modo anónimo</ion-button>
+
+      <p class="text">¿No tiene cuenta? <span (click)="registrarse()" style="color: var(--ion-color-danger);">Registrate</span></p>
+  </form>
+
+  
+  <div class="alert show" *ngIf="alert">
+    <span class="msg">{{alertMsj}}</span>
+  </div>
+
+  <div class="modal" id="modal">
+    <div class="contenedor">
+      <header>Ingrese su nombre y apellido</header>
+      <ion-icon (click)="cerrarModalAnonimo()" class="close" name="close-circle-outline"></ion-icon>
+      <div class="contenido">
+        <ion-item class="ion-margin">
+          <ion-input [(ngModel)]="nombre" type="text" placeholder="Nombre"></ion-input>
+        </ion-item>
+        <ion-item class="ion-margin">
+          <ion-input [(ngModel)]="apellido" type="text" placeholder="Apellido"></ion-input>
+        </ion-item>
+        <ion-button class="ion-margin" color="danger" shape="round" expand="full" (click)="ingresarAnonimo()">
+          <ion-icon slot="start" name="enter-outline"></ion-icon>
+          Ingresar</ion-button>
+      </div>
+    </div>
+  </div>
 </ion-content>

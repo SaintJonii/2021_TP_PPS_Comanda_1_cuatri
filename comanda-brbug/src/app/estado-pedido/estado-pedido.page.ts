@@ -52,7 +52,9 @@ export class EstadoPedidoPage implements OnInit {
   ;*/
 
   pedido : any = {};
-  titulo : string = null;
+  titulo : string = "Estado de su pedido";
+
+  estado : string = "estado_pendiente";
 
   slideOpts = {
     initialSlide: 1,
@@ -62,7 +64,6 @@ export class EstadoPedidoPage implements OnInit {
   constructor(private db : StoreService,
     private loadingController : LoadingController) {
     let mesa=localStorage.getItem("nro_mesa");
-    this.titulo="Mesa"+mesa;
     this.db.obtenerPedidoxNroMesa(mesa).subscribe( doc => {
       console.log(doc);
       this.pedido=doc;
@@ -83,6 +84,8 @@ export class EstadoPedidoPage implements OnInit {
     await loading.present();
     const { role, data } = await loading.onDidDismiss();
   }
+
+
 
 
 }
