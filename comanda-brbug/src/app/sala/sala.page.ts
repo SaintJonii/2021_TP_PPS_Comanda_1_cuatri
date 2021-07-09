@@ -100,83 +100,78 @@ export class SalaPage implements OnInit {
     this.usuario = JSON.parse(localStorage.getItem("usuarioActual"));
     this.pedidoSvce.buscarPedido(this.usuario.dni).subscribe(doc => {
       let pedido: any = doc[0];
-      if (pedido.estado != "servido") {
+      if (pedido) {
+
         this.msjSala = "Pedido en curso";
         this.msjDescSala = "Puede acceder al estado del pedido escaneando su mesa o realizar la encuesta";
         this.tienePedido = true;
         this.nroMesa = pedido.mesa;
         localStorage.setItem("nro_mesa", pedido.mesa);
         this.mostrarToast("Escanee para acceder a las opciones");
-      }
-      else if(pedido.estado == "servido"){
-        this.msjSala = "Pedido listo";
-        this.msjDescSala = "Acceda para ver su pedido y confirmar recepción";
-        this.textoEstado = "Confirmar Pedido"
-        this.tienePedido = true;
-        this.nroMesa = pedido.mesa;
-        localStorage.setItem("nro_mesa", pedido.mesa);
-        this.mostrarToast("Escanee para acceder a las opciones");
 
-      }
-      else if(pedido.estado == "pendiente_pago"){
-        this.msjSala = "Ya recibió su pedido";
-        this.msjDescSala = "Acceda para ver realizar el pago.";
-        this.tienePedido = true;
-        this.listoParaPagar = true;
-        this.nroMesa = pedido.mesa;
-        localStorage.setItem("nro_mesa", pedido.mesa);
-        this.mostrarToast("Escanee para acceder a las opciones");
+        if (pedido.estado == "servido") {
+          this.msjSala = "Pedido listo";
+          this.msjDescSala = "Acceda para ver su pedido y confirmar recepción";
+          this.textoEstado = "Confirmar Pedido"
+          this.mostrarToast("Escanee para acceder a las opciones");
 
-      }
-      else if(pedido.estado == "finalizado"){
-        this.msjSala = "Pedido finalizado y abonado";
-        this.msjDescSala = "Acceda para ver resultado de la encuesta";
-        this.tienePedido = true;
-        this.nroMesa = pedido.mesa;
-        localStorage.setItem("nro_mesa", pedido.mesa);
-        this.mostrarToast("Escanee para acceder a las opciones");
+        }
+        else if (pedido.estado == "pendiente_pago") {
+          this.msjSala = "Ya recibió su pedido";
+          this.msjDescSala = "Acceda para ver realizar el pago.";
+          this.listoParaPagar = true;
+          this.mostrarToast("Escanee para acceder a las opciones");
 
+        }
+        else if (pedido.estado == "finalizado") {
+          this.msjSala = "Pedido finalizado y abonado";
+          this.msjDescSala = "Acceda para ver resultado de la encuesta";
+          this.mostrarToast("Escanee para acceder a las opciones");
+
+        }
       }
       else {
         this.msjSala = "El Mozo le asignará una mesa";
         this.msjDescSala = "Deberá escanearla para acceder al menú";
         this.mostrarToast("Aguarde al mozo por favor");
       }
+
+
     });
   }
 
   manejarMesa(mesaEscaneada) {
-   
-    this.pedidoSvce.buscarMesa(mesaEscaneada).subscribe(doc =>{
+
+    this.pedidoSvce.buscarMesa(mesaEscaneada).subscribe(doc => {
       let mesa: any = doc;
-      if(mesa.disponible && !this.tienePedido){
+      if (mesa.disponible && !this.tienePedido) {
         this.storeSv.asignarMesa(mesa.id, this.usuario.dni);
         localStorage.setItem("nro_mesa", mesa.id);
         this.route.navigateByUrl('menu');
       }
-      else if (this.tienePedido && mesa.id == this.nroMesa ) {
+      else if (this.tienePedido && mesa.id == this.nroMesa) {
         this.mostrarBotones = true;
       }
       else if (this.tienePedido && mesa.id != this.nroMesa) {
-        this.mostrarToast("Tu mesa asignada es la número "+this.nroMesa+" !!");
+        this.mostrarToast("Tu mesa asignada es la número " + this.nroMesa + " !!");
       }
-      else if(!mesa.disponible){
+      else if (!mesa.disponible) {
         this.mostrarToast("La mesa no está disponible");
       }
 
-     });
-    
+    });
+
   }
 
-  irEstado(){
+  irEstado() {
     this.route.navigateByUrl('estado-pedido');
   }
 
-  irEncuesta(){
+  irEncuesta() {
     this.route.navigateByUrl('encuesta');
   }
 
-  chat(){
+  chat() {
     this.route.navigateByUrl('chat');
   }
 
@@ -188,7 +183,7 @@ export class SalaPage implements OnInit {
     toast.present();
   }
 
-  pagarCuenta(){
+  pagarCuenta() {
     this.route.navigateByUrl("pagar-cuenta");
   }
 
