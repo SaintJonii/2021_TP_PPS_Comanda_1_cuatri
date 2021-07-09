@@ -69,6 +69,8 @@ export class AltaClientePage implements OnInit {
 
   }
 
+  urlFondo = "url('/assets/login/fondoLogin.png') 100% 100%/100% 100% no-repeat";
+
   //Variables para el uso del escaner
   result : string = null;
   scanActive : boolean = false;
