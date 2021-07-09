@@ -12,7 +12,8 @@ export class PedidosPendientesPage implements OnInit {
   public pedidos : any [] = [];
   public pedidosPendientes : boolean = false;
   public spinner : boolean = true;
-
+  titulo = "Lista de Pedidos";
+  
   constructor(private db : StoreService, private modalCtrl: ModalController, public loadingController: LoadingController) { }
 
   ngOnInit() {

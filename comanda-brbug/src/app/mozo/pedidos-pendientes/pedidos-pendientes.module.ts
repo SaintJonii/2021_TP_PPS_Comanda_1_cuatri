@@ -8,6 +8,7 @@ import { PedidosPendientesPageRoutingModule } from './pedidos-pendientes-routing
 
 import { PedidosPendientesPage } from './pedidos-pendientes.page';
 import { PedidosPendientesModalComponent } from '../pedidos-pendientes-modal/pedidos-pendientes-modal.component';
+import { NavComponent } from 'src/app/components/nav/nav.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,7 @@ import { PedidosPendientesModalComponent } from '../pedidos-pendientes-modal/ped
     IonicModule,
     PedidosPendientesPageRoutingModule
   ],
-  declarations: [PedidosPendientesPage, PedidosPendientesModalComponent],
+  declarations: [PedidosPendientesPage, PedidosPendientesModalComponent, NavComponent],
   entryComponents: [PedidosPendientesModalComponent]
 })
 export class PedidosPendientesPageModule {}

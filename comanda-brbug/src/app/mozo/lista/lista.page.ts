@@ -9,7 +9,7 @@ import { MesasModalComponent } from '../mesas-modal/mesas-modal.component';
   styleUrls: ['./lista.page.scss'],
 })
 export class ListaPage implements OnInit {
-
+  titulo = "Lista de espera de clientes";
   public users : any [] = [];
   public clientesEsperando : boolean = false;
   public spinner : boolean = true;

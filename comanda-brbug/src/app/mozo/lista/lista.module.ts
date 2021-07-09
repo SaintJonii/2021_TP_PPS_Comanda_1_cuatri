@@ -8,6 +8,7 @@ import { ListaPageRoutingModule } from './lista-routing.module';
 
 import { ListaPage } from './lista.page';
 import { MesasModalComponent } from '../mesas-modal/mesas-modal.component';
+import { NavComponent } from 'src/app/components/nav/nav.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,7 @@ import { MesasModalComponent } from '../mesas-modal/mesas-modal.component';
     IonicModule,
     ListaPageRoutingModule
   ],
-  declarations: [ListaPage, MesasModalComponent],
+  declarations: [ListaPage, MesasModalComponent,NavComponent],
   entryComponents: [MesasModalComponent]
 })
 export class ListaPageModule {}

@@ -12,7 +12,8 @@ export class ListaEntregasPage implements OnInit {
   public pedidos : any [] = [];
   public pedidosPendientes : boolean = false;
   public spinner : boolean = true;
-
+  titulo = "Lista de Pedidos";
+  
   constructor(private db: StoreService, private router: Router, public loadingController: LoadingController) { }
 
   ngOnInit() {

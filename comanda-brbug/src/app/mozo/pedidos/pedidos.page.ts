@@ -12,6 +12,7 @@ export class PedidosPage implements OnInit {
   public pedidos : any [] = [];
   public pedidosPendientes : boolean = false;
   public spinner : boolean = true;
+  titulo ="Lista de pedidos";
 
   constructor(private db : StoreService, private modalCtrl: ModalController, public loadingController: LoadingController) { }
 

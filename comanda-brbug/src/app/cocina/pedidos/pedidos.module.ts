@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { PedidosPageRoutingModule } from './pedidos-routing.module';
 
 import { PedidosPage } from './pedidos.page';
+import { NavComponent } from 'src/app/components/nav/nav.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { PedidosPage } from './pedidos.page';
     IonicModule,
     PedidosPageRoutingModule
   ],
-  declarations: [PedidosPage]
+  declarations: [PedidosPage, NavComponent]
 })
 export class PedidosPageModule {}

@@ -21,8 +21,14 @@ export class DetallePedidoComponent implements OnInit {
   }
 
   despacharPedido(){
-    console.log(this.pedido.mesa);
+    //console.log(this.pedido.mesa);
     this.db.despacharPedido(this.pedido.mesa);
+    this.dismissModal();
+    this.router.navigateByUrl('pedidosMozo');
+  }
+
+  rechazarPedido(){
+    this.db.rechazarPedido(this.pedido.mesa);
     this.dismissModal();
     this.router.navigateByUrl('pedidosMozo');
   }

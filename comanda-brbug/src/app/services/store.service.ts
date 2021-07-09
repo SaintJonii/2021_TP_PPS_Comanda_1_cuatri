@@ -154,6 +154,14 @@ export class StoreService {
     });
   }
 
+  rechazarPedido(mesa){
+    this.db.collection('pedidos').doc(mesa).update({
+      estado: "cancelado",
+      estado_bebidas: "cancelado",
+      estado_cocina: "cancelado"
+    });
+  }
+
   prepararPedido(mesa, esCocina){
     if(esCocina){
       console.log('b2');
@@ -177,27 +185,33 @@ export class StoreService {
   }
 
   entregarPedido(mesa, esCocina){
+    debugger
     var pedido : any [] = [];
     this.obtenerPedido(mesa).subscribe(data  => {
       pedido = data;      
     });
     var intervalo = setInterval(() => {
       //console.log(pedido);
-      if(pedido != null){
+      if(pedido.length != 0){
         if(esCocina){
           this.db.collection('pedidos').doc(mesa).update({
             estado_cocina: "listo_para_servir"
           });
+          if(pedido[0].estado_bebidas == "listo_para_servir"){
+            this.db.collection('pedidos').doc(mesa).update({
+              estado: "listo_para_servir"
+            });
+          }
         }
         else{
           this.db.collection('pedidos').doc(mesa).update({
             estado_bebidas: "listo_para_servir"
           });
-        }
-        if(pedido[0].estado_bebidas == "listo_para_servir" && pedido[0].estado_cocina == "listo_para_servir"){
-          this.db.collection('pedidos').doc(mesa).update({
-            estado: "listo_para_servir"
-          });
+          if(pedido[0].estado_cocina == "listo_para_servir"){
+            this.db.collection('pedidos').doc(mesa).update({
+              estado: "listo_para_servir"
+            });
+          }
         }
         clearInterval(intervalo);
       }

@@ -8,6 +8,7 @@ import { PedidosPageRoutingModule } from './pedidos-routing.module';
 
 import { PedidosPage } from './pedidos.page';
 import { DetallePedidoComponent } from '../detalle-pedido/detalle-pedido.component';
+import { NavComponent } from 'src/app/components/nav/nav.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,7 @@ import { DetallePedidoComponent } from '../detalle-pedido/detalle-pedido.compone
     IonicModule,
     PedidosPageRoutingModule
   ],
-  declarations: [PedidosPage, DetallePedidoComponent],
+  declarations: [PedidosPage, DetallePedidoComponent, NavComponent],
   entryComponents: [DetallePedidoComponent]
 })
 export class PedidosPageModule {}
