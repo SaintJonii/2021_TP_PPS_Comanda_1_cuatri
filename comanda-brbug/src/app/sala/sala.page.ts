@@ -123,7 +123,7 @@ export class SalaPage implements OnInit {
           this.mostrarToast("Escanee para acceder a las opciones");
 
         }
-        else if (pedido.estado == "finalizado") {
+        else if (pedido.estado == "confirmacion_pago") {
           this.msjSala = "Pedido finalizado y abonado";
           this.msjDescSala = "Acceda para ver resultado de la encuesta";
           this.mostrarToast("Escanee para acceder a las opciones");

@@ -73,8 +73,9 @@ export class PagarCuentaPage implements OnInit {
 
   pagar(){
     if(this.validar){
-      this.db.actualizarEstadoDelPedido("finalizado", this.nroMesa );
-      this.route.navigateByUrl('login');
+      this.db.actualizarEstadoDelPedido("confirmar_pago", this.nroMesa );
+      //enviar notificacion que el cliente pago
+      this.route.navigateByUrl('sala');
     }
     else{
       this.mostrarToast("Error: Ingrese propina");
