@@ -18,6 +18,8 @@ export class SalaPage implements OnInit {
   usuario;
   tienePedido: Boolean;
   titulo = "Sala de espera";
+  msjSala: String;
+  msjDescSala: String;
   nroMesa;
   mostrarBotones: Boolean;
 
@@ -96,13 +98,17 @@ export class SalaPage implements OnInit {
     this.pedidoSvce.buscarPedido(this.usuario.dni).subscribe(doc => {
       let pedido: any = doc[0];
       if (pedido) {
+        this.msjSala = "Pedido en curso";
+        this.msjDescSala = "Puede acceder al estado del pedido escaneando su mesa o realizar la encuesta";
         this.tienePedido = true;
         this.nroMesa = pedido.mesa;
         localStorage.setItem("nro_mesa", pedido.mesa);
-        this.mostrarToast("Escanee para acceder a opciones de la mesa");
+        this.mostrarToast("Escanee para acceder a las opciones");
       }
       else {
-        this.mostrarToast("El mozo le asignará una mesa");
+        this.msjSala = "El Mozo le asignará una mesa";
+        this.msjDescSala = "Deberá escanearla para acceder al menú";
+        this.mostrarToast("Aguarde al mozo por favor");
       }
     });
   }
