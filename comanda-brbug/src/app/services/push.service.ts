@@ -3,6 +3,7 @@ import { Capacitor } from '@capacitor/core';
 import { PushNotificationSchema, Token, ActionPerformed, PushNotifications, Channel } from '@capacitor/push-notifications';
 import { Router } from '@angular/router';
 import { HttpClient } from "@angular/common/http";
+import { ToastController, AlertController } from '@ionic/angular';
 
 
 @Injectable({
@@ -12,7 +13,10 @@ export class PushService {
 
   msj: Channel;
   device_token;
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private toastController : ToastController) { }
  
   public initPush() {
     if (Capacitor.getPlatform() !== 'web') {
@@ -45,15 +49,15 @@ export class PushService {
     PushNotifications.addListener(
       'pushNotificationReceived',
       async (notification: PushNotificationSchema) => {
+        const data = notification;
         console.log('Push received: ' + JSON.stringify(notification));
-        alert("RECIBI NOTIFICACION");
+        this.mostrarToast(data.body);
       }
     );
  
     PushNotifications.addListener(
       'pushNotificationActionPerformed',
       async (notification: ActionPerformed) => {
-        alert("RECIBI NOTIFICACION 2");
         const data = notification.notification.data;
         console.log('Action performed: ' + JSON.stringify(notification.notification));
         if (data.detailsId) {
@@ -81,6 +85,14 @@ export class PushService {
                 console.log(doc);
               });
    
+  }
+
+  async mostrarToast(mensaje) {
+    const toast = await this.toastController.create({
+      message: mensaje,
+      duration: 3000
+    });
+    toast.present();
   }
   
 
