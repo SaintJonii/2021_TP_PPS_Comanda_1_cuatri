@@ -232,12 +232,22 @@ export class StoreService {
     });
   }
 
+  actualizarEstadoDelPedido(estado, mesa){
+    this.db.collection('pedidos').doc(mesa).update({
+      estado: estado
+    });
+  }
+
   obtenerTokenMozo(){
     return this.db.collection('users', ref => ref.where('tipo', '==', "mozo")).valueChanges();
   }
 
   obtenerTokenAdmin(){
     return this.db.collection('users', ref => ref.where('tipo', '==', "dueño")).valueChanges();
+  }
+
+  obtenerTokenCliente(dni){
+    return this.db.collection('users', ref => ref.where('dni', '==', dni)).valueChanges();
   }
   
 }

@@ -17,9 +17,11 @@ export class SalaPage implements OnInit {
   scanActive: boolean = false;
   usuario;
   tienePedido: Boolean;
+  listoParaPagar: Boolean;
   titulo = "Sala de espera";
   msjSala: String;
   msjDescSala: String;
+  textoEstado = "Estado del Pedido";
   nroMesa;
   mostrarBotones: Boolean;
 
@@ -30,6 +32,7 @@ export class SalaPage implements OnInit {
     private storeSv: StoreService) {
 
     this.tienePedido = false;
+    this.listoParaPagar = false;
     this.mostrarBotones = false;
     this.nroMesa = "";
   }
@@ -97,13 +100,42 @@ export class SalaPage implements OnInit {
     this.usuario = JSON.parse(localStorage.getItem("usuarioActual"));
     this.pedidoSvce.buscarPedido(this.usuario.dni).subscribe(doc => {
       let pedido: any = doc[0];
-      if (pedido) {
+      if (pedido.estado != "servido") {
         this.msjSala = "Pedido en curso";
         this.msjDescSala = "Puede acceder al estado del pedido escaneando su mesa o realizar la encuesta";
         this.tienePedido = true;
         this.nroMesa = pedido.mesa;
         localStorage.setItem("nro_mesa", pedido.mesa);
         this.mostrarToast("Escanee para acceder a las opciones");
+      }
+      else if(pedido.estado == "servido"){
+        this.msjSala = "Pedido listo";
+        this.msjDescSala = "Acceda para ver su pedido y confirmar recepción";
+        this.textoEstado = "Confirmar Pedido"
+        this.tienePedido = true;
+        this.nroMesa = pedido.mesa;
+        localStorage.setItem("nro_mesa", pedido.mesa);
+        this.mostrarToast("Escanee para acceder a las opciones");
+
+      }
+      else if(pedido.estado == "pendiente_pago"){
+        this.msjSala = "Ya recibió su pedido";
+        this.msjDescSala = "Acceda para ver realizar el pago.";
+        this.tienePedido = true;
+        this.listoParaPagar = true;
+        this.nroMesa = pedido.mesa;
+        localStorage.setItem("nro_mesa", pedido.mesa);
+        this.mostrarToast("Escanee para acceder a las opciones");
+
+      }
+      else if(pedido.estado == "finalizado"){
+        this.msjSala = "Pedido finalizado y abonado";
+        this.msjDescSala = "Acceda para ver resultado de la encuesta";
+        this.tienePedido = true;
+        this.nroMesa = pedido.mesa;
+        localStorage.setItem("nro_mesa", pedido.mesa);
+        this.mostrarToast("Escanee para acceder a las opciones");
+
       }
       else {
         this.msjSala = "El Mozo le asignará una mesa";
@@ -154,6 +186,10 @@ export class SalaPage implements OnInit {
       duration: 3000
     });
     toast.present();
+  }
+
+  pagarCuenta(){
+    this.route.navigateByUrl("pagar-cuenta");
   }
 
 }

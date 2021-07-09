@@ -37,7 +37,7 @@ export class PagarCuentaPage implements OnInit {
 
   imagenElegida : string = null;
   satifaccion : string = null;
-
+  nroMesa;
   validar : boolean = false;
 
 
@@ -48,8 +48,8 @@ export class PagarCuentaPage implements OnInit {
     private toastController: ToastController,
     private loadingController : LoadingController ) {
 
-    let mesa=localStorage.getItem("nro_mesa");
-    this.db.obtenerPedidoxNroMesa(mesa).subscribe( doc => {
+    this.nroMesa =localStorage.getItem("nro_mesa");
+    this.db.obtenerPedidoxNroMesa(this.nroMesa).subscribe( doc => {
       console.log(doc);
       this.pedidos=doc;
     });
@@ -73,6 +73,7 @@ export class PagarCuentaPage implements OnInit {
 
   pagar(){
     if(this.validar){
+      this.db.actualizarEstadoDelPedido("finalizado", this.nroMesa );
       this.route.navigateByUrl('login');
     }
     else{

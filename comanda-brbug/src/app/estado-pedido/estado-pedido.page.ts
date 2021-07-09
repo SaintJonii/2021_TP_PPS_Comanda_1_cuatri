@@ -51,22 +51,30 @@ export class EstadoPedidoPage implements OnInit {
     }
   ;*/
 
-  pedido : any = {};
-  titulo : string = "Estado de su pedido";
-
-  estado : string = "estado_pendiente";
+  pedido: any = {};
+  titulo: string = "Estado de su pedido";
+  pedidoListo: boolean;
+  estado: string = "estado_pendiente";
+  nroMesa;
 
   slideOpts = {
     initialSlide: 1,
     speed: 400
   };
 
-  constructor(private db : StoreService,
-    private loadingController : LoadingController) {
-    let mesa=localStorage.getItem("nro_mesa");
-    this.db.obtenerPedidoxNroMesa(mesa).subscribe( doc => {
-      console.log(doc);
-      this.pedido=doc;
+  constructor(private db: StoreService,
+    private loadingController: LoadingController,
+    private router : Router) {
+
+    this.pedidoListo = false;
+    this.nroMesa = localStorage.getItem("nro_mesa");
+
+    this.db.obtenerPedidoxNroMesa(this.nroMesa).subscribe(doc => {
+      this.pedido = doc;
+
+      if (this.pedido.estado == "servido") {
+        this.pedidoListo = true;
+      }
     });
 
   }
@@ -85,6 +93,10 @@ export class EstadoPedidoPage implements OnInit {
     const { role, data } = await loading.onDidDismiss();
   }
 
+  confirmar() {
+    this.db.actualizarEstadoDelPedido("pendiente_pago", this.nroMesa)
+    this.router.navigateByUrl("sala");
+  }
 
 
 
