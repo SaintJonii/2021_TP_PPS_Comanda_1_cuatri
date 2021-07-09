@@ -77,12 +77,16 @@ export class StoreService {
   }
 
   guardarEnLista(email, nombre, apellido, dni) {
-    this.db.collection("listaDeEspera").doc().set({
+    this.db.collection("listaDeEspera").doc(dni).set({
       email: email,
       nombre: nombre,
       apellido: apellido,
       dni: dni
     });
+  }
+
+  borrarDeLista(dni) {
+    this.db.collection('listaDeEspera').doc(dni).delete();
   }
 
   obtenerListaDeEspera() {
@@ -126,6 +130,8 @@ export class StoreService {
       disponible: false,
       dniCliente: dni
     });
+
+    this.borrarDeLista(dni);
   }
 
   confirmacionCliente(pedido, mesa, cliente, total) {
@@ -145,6 +151,14 @@ export class StoreService {
       estado: "despachado",
       estado_bebidas: "despachado",
       estado_cocina: "despachado"
+    });
+  }
+
+  rechazarPedido(mesa){
+    this.db.collection('pedidos').doc(mesa).update({
+      estado: "cancelado",
+      estado_bebidas: "cancelado",
+      estado_cocina: "cancelado"
     });
   }
 
@@ -171,27 +185,33 @@ export class StoreService {
   }
 
   entregarPedido(mesa, esCocina){
+    debugger
     var pedido : any [] = [];
     this.obtenerPedido(mesa).subscribe(data  => {
       pedido = data;      
     });
     var intervalo = setInterval(() => {
       //console.log(pedido);
-      if(pedido != null){
+      if(pedido.length != 0){
         if(esCocina){
           this.db.collection('pedidos').doc(mesa).update({
             estado_cocina: "listo_para_servir"
           });
+          if(pedido[0].estado_bebidas == "listo_para_servir"){
+            this.db.collection('pedidos').doc(mesa).update({
+              estado: "listo_para_servir"
+            });
+          }
         }
         else{
           this.db.collection('pedidos').doc(mesa).update({
             estado_bebidas: "listo_para_servir"
           });
-        }
-        if(pedido[0].estado_bebidas == "listo_para_servir" && pedido[0].estado_cocina == "listo_para_servir"){
-          this.db.collection('pedidos').doc(mesa).update({
-            estado: "listo_para_servir"
-          });
+          if(pedido[0].estado_cocina == "listo_para_servir"){
+            this.db.collection('pedidos').doc(mesa).update({
+              estado: "listo_para_servir"
+            });
+          }
         }
         clearInterval(intervalo);
       }
@@ -212,8 +232,22 @@ export class StoreService {
     });
   }
 
+  actualizarEstadoDelPedido(estado, mesa){
+    this.db.collection('pedidos').doc(mesa).update({
+      estado: estado
+    });
+  }
+
   obtenerTokenMozo(){
     return this.db.collection('users', ref => ref.where('tipo', '==', "mozo")).valueChanges();
+  }
+
+  obtenerTokenAdmin(){
+    return this.db.collection('users', ref => ref.where('tipo', '==', "dueño")).valueChanges();
+  }
+
+  obtenerTokenCliente(dni){
+    return this.db.collection('users', ref => ref.where('dni', '==', dni)).valueChanges();
   }
   
 }

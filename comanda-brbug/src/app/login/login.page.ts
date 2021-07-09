@@ -7,6 +7,7 @@ import { StoreService } from '../services/store.service';
 import { PushService } from '../services/push.service';
 
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -45,7 +46,12 @@ export class LoginPage implements OnInit {
     public pushService: PushService){
   }
 
+  //Variable para el anonimo
+  nombre : string = "";
+  apellido : string = "";
+
   ngOnInit() {
+    this.pushService.initPush();
   }
 
   get correo(){
@@ -109,11 +115,40 @@ export class LoginPage implements OnInit {
     this.email="barra@barra.com";
     this.contrasenia="123456";
   }
+
+  //Funciones para el anonimo
   modoAnonimo(){
-    this.presentAlert();
+    const el = document.getElementById('modal');
+    el.style.setProperty('opacity', '1');
+    el.style.setProperty('visibility', 'visible');
+    //this.presentAlert();
   }
 
-  async presentAlert() {
+  cerrarModalAnonimo(){
+    const el = document.getElementById('modal');
+    el.style.setProperty('opacity', '0');
+    el.style.setProperty('visibility', 'hidden');
+  }
+
+  ingresarAnonimo(){
+    if(this.nombre != "" && this.apellido != ""){
+      this.cerrarModalAnonimo();
+
+      this.db.modificandoNombreApellidoAnonimo(this.nombre, this.apellido);
+      this.auth.loginUser("anonimo@anonimo.com", "anonimo123");
+    }
+    else{
+      this.cerrarModalAnonimo();
+
+      this.alert=true;
+      this.alertMsj="Error: Campos inválidos";
+      setTimeout(() => {
+        this.alert=false;
+      }, 3000);
+    }
+  }
+
+  /*async presentAlert() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Ingrese su nombre y apellido',
@@ -150,7 +185,7 @@ export class LoginPage implements OnInit {
     });
 
     await alert.present();
-  }
+  }*/
 
 
 }

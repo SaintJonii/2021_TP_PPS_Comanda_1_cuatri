@@ -1,12 +1,6 @@
-<ion-header>
-    <ion-toolbar color="dark">
-      <ion-buttons slot="start">
-        <ion-back-button defaultHref="homeMozo" color="light"></ion-back-button>
-      </ion-buttons>
-      <ion-title>Lista de espera de clientes</ion-title>
-    </ion-toolbar>
+<ion-header [translucent]="true">
+  <app-nav [titulo]="titulo"></app-nav>
 </ion-header>
-
 <ion-content>
   <div *ngIf="!spinner">
     <div *ngIf="!clientesEsperando" class="divMensaje">

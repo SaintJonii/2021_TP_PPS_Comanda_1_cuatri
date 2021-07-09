@@ -12,13 +12,16 @@ export class PedidosPage implements OnInit {
   public pedidos : any [] = [];
   public pedidosPendientes : boolean = false;
   public spinner : boolean = true;
-
+  titulo = "Lista de Pedidos";
+  
   constructor(private db : StoreService, private modalCtrl: ModalController, public loadingController: LoadingController) { }
 
   ngOnInit() {
     this.presentLoading();
     this.db.obtenerPedidosAPreparar().subscribe(data => {
+      
       this.pedidos = data;
+      console.log(this.pedidos[0].pedido);
       if(this.pedidos.length != 0){
         this.pedidosPendientes = true;
       }

@@ -24,3 +24,31 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+
+.fondo{
+    --background: url('/assets/login/fondoLogin.png') 100% 100%/100% 100% no-repeat;
+}
+
+$greenSeaweed: rgba(2, 128, 144, 1);
+
+.contenedorBlanco {
+    opacity: 0.95;
+    overflow: hidden;
+    background-color: white;
+    padding: 40px 30px 30px 30px;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 90%;
+    transform: translate(-50%, -50%);
+    transition: (transform 300ms, box-shadow 300ms);
+    box-shadow: 5px 10px 10px rgba($greenSeaweed, 0.2);
+    
+}
+  
+@keyframes wawes {
+    from {  transform:(rotate(0)); }
+    to {  transform:(rotate(360deg)); }
+}

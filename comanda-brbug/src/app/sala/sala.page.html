@@ -11,8 +11,8 @@
 
   <div id="container" [hidden]="scanActive">
     <img src="./../../assets/logo_bodegon.png">
-    <strong>El Mozo le asignará una mesa</strong>
-    <p style="margin-top: 2%;">Podrá escanearla y acceder al menú.
+    <strong>{{msjSala}}</strong>
+    <p style="margin-top: 2%;">{{msjDescSala}}
     </p>
   </div>
 
@@ -24,7 +24,7 @@
     </ion-col>
   </ion-row>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="mostrarBotones">
     <ion-fab-button  color="danger" (click)="chat()">
       <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
     </ion-fab-button>
@@ -37,12 +37,17 @@
       <ion-icon name="qr-code-sharp" slot="end"></ion-icon>Escanear QR
     </ion-button>
 
-    <ion-button color="primary" shape="round" fill="outline" expand="full" (click)="irEstado()" *ngIf="mostrarBotones">
-      <ion-icon name="qr-code-sharp" slot="end"></ion-icon>Estado del pedido
+    <ion-button color="primary" shape="round" fill="outline" expand="full" (click)="irEstado()" *ngIf="mostrarBotones && !listoParaPagar">
+      <ion-icon name="qr-code-sharp" slot="end"></ion-icon>{{textoEstado}}
     </ion-button>
 
     <ion-button color="secondary" shape="round" fill="outline" expand="full" (click)="irEncuesta()"  *ngIf="mostrarBotones">
       <ion-icon name="qr-code-sharp" slot="end"></ion-icon>Acceder a encuesta
     </ion-button>
+
+    <ion-button color="secondary" shape="round" fill="outline" expand="full" (click)="pagarCuenta()"  *ngIf="listoParaPagar">
+      <ion-icon name="qr-code-sharp" slot="end"></ion-icon>Pagar cuenta
+    </ion-button>
+
   </ion-toolbar>
 </ion-footer>

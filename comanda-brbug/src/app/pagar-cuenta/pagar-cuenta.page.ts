@@ -15,7 +15,7 @@ const scanner = BarcodeScanner;
 export class PagarCuentaPage implements OnInit {
 
   pedidos : any = {};
-  titulo : string = null;
+  titulo : string = "Detalle de la cuenta";
 
   descuento : number = 0;
   descuentoPorcentaje : number = 0;
@@ -37,7 +37,7 @@ export class PagarCuentaPage implements OnInit {
 
   imagenElegida : string = null;
   satifaccion : string = null;
-
+  nroMesa;
   validar : boolean = false;
 
 
@@ -48,9 +48,8 @@ export class PagarCuentaPage implements OnInit {
     private toastController: ToastController,
     private loadingController : LoadingController ) {
 
-    let mesa=localStorage.getItem("nro_mesa");
-    this.titulo="Mesa "+mesa;
-    this.db.obtenerPedidoxNroMesa(mesa).subscribe( doc => {
+    this.nroMesa =localStorage.getItem("nro_mesa");
+    this.db.obtenerPedidoxNroMesa(this.nroMesa).subscribe( doc => {
       console.log(doc);
       this.pedidos=doc;
     });
@@ -74,7 +73,9 @@ export class PagarCuentaPage implements OnInit {
 
   pagar(){
     if(this.validar){
-      this.route.navigateByUrl('login');
+      this.db.actualizarEstadoDelPedido("confirmar_pago", this.nroMesa );
+      //enviar notificacion que el cliente pago
+      this.route.navigateByUrl('sala');
     }
     else{
       this.mostrarToast("Error: Ingrese propina");

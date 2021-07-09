@@ -1,12 +1,6 @@
-<ion-header>
-  <ion-toolbar color="dark">
-    <ion-title>Lista de pedidos</ion-title>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="homeBarra" color="light"></ion-back-button>
-    </ion-buttons>
-  </ion-toolbar>
+<ion-header [translucent]="true">
+  <app-nav [titulo]="titulo"></app-nav>
 </ion-header>
-
 <ion-content>
   <div *ngIf="!spinner">
     <div *ngIf="!pedidosPendientes" class="divMensaje">
@@ -22,7 +16,7 @@
         <ion-card>
           <ion-item>
             <div>
-              <ion-grid style="text-align: center; margin-left: 80px;">
+              <ion-grid style="text-align: center; margin-left: 50px;">
                 <ion-row>
                   <ion-col>
                     <ion-label>
