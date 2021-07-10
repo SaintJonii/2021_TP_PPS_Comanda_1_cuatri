@@ -18,6 +18,7 @@ export class SalaPage implements OnInit {
   usuario;
   tienePedido: Boolean;
   listoParaPagar: Boolean;
+  style= "url('/assets/login/fondoLogin.png') 100% 100%/100% 100% no-repeat";
   titulo = "Sala";
   msjSala: String;
   msjDescSala: String;
@@ -142,7 +143,7 @@ export class SalaPage implements OnInit {
 
   manejarMesa(mesaEscaneada) {
 
-    this.pedidoSvce.buscarMesa(mesaEscaneada).subscribe(doc => {
+    let aux = this.pedidoSvce.buscarMesa(mesaEscaneada).subscribe(doc => {
       let mesa: any = doc;
       if (mesa.disponible && !this.tienePedido) {
         this.storeSv.asignarMesa(mesa.id, this.usuario.dni);
@@ -161,6 +162,8 @@ export class SalaPage implements OnInit {
 
     });
 
+    aux.unsubscribe();
+
   }
 
   irEstado() {
@@ -169,6 +172,10 @@ export class SalaPage implements OnInit {
 
   irEncuesta() {
     this.route.navigateByUrl('encuesta');
+  }
+
+  irResultados() {
+    this.route.navigateByUrl('encuesta-grafico');
   }
 
   chat() {

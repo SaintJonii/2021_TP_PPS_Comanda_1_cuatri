@@ -20,6 +20,7 @@ export class HomePage implements OnInit {
   result: any = [];
   scanActive: boolean = false;
   titulo= "Home";
+  style= "url('/assets/login/fondoLogin.png') 100% 100%/100% 100% no-repeat";
   usuario;
 
   constructor(public toastController: ToastController,
@@ -113,7 +114,7 @@ export class HomePage implements OnInit {
 
   pedidoEnCurso() {
     this.usuario = JSON.parse(localStorage.getItem("usuarioActual"));
-    this.pedidoSvce.buscarPedido(this.usuario.dni).subscribe(doc => {
+    let aux = this.pedidoSvce.buscarPedido(this.usuario.dni).subscribe(doc => {
       let pedido: any = doc[0];
       if (pedido) {
         this.presentLoading();
@@ -124,6 +125,8 @@ export class HomePage implements OnInit {
         
       }
     });
+
+    aux.unsubscribe();
   }
 
   async presentLoading() {

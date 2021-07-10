@@ -4,3 +4,21 @@
   
     color: #fff;
   }
+
+  $greenSeaweed: rgba(2, 128, 144, 1);
+  $blueQueen: rgba(69, 105, 144, 1);
+  
+  .divContent {
+    opacity: 0.95;
+    overflow: hidden;
+    background-color: white;
+    padding: 30px 30px 30px 30px;
+    border-radius: 10px;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    width: 90%;
+    transform: translate(-50%, -50%);
+    transition: (transform 300ms, box-shadow 300ms);
+    box-shadow: 5px 10px 10px rgba($greenSeaweed, 0.2);
+  }

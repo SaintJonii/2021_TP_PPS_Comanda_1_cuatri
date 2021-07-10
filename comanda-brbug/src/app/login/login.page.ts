@@ -5,6 +5,7 @@ import { AlertController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 import { StoreService } from '../services/store.service';
 import { PushService } from '../services/push.service';
+import { Keyboard } from '@capacitor/keyboard';
 
 
 
@@ -37,7 +38,7 @@ export class LoginPage implements OnInit {
 
   email : string = null;
   contrasenia : string = null;
-
+  keyboardHide : Boolean;
 
   constructor(private route : Router,
     private auth : AuthService,
@@ -56,6 +57,16 @@ export class LoginPage implements OnInit {
 
   ionViewWillEnter(){
     this.pushService.initPush();
+    this.keyboardHide = true;
+
+    Keyboard.addListener('keyboardWillShow', info => {
+      this.keyboardHide = false;
+    });
+    
+    
+    Keyboard.addListener('keyboardWillHide', () => {
+      this.keyboardHide = true;
+    });
   }
 
   get correo(){
