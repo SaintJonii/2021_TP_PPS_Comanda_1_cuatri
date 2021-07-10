@@ -14,6 +14,8 @@ const scanner = BarcodeScanner;
 })
 export class PagarCuentaPage implements OnInit {
 
+  urlFondo = "url('/assets/login/fondoLogin.png') 100% 100%/100% 100% no-repeat";
+
   pedidos : any = {};
   titulo : string = "Detalle de la cuenta";
 

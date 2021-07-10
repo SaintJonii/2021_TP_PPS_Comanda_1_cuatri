@@ -67,11 +67,12 @@ export class ChatPage implements OnInit {
 
       let strConsulta = "Consulta "+this.chatSv.usuarioActual;
       let msj = localStorage.getItem("msjChat");
+      let newMsj = strConsulta+" : "+msj;
       for(let i=0;i<doc.length;i++)
       {
         let docAux: any = doc[i];
         let token = JSON.parse(docAux.token).value;
-        this.pushService.sendNotification(strConsulta, msj, token);
+        this.pushService.sendNotification(strConsulta, newMsj, token);
       }
       
       /*let msj = localStorage.getItem("msjChat");
