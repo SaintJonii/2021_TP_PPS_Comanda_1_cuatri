@@ -34,19 +34,23 @@
 <ion-footer [hidden]="scanActive">
   <ion-toolbar>
     <ion-button color="danger" shape="round" fill="outline" expand="full" (click)="escanear()" *ngIf="!mostrarBotones">
-      <ion-icon name="qr-code-sharp" slot="end"></ion-icon>Escanear QR
+      <ion-icon name="qr-code-sharp" slot="start"></ion-icon>Escanear QR
     </ion-button>
 
     <ion-button color="primary" shape="round" fill="outline" expand="full" (click)="irEstado()" *ngIf="mostrarBotones && !listoParaPagar">
-      <ion-icon name="qr-code-sharp" slot="end"></ion-icon>{{textoEstado}}
+      <ion-icon name="fast-food-sharp" slot="start"></ion-icon>{{textoEstado}}
     </ion-button>
 
     <ion-button color="secondary" shape="round" fill="outline" expand="full" (click)="irEncuesta()"  *ngIf="mostrarBotones">
-      <ion-icon name="qr-code-sharp" slot="end"></ion-icon>Acceder a encuesta
+      <ion-icon name="stats-chart-sharp" slot="start"></ion-icon>Acceder a encuesta
     </ion-button>
 
-    <ion-button color="secondary" shape="round" fill="outline" expand="full" (click)="pagarCuenta()"  *ngIf="listoParaPagar">
-      <ion-icon name="qr-code-sharp" slot="end"></ion-icon>Pagar cuenta
+    <ion-button color="danger" shape="round" fill="outline" expand="full" (click)="pagarCuenta()"  *ngIf="listoParaPagar">
+      <ion-icon name="wallet-sharp" slot="start"></ion-icon>Pagar cuenta
+    </ion-button>
+
+    <ion-button color="secondary" shape="round" fill="outline" expand="full" (click)="irEncuesta()"  *ngIf="!tienePedido">
+      <ion-icon name="stats-chart-sharp" slot="start"></ion-icon>Resultado de encuestas
     </ion-button>
 
   </ion-toolbar>

@@ -18,7 +18,7 @@ export class SalaPage implements OnInit {
   usuario;
   tienePedido: Boolean;
   listoParaPagar: Boolean;
-  titulo = "Sala de espera";
+  titulo = "Sala";
   msjSala: String;
   msjDescSala: String;
   textoEstado = "Estado del Pedido";
