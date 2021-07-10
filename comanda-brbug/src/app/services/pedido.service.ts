@@ -12,14 +12,15 @@ export class PedidoService {
 
   constructor(private afs: AngularFirestore, private storeSv: StoreService, private pushSvc: PushService) { }
 
-  confirmacionCliente(pedido, mesa, cliente, total) {
+  confirmacionCliente(pedido, mesa, cliente, total, tiempoEstimado) {
     this.afs.collection('pedidos').doc(mesa).set(
       {
         pedido: pedido,
         estado: "pendiente_confirmacion",
         total: total,
         mesa: mesa,
-        cliente: cliente
+        cliente: cliente,
+        tiempoEstimado: tiempoEstimado //<--NUEVO
       }
     );
 

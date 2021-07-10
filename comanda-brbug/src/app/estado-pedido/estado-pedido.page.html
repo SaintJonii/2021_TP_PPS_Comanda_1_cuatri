@@ -2,14 +2,9 @@
   <app-nav [titulo]="titulo"></app-nav>
 </ion-header>
 
-<ion-content>
-  <div class="ion-margin divEstado">
-    <ion-text>
-      <p class="text">{{pedido.estado | noUnderscore}}</p>
-      <!--<p class="text">{{estado | noUnderscore}}</p>-->
-    </ion-text>
-  </div>
-  <ion-slides pager={true} [options]="slideOpts" class="ion-margin slide">
+<ion-content class="fondo">
+  <div class="contenedor">
+    <ion-slides pager={true} [options]="slideOpts" class="ion-margin slide">
       <ion-slide class="pedido" *ngFor="let pedido of pedido.pedido">
           <ion-text>
             <img src="{{pedido.producto.imagen[0].referencia}}" class="img-slide">
@@ -19,7 +14,15 @@
             <p class="text">Tiempo: {{pedido.producto.tiempo}} min</p>
           </ion-text>
       </ion-slide>
-  </ion-slides>
+    </ion-slides>
+    <div class="ion-margin divEstado">
+      <ion-text>
+        <p class="text">{{pedido.estado | noUnderscore}}</p>
+        <p style="font-family: arial black;">Tiempo estimado: {{pedido.tiempoEstimado}} min</p>
+        <!--<p class="text">{{estado | noUnderscore}}</p>-->
+      </ion-text>
+    </div>
+  </div>
 </ion-content>
 
 <ion-footer *ngIf="pedidoListo">
