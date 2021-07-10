@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup ,FormControl, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 import { StoreService } from '../services/store.service';
 import { PushService } from '../services/push.service';
@@ -44,7 +44,8 @@ export class LoginPage implements OnInit {
     private auth : AuthService,
     private alertController : AlertController,
     private db : StoreService,
-    public pushService: PushService){
+    public pushService: PushService,
+    public toastController: ToastController, ){
   }
 
   //Variable para el anonimo
@@ -82,31 +83,35 @@ export class LoginPage implements OnInit {
       let validation:any = await this.auth.loginUser(loginForm.value.correo, loginForm.value.password);
       if(validation == 1){
 
-        this.alert=true;
+        /*this.alert=true;
         this.alertMsj="Error: Credenciales incorrectas";
         setTimeout(() => {
           this.alert=false;
-        }, 3000);
+        }, 3000);*/
+        this.mostrarToast("Error: Credenciales incorrectas");
       }else if(validation == 2){
-        this.alert=true;
+        /*this.alert=true;
         this.alertMsj="Error: Cuenta rechazada";
         setTimeout(() => {
           this.alert=false;
-        }, 3000);
+        }, 3000);*/
+        this.mostrarToast("Error: Cuenta rechazada");
       }else if(validation == 3){
-        this.alert=true;
+        /*this.alert=true;
         this.alertMsj="Error: Cuenta sin aprobar";
         setTimeout(() => {
           this.alert=false;
-        }, 3000);
+        }, 3000);*/
+        this.mostrarToast("Error: Cuenta sin aprobar");
       }
     }
     else{
-      this.alert=true;
+      /*this.alert=true;
       this.alertMsj="Error: Campos inválidos.";
       setTimeout(() => {
         this.alert=false;
-      }, 3000);
+      }, 3000);*/
+      this.mostrarToast("Error: Campos inválidos.");
     }
   }
 
@@ -136,7 +141,6 @@ export class LoginPage implements OnInit {
     const el = document.getElementById('modal');
     el.style.setProperty('opacity', '1');
     el.style.setProperty('visibility', 'visible');
-    //this.presentAlert();
   }
 
   cerrarModalAnonimo(){
@@ -155,52 +159,22 @@ export class LoginPage implements OnInit {
     else{
       this.cerrarModalAnonimo();
 
-      this.alert=true;
+      /*this.alert=true;
       this.alertMsj="Error: Campos inválidos";
       setTimeout(() => {
         this.alert=false;
-      }, 3000);
+      }, 3000);*/
+      this.mostrarToast("Error: Campos inválidos");
     }
   }
 
-  /*async presentAlert() {
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: 'Ingrese su nombre y apellido',
-      buttons: [
-        {
-          text: 'Aceptar',
-          handler: (alertData) => {
-            if(alertData.nombre != "" && alertData.apellido != ""){
-              this.db.modificandoNombreApellidoAnonimo(alertData.nombre, alertData.apellido);
-              this.auth.loginUser("anonimo@anonimo.com", "anonimo123");
-            }else{
-              this.alert=true;
-              this.alertMsj="Error: Campos inválidos";
-              setTimeout(() => {
-                this.alert=false;
-              }, 3000);
-            } 
-
-          }
-        }
-      ],
-      inputs: [
-        {
-          name: 'nombre',
-          type: 'text',
-          placeholder: 'Nombre',
-        },
-        {
-          name: 'apellido',
-          type: 'text',
-          placeholder: 'Apellido'
-        }
-      ]
+  async mostrarToast(mensaje) {
+    const toast = await this.toastController.create({
+      message: mensaje,
+      duration: 3000
     });
-
-    await alert.present();
-  }*/
+    toast.present();
+  }
 
 
 }

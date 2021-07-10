@@ -53,7 +53,8 @@ export class ConfirmacionPage implements OnInit {
   }
 
   confirmar(){
-    this.pedidoSvice.confirmacionCliente(this.pedido, this.mesaCliente, this.usuario.dni, this.total);
+    let tiempoMaximo = this.sacarTiempoMaximo(); //<--- NUEVO
+    this.pedidoSvice.confirmacionCliente(this.pedido, this.mesaCliente, this.usuario.dni, this.total,tiempoMaximo);
     localStorage.removeItem("pedidoActual");
     setTimeout(() => {
       this.routerNav.navigateByUrl('sala');
@@ -75,5 +76,20 @@ export class ConfirmacionPage implements OnInit {
   }
 
  
+
+  sacarTiempoMaximo(){
+    let tiempos = [];
+    let tiempoMaximo = 0;
+    tiempos = this.pedido.map(function (x) {
+      return x.producto.tiempo;
+    });
+    tiempos.forEach(function (tiempo) {
+      if(tiempo > tiempoMaximo){
+        tiempoMaximo=tiempo;
+      }
+    });
+
+    return tiempoMaximo;
+  }
 
 }

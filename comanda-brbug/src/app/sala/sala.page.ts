@@ -18,6 +18,8 @@ export class SalaPage implements OnInit {
   usuario;
   tienePedido: Boolean;
   listoParaPagar: Boolean;
+  pagado: Boolean;
+  realizoEncuesta: Boolean;
   style= "url('/assets/login/fondoLogin.png') 100% 100%/100% 100% no-repeat";
   titulo = "Sala";
   msjSala: String;
@@ -35,6 +37,8 @@ export class SalaPage implements OnInit {
     this.tienePedido = false;
     this.listoParaPagar = false;
     this.mostrarBotones = false;
+    this.realizoEncuesta = false;
+    this.pagado = false;
     this.nroMesa = "";
   }
 
@@ -107,6 +111,7 @@ export class SalaPage implements OnInit {
         this.msjDescSala = "Puede acceder al estado del pedido escaneando su mesa o realizar la encuesta";
         this.tienePedido = true;
         this.nroMesa = pedido.mesa;
+        this.realizoEncuesta = pedido.encuesta;
         localStorage.setItem("nro_mesa", pedido.mesa);
         this.mostrarToast("Escanee para acceder a las opciones");
 
@@ -127,6 +132,7 @@ export class SalaPage implements OnInit {
         else if (pedido.estado == "confirmacion_pago") {
           this.msjSala = "Pedido finalizado y abonado";
           this.msjDescSala = "Acceda para ver resultado de la encuesta";
+          this.pagado = true;
           this.mostrarToast("Escanee para acceder a las opciones");
 
         }
@@ -162,7 +168,7 @@ export class SalaPage implements OnInit {
 
     });
 
-    aux.unsubscribe();
+    //aux.unsubscribe();
 
   }
 
@@ -175,7 +181,7 @@ export class SalaPage implements OnInit {
   }
 
   irResultados() {
-    this.route.navigateByUrl('encuesta-grafico');
+    this.route.navigateByUrl('encuestas-grafico');
   }
 
   chat() {

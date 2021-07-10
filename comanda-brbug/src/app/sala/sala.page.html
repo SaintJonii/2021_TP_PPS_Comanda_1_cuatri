@@ -4,7 +4,7 @@
 
 <ion-content [style.--background]="scanActive ? '#ffffff00' : style">
 
-  <div class="divContent" style="text-align: center;">
+  <div class="divContent" style="text-align: center;" [hidden]="!scanActive">
 
     <img src="./../../assets/logo_bodegon.png" [hidden]="scanActive">
     <strong>{{msjSala}}</strong>
@@ -39,11 +39,11 @@
       <ion-icon name="fast-food-sharp" slot="start"></ion-icon>{{textoEstado}}
     </ion-button>
 
-    <ion-button color="secondary" shape="round" expand="full" (click)="irEncuesta()" *ngIf="mostrarBotones" >
+    <ion-button color="secondary" shape="round" expand="full" (click)="irEncuesta()" *ngIf="mostrarBotones && realizoEncuesta">
       <ion-icon name="stats-chart-sharp" slot="start"></ion-icon>Acceder a encuesta
     </ion-button>
 
-    <ion-button color="danger" shape="round" expand="full" (click)="pagarCuenta()" *ngIf="listoParaPagar">
+    <ion-button color="danger" shape="round" expand="full" (click)="pagarCuenta()" *ngIf="listoParaPagar && !pagado">
       <ion-icon name="wallet-sharp" slot="start"></ion-icon>Pagar cuenta
     </ion-button>
 

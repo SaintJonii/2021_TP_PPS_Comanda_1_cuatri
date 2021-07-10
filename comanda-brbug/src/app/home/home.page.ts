@@ -126,7 +126,7 @@ export class HomePage implements OnInit {
       }
     });
 
-    aux.unsubscribe();
+    //aux.unsubscribe();
   }
 
   async presentLoading() {

@@ -49,7 +49,7 @@ export class EncuestaPage implements OnInit {
   encuesta : any = null;
 
   titulo : string = "Encuesta";
-
+  nro_mesa= null;
 
   constructor(private db : StoreService,
     private encuestaSv : EncuestaService,
@@ -59,6 +59,7 @@ export class EncuestaPage implements OnInit {
   }
 
   ngOnInit() {
+    this.nro_mesa = localStorage.getItem("nro_mesa");
   }
 
   logout(){
@@ -80,6 +81,7 @@ export class EncuestaPage implements OnInit {
       respuestaUltima: this.respuestaUltima
     }
 
+    this.db.actualizarEncuestaPedido(this.nro_mesa);
     this.db.addEncuesta(this.encuesta);
     this.encuestaSv.actualizarEncuestas();
     this.presentLoading();

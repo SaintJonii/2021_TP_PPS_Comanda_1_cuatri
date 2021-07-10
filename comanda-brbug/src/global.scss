@@ -31,7 +31,6 @@
 }
 
 $greenSeaweed: rgba(2, 128, 144, 1);
-
 .contenedorBlanco {
     opacity: 0.95;
     overflow: hidden;
@@ -46,9 +45,4 @@ $greenSeaweed: rgba(2, 128, 144, 1);
     transition: (transform 300ms, box-shadow 300ms);
     box-shadow: 5px 10px 10px rgba($greenSeaweed, 0.2);
     
-}
-  
-@keyframes wawes {
-    from {  transform:(rotate(0)); }
-    to {  transform:(rotate(360deg)); }
 }
