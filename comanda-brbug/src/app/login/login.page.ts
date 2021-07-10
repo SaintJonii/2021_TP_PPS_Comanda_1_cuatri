@@ -54,6 +54,10 @@ export class LoginPage implements OnInit {
     this.pushService.initPush();
   }
 
+  ionViewWillEnter(){
+    this.pushService.initPush();
+  }
+
   get correo(){
     return this.loginForm.get('correo')
   }

@@ -53,7 +53,6 @@ export class ConfirmacionPage implements OnInit {
   }
 
   confirmar(){
-    this.presentLoading();
     this.pedidoSvice.confirmacionCliente(this.pedido, this.mesaCliente, this.usuario.dni, this.total);
     localStorage.removeItem("pedidoActual");
     setTimeout(() => {
@@ -75,14 +74,6 @@ export class ConfirmacionPage implements OnInit {
     }
   }
 
-  async presentLoading() {
-    const loading = await this.loadingController.create({
-      cssClass: 'my-custom-class',
-      message: 'Enviando pedido al mozo',
-      duration: 2600
-    });
-    await loading.present();
-    const { role, data } = await loading.onDidDismiss();
-  }
+ 
 
 }
