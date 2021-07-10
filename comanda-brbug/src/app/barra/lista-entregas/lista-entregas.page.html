@@ -1,43 +1,46 @@
 <ion-header [translucent]="true">
   <app-nav [titulo]="titulo"></app-nav>
 </ion-header>
-<ion-content>
+<ion-content class="fondo">
   <div *ngIf="!spinner">
-    <div *ngIf="!pedidosPendientes" class="divMensaje">
-      <h4 class="mensaje">No hay bebidas para entregar</h4>
-      <br>
-      <br>
+    <div *ngIf="!pedidosPendientes" class="divMensaje contenedorBlanco">
       <br>
       <img style="width: 70vw;" src="assets/logo.jpeg">
+      <h4 class="mensaje">No hay bebidas para entregar</h4>    
+      <br> 
     </div>
   
-    <div *ngIf="pedidosPendientes" >
+    <div *ngIf="pedidosPendientes" class="contenedorBlanco" >
       <div *ngFor="let pedido of pedidos">
-        <div *ngFor="let producto of pedido.pedido">
-          <ion-card *ngIf="producto.producto.sector === 'barra'">
-            <ion-item>
-              <div>
-                <ion-grid>
-                  <ion-row>
-                    <ion-col>
-                      <ion-label  style="width: 240px;">
-                        <span>{{producto.producto.nombre}}</span>
-                      </ion-label>
-                    </ion-col>
-                    <ion-col>
-                      <ion-label>
-                        <span>{{producto.unidades}}x</span>
-                      </ion-label>
-                    </ion-col>
-                  </ion-row>
-                </ion-grid>
-              </div>
-            </ion-item>
-          </ion-card>
-        </div>
-        <div style="text-align: center;display: flex;flex-direction: column;align-items: center;">
-          <ion-button expand="block" (click)="entregarPedido(pedido)" class="buttonEntregarPedido">Entregar pedido</ion-button>
-        </div>
+        <ion-card>
+          <div *ngFor="let producto of pedido.pedido">
+            <ion-card *ngIf="producto.producto.sector === 'barra'">
+              <ion-item>
+                <div>
+                  <ion-grid>
+                    <ion-row>
+                      <ion-col>
+                        <ion-label  style="width: 150px;">
+                          <span>{{producto.producto.nombre}}</span>
+                        </ion-label>
+                      </ion-col>
+                      <ion-col>
+                        <ion-label>
+                          <span>{{producto.unidades}}x</span>
+                        </ion-label>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </div>
+              </ion-item>
+            </ion-card>
+          </div>
+          <div style="text-align: center;display: flex;flex-direction: column;align-items: center;">
+            <!--<ion-button expand="block" (click)="entregarPedido(pedido)" class="buttonEntregarPedido">Entregar pedido</ion-button>-->
+            <ion-button class="ion-margin" color="danger" shape="round" expand="block" (click)="entregarPedido(pedido)" >Entregar pedido</ion-button>
+          </div>
+        </ion-card>
+        
       </div>
     </div>
   </div>

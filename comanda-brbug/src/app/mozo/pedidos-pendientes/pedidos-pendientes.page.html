@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <app-nav [titulo]="titulo"></app-nav>
 </ion-header>
-<ion-content>
+<ion-content class="fondo">
   <div *ngIf="!spinner">
     <div *ngIf="!pedidosPendientes" class="divMensaje">
       <h4 class="mensaje">No hay pedidos pendientes</h4>
@@ -13,7 +13,7 @@
     
       <div *ngIf="pedidosPendientes" >
         <div *ngFor="let pedido of pedidos">
-          <ion-card>
+          <ion-card *ngIf="pedido.estado != 'finalizado'">
             <ion-item>
               <div>
                 <ion-grid style="text-align: center; margin-left: 50px;">

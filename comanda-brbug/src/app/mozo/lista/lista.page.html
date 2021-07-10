@@ -1,15 +1,14 @@
 <ion-header [translucent]="true">
   <app-nav [titulo]="titulo"></app-nav>
 </ion-header>
-<ion-content>
-  <div *ngIf="!spinner">
+<ion-content class="fondo">
+  <div *ngIf="!spinner" class="contenedorBlanco">
     <div *ngIf="!clientesEsperando" class="divMensaje">
-        <h4 class="mensaje">No hay clientes por aprobar</h4>
-        <br>
-        <br>
-        <br>
-        <img style="width: 70vw;" src="assets/logo.jpeg">
-      </div>
+      <br>
+      <img style="width: 70vw;" src="assets/logo.jpeg">
+      <h4 class="mensaje">No hay clientes esperando mesa</h4>    
+      <br>    
+    </div>
     
       <div *ngIf="clientesEsperando">
         <div *ngFor="let user of users" >
