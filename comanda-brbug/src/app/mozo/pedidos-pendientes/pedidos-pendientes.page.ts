@@ -22,7 +22,11 @@ export class PedidosPendientesPage implements OnInit {
     this.db.obtenerPedidos().subscribe(data => {
       this.pedidos = data;
       if(this.pedidos.length != 0){
-        this.pedidosPendientes = true;
+        this.pedidos.forEach(pedido => {
+          if(pedido.estado != 'finalizado' ){
+            this.pedidosPendientes = true;
+          }
+        });
       }
       else{
         this.pedidosPendientes = false;

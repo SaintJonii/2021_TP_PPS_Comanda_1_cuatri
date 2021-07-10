@@ -36,7 +36,7 @@ export class ListaEntregasPage implements OnInit {
     this.db.obtenerTokenMozo().subscribe(doc => {
       let docAux: any = doc[0];
       let token = JSON.parse(docAux.token).value;
-      this.pushSvc.sendNotification("Pedido Listo", "Sector: Barra", token);
+      this.pushSvc.sendNotification("Pedido Listo", "Pedido listo, Sector: Barra", token);
     }
     );
   }

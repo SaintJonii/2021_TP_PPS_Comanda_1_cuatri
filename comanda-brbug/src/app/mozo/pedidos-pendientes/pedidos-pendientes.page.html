@@ -3,12 +3,11 @@
 </ion-header>
 <ion-content class="fondo">
   <div *ngIf="!spinner">
-    <div *ngIf="!pedidosPendientes" class="divMensaje">
-      <h4 class="mensaje">No hay pedidos pendientes</h4>
-      <br>
-      <br>
+    <div *ngIf="!pedidosPendientes" class="divMensaje contenedorBlanco">
       <br>
       <img style="width: 70vw;" src="assets/logo.jpeg">
+      <h4 class="mensaje">No hay pedidos pendientes</h4>    
+      <br>  
     </div>
     
       <div *ngIf="pedidosPendientes" >

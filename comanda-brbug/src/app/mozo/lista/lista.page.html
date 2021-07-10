@@ -18,17 +18,11 @@
                 <ion-grid >
                   <ion-row>
                     <ion-col>
-                      <ion-label color="dark" class="label">
-                        <p class="texto">Nombre: {{user.nombre}}</p>
-                        <p class="texto">Correo: {{user.email}}</p>
-                      </ion-label>
+                      <ion-label color="dark" class="label"><strong>Nombre: </strong><span class="texto">{{user.nombre}}</span></ion-label>
+                      <ion-label color="dark" class="label"><strong>Apellido: </strong><span class="texto">{{user.apellido}}</span></ion-label>
+                      <ion-label color="dark" class="label"><strong>Correo: </strong><span class="texto">{{user.email}}</span></ion-label>
+                      <ion-label color="dark" class="label"><strong>DNI: </strong><span class="texto">{{user.dni}}</span></ion-label>
                     </ion-col >
-                    <ion-col>
-                      <ion-label color="dark" >
-                        <p class="texto">Apellido: {{user.apellido}}</p>
-                        <p class="texto">DNI: {{user.dni}}</p>
-                      </ion-label>    
-                    </ion-col>
                   </ion-row>
                 </ion-grid>
               </div>

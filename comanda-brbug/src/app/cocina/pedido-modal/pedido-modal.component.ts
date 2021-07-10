@@ -24,7 +24,7 @@ export class PedidoModalComponent implements OnInit {
   prepararPedido(){
     this.db.prepararPedido(this.pedido.mesa, true);
     this.dismissModal();
-    this.router.navigateByUrl('prepararCocina');
+    this.router.navigateByUrl('homeCocina');
   }
 
   logout(){
