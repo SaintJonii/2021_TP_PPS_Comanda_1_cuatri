@@ -25,4 +25,8 @@ export class HomePage implements OnInit {
   irEntrega(){
     this.router.navigateByUrl('pendientesMozo');
   }
+
+  chat() {
+    this.router.navigateByUrl('chat');
+  }
 }

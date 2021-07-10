@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
+import { PushService } from 'src/app/services/push.service';
 import { StoreService } from 'src/app/services/store.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class EntregasPage implements OnInit {
   public spinner : boolean = true;
   titulo = "Lista de Pedidos";
   
-  constructor(private db: StoreService, private router: Router, public loadingController: LoadingController) { }
+  constructor(private db: StoreService, private router: Router, public loadingController: LoadingController, private pushSvc: PushService) { }
 
   ngOnInit() {
     this.presentLoading();
@@ -31,7 +32,13 @@ export class EntregasPage implements OnInit {
 
   entregarPedido(pedido){
     this.db.entregarPedido(pedido.mesa, true);
-    console.log('aaa');
+    
+    this.db.obtenerTokenMozo().subscribe(doc => {
+      let docAux: any = doc[0];
+      let token = JSON.parse(docAux.token).value;
+      this.pushSvc.sendNotification("Pedido Listo", "Sector: Cocina", token);
+    }
+    );
   }
 
   async presentLoading() {

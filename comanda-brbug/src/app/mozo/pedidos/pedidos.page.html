@@ -1,37 +1,36 @@
 <ion-header [translucent]="true">
   <app-nav [titulo]="titulo"></app-nav>
 </ion-header>
-<ion-content>
-  <div *ngIf="!spinner">
-    <div *ngIf="!pedidosPendientes" class="divMensaje">
-      <h4 class="mensaje">No hay pedidos por despachar</h4>
-      <br>
-      <br>
-      <br>
-      <img style="width: 70vw;" src="assets/logo.jpeg">
-    </div>
-  
-    <div *ngIf="pedidosPendientes" >
-      <div *ngFor="let pedido of pedidos">
-        <ion-card>
-          <ion-item>
-            <div>
-              <ion-grid style="margin-left: 50px;">
-                <ion-row>
-                  <ion-col>
-                    <ion-label class="ion-text-center">
-                      <p>DNI Cliente: {{pedido.cliente}}</p>
-                      <p>Mesa: {{pedido.mesa}}</p>
-                    </ion-label>
-                  </ion-col>
-                </ion-row>
-                <ion-button expand="block" (click)="openModal(pedido)" class="buttonDetallePedido">Revisar pedido</ion-button>
-              </ion-grid>
-            </div>
-          </ion-item>
-        </ion-card>
+<ion-content class="fondo">
+
+    <div *ngIf="!spinner">
+      <div *ngIf="!pedidosPendientes" class="divMensaje contenedorBlanco">
+        <br>
+        <img style="width: 70vw;" src="assets/logo.jpeg">
+        <h4 class="mensaje">No hay pedidos para despachar</h4>    
+        <br> 
+      </div>
+    
+      <div *ngIf="pedidosPendientes" >
+        <div *ngFor="let pedido of pedidos">
+          <ion-card>
+            <ion-item>
+              <div>
+                <ion-grid style="margin-left: 50px;">
+                  <ion-row>
+                    <ion-col>
+                      <ion-label class="ion-text-center">
+                        <p>DNI Cliente: {{pedido.cliente}}</p>
+                        <p>Mesa: {{pedido.mesa}}</p>
+                      </ion-label>
+                    </ion-col>
+                  </ion-row>
+                  <ion-button expand="block" (click)="openModal(pedido)" class="buttonDetallePedido">Revisar pedido</ion-button>
+                </ion-grid>
+              </div>
+            </ion-item>
+          </ion-card>
+        </div>
       </div>
     </div>
-  </div>
-  
 </ion-content>

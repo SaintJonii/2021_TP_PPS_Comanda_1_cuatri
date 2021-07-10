@@ -1,14 +1,26 @@
 <ion-header [translucent]="true">
   <app-nav [titulo]="titulo"></app-nav>
 </ion-header>
-<ion-content>
-  <div class="divMensaje">
-    <img style="width: 70vw;" src="assets/logo.jpeg">
+<ion-content class="fondo">
+  <div class="contenedorBlanco">
+    <div class="divMensaje">
+      <img style="width: 70vw;" src="assets/logo.jpeg">
+    </div>
+  
+    <div class="divButtons">
+      <!--<ion-button class="buttonLista" (click)="irLista()" type="button" >Ir a Lista de Espera</ion-button>
+      <ion-button class="buttonConfirmar" (click)="irConfirmar()" type="button">Pedidos a Confirmar</ion-button>
+      <ion-button class="buttonEntregar" (click)="irEntrega()" type="button">Pedidos Pendientes</ion-button>-->
+      <ion-button class="ion-margin" color="danger" shape="round" fill="outline" expand="block" (click)="irLista()" >Ir a Lista de Espera</ion-button>
+      <ion-button class="ion-margin" color="danger" shape="round" fill="outline" expand="block" (click)="irConfirmar()" type="button">Pedidos a Confirmar</ion-button>
+      <ion-button class="ion-margin" color="danger" shape="round" expand="block" (click)="irEntrega()" type="button">Pedidos Pendientes</ion-button>
+    </div>
+  
+    <ion-fab vertical="top" horizontal="start" slot="fixed">
+      <ion-fab-button  color="danger" (click)="chat()">
+        <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
   </div>
-
-  <div class="divButtons">
-    <ion-button class="buttonLista" (click)="irLista()" type="button" >Ir a Lista de Espera</ion-button>
-    <ion-button class="buttonConfirmar" (click)="irConfirmar()" type="button">Pedidos a Confirmar</ion-button>
-    <ion-button class="buttonEntregar" (click)="irEntrega()" type="button">Pedidos Pendientes</ion-button>
-  </div>
+  
 </ion-content>

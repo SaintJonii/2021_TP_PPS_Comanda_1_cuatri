@@ -1,14 +1,13 @@
 <ion-header [translucent]="true">
   <app-nav [titulo]="titulo"></app-nav>
 </ion-header>
-<ion-content>
+<ion-content class="fondo">
   <div *ngIf="!spinner">
-    <div *ngIf="!pedidosPendientes" class="divMensaje">
-      <h4 class="mensaje">No hay bebidas para preparar</h4>
-      <br>
-      <br>
+    <div *ngIf="!pedidosPendientes" class="divMensaje contenedorBlanco">
       <br>
       <img style="width: 70vw;" src="assets/logo.jpeg">
+      <h4 class="mensaje">No hay bebidas para preparar</h4>    
+      <br> 
     </div>
   
     <div *ngIf="pedidosPendientes" >
