@@ -20,7 +20,9 @@ export class PedidoService {
         total: total,
         mesa: mesa,
         cliente: cliente,
-        tiempoEstimado: tiempoEstimado //<--NUEVO
+        tiempoEstimado: tiempoEstimado, //<--NUEVO
+        propinaPorcentaje: "0",
+        propina: 0
       }
     );
 
