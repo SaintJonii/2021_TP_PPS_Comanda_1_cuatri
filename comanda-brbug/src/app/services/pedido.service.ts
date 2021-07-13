@@ -40,5 +40,12 @@ export class PedidoService {
     return this.afs.collection('mesas').doc(nroMesa).valueChanges();
   }
 
+  actualizarPropina(nroMesa, propina, propinaPorcentaje){
+    this.afs.collection("pedidos").doc(nroMesa).update({
+      propinaPorcentaje: propinaPorcentaje,
+      propina: propina
+    });
+  }
+
 
 }
