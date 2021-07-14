@@ -22,7 +22,8 @@ export class PedidoService {
         cliente: cliente,
         tiempoEstimado: tiempoEstimado, //<--NUEVO
         propinaPorcentaje: "0",
-        propina: 0
+        propina: 0,
+        encuesta: false
       }
     );
 

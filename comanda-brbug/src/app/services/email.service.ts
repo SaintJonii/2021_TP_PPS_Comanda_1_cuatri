@@ -25,7 +25,7 @@ export class EmailService {
 		}));
 		setTimeout(() => {
 			subA.unsubscribe();
-		}, 5000)
+		}, 10000)
 	}
 
 }
