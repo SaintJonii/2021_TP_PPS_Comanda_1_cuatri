@@ -22,3 +22,22 @@
     transition: (transform 300ms, box-shadow 300ms);
     box-shadow: 5px 10px 10px rgba($greenSeaweed, 0.2);
   }
+
+  .divEstado{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: 2px solid;
+    color: rgb(231, 107, 107);
+    border-radius: 10px;
+    margin : 2% 12% 2% 12%; 
+    .text{
+        font-family: arial black; 
+        text-transform: capitalize;
+    }
+  }
+
+ion-button{
+  margin-bottom: 2%; 
+}

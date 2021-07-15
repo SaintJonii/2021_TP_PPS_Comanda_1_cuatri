@@ -17,6 +17,7 @@ export class ConfirmacionPage implements OnInit {
   total;
   mesaCliente;
   usuario;
+  tiempo;
 
   constructor(private routerNav: Router, private pedidoSvice: PedidoService, private toastController: ToastController, private loadingController: LoadingController) {
     this.mesaCliente = localStorage.getItem("nro_mesa");
@@ -24,6 +25,8 @@ export class ConfirmacionPage implements OnInit {
     this.usuario = JSON.parse(localStorage.getItem("usuarioActual"));
 
     this.pedido = JSON.parse(localStorage.getItem("pedidoActual"));
+
+    this.tiempo = this.sacarTiempoMaximo();
     this.calcularTotal();
   }
 
@@ -36,6 +39,7 @@ export class ConfirmacionPage implements OnInit {
       this.pedido.splice(idx, 1);
     }
     localStorage.setItem("pedidoActual", JSON.stringify(this.pedido));
+    this.tiempo = this.sacarTiempoMaximo();
     this.calcularTotal();
   }
 

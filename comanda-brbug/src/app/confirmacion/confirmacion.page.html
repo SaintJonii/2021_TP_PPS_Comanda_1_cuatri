@@ -40,6 +40,12 @@
 <ion-footer>
   <ion-toolbar color="dark">
 
+  <div class="divEstado">
+    <ion-text>
+      <p style="font-family: arial black; font-weight:bold;">Tiempo estimado: {{tiempo}} min</p>
+    </ion-text>
+  </div>
+
     <ion-button color="danger" shape="round" expand="full" (click)="confirmar()">
       Confirmar Pedido
       <ion-icon slot="start" name="checkmark-sharp"></ion-icon>
