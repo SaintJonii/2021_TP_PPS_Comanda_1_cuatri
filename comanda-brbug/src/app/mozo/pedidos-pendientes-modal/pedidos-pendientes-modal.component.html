@@ -11,7 +11,8 @@
     <ion-title class="ion-text-center">{{titulo}}</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>
+<ion-content class="fondo">
+  <div class="divBlanco">
     <div style="margin: 40px; font-size: 30px; text-align: center;">
       <p>Estado Pedido: <strong>{{capitalizeFirstLetter(pedido.estado)}}</strong></p>
     </div>
@@ -22,7 +23,7 @@
             <ion-grid>
               <ion-row>
                 <ion-col>
-                  <ion-label style="width: 210px;">
+                  <ion-label style="width: 200px;">
                     <span>{{producto.producto.nombre}}</span>
                   </ion-label>
                 </ion-col>
@@ -59,5 +60,5 @@
     <div *ngIf="estado == 'confirmar_pago'"  style="text-align: center;display: flex;flex-direction: column;align-items: center;">
       <ion-button expand="block" (click)="finalizarPedido()" class="buttonFinalizarPedido">Confirmar pago y liberar mesa</ion-button>
     </div>
-  
+  </div>
 </ion-content>

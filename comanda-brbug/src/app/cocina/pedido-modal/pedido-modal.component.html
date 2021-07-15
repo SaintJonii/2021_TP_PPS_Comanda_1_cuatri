@@ -12,7 +12,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content class="fondo">
-  <div class="contenedorBlanco">
+  <div class="divBlanco">
     <div *ngFor="let producto of pedido.pedido">
       <ion-card *ngIf="producto.producto.sector === 'cocina'"> 
         <ion-item>
@@ -20,7 +20,10 @@
             <ion-grid>
               <ion-row>
                 <ion-col>
-                  <ion-label style="width: 150px;">
+                  <ion-avatar><img [src]="producto.producto.imagen[0].referencia"></ion-avatar>
+                </ion-col>
+                <ion-col>
+                  <ion-label>
                     <span>{{producto.producto.nombre}}</span>
                   </ion-label>
                 </ion-col>
