@@ -116,14 +116,17 @@ export class HomePage implements OnInit {
     this.usuario = JSON.parse(localStorage.getItem("usuarioActual"));
     let aux = this.pedidoSvce.buscarPedido(this.usuario.dni).subscribe(doc => {
       let pedido: any = doc[0];
-      if (pedido) {
+      if (pedido.estado != "finalizado") {
         this.presentLoading();
         localStorage.setItem("nro_mesa", pedido.mesa);
         setTimeout(() => {
           this.route.navigateByUrl('sala');
         }, 2500);
-        
       }
+      else{
+        this.route.navigateByUrl('home');
+      }
+      
     });
 
     //aux.unsubscribe();
