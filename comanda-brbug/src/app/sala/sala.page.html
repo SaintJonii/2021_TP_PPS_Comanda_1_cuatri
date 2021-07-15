@@ -39,12 +39,12 @@
       <ion-icon name="fast-food-sharp" slot="start"></ion-icon>{{textoEstado}}
     </ion-button>
 
-    <ion-button color="secondary" shape="round" expand="full" (click)="irEncuesta()" *ngIf="mostrarBotones">
-      <ion-icon name="stats-chart-sharp" slot="start"></ion-icon>Acceder a encuesta
+    <ion-button color="danger" shape="round" expand="full" (click)="pagarCuenta()" *ngIf="mostrarBotones && listoParaPagar && !pagado">
+      <ion-icon name="wallet-sharp" slot="start"></ion-icon>Pagar cuenta
     </ion-button>
 
-    <ion-button color="danger" shape="round" expand="full" (click)="pagarCuenta()" *ngIf="listoParaPagar && !pagado">
-      <ion-icon name="wallet-sharp" slot="start"></ion-icon>Pagar cuenta
+    <ion-button color="secondary" shape="round" expand="full" (click)="irEncuesta()" *ngIf="mostrarBotones">
+      <ion-icon name="stats-chart-sharp" slot="start"></ion-icon>Acceder a encuesta
     </ion-button>
 
     <ion-button color="secondary" shape="round" expand="full" (click)="irResultados()" *ngIf="!tienePedido" >

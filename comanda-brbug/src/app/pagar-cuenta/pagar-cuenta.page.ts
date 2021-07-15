@@ -77,9 +77,10 @@ export class PagarCuentaPage implements OnInit {
 
   pagar(){
     if(this.validar){
+      this.dbPedidos.actualizarPropina(this.nroMesa,this.propina,this.propinaPorcentaje);
       this.db.actualizarEstadoDelPedido("confirmar_pago", this.nroMesa );
       //enviar notificacion que el cliente pago
-      this.route.navigateByUrl('sala');
+      this.route.navigateByUrl('home');
     }
     else{
       this.mostrarToast("Error: Ingrese propina");
@@ -156,7 +157,6 @@ export class PagarCuentaPage implements OnInit {
           let propina = this.result[2];
           this.propinaPorcentaje=propina;
           this.propina=Number(propina)/100;
-          this.dbPedidos.actualizarPropina(this.nroMesa,this.propina,this.propinaPorcentaje);
           this.elegirPropina(propina);
         }
         else{
