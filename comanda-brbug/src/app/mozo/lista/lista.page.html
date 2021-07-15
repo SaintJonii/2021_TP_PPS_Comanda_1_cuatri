@@ -2,7 +2,7 @@
   <app-nav [titulo]="titulo"></app-nav>
 </ion-header>
 <ion-content class="fondo">
-  <div *ngIf="!spinner" class="contenedorBlanco">
+  <div *ngIf="!spinner" class="divBlanco">
     <div *ngIf="!clientesEsperando" class="divMensaje">
       <br>
       <img style="width: 70vw;" src="assets/logo.jpeg">
@@ -11,7 +11,7 @@
     </div>
     
       <div *ngIf="clientesEsperando">
-        <div *ngFor="let user of users" >
+        <!--<div *ngFor="let user of users" >
           <ion-card>
             <ion-item >
               <div>
@@ -28,7 +28,21 @@
               </div>
             </ion-item>
           </ion-card>
-        </div>
+        </div>-->
+        <ion-card *ngFor="let user of users">
+          <ion-item>
+            <ion-avatar slot="start">
+              <img src="{{user.foto}}">
+            </ion-avatar>
+            <ion-label>
+              <h2 text-capitalize>{{user.apellido}} {{user.nombre}}</h2>
+              <p>DNI: {{user.dni}}</p>
+              <p>Correo: {{user.email}}</p>
+            </ion-label>
+            <!--<ion-badge (click)="aceptar(user)" style="margin-right: 5px;" color="success"><ion-icon name="checkmark-sharp"></ion-icon></ion-badge>-->
+            <ion-badge (click)="rechazar(user)" color="danger"><ion-icon name="close-sharp"></ion-icon></ion-badge>
+          </ion-item>
+        </ion-card>
       </div>
     </div>
 </ion-content>

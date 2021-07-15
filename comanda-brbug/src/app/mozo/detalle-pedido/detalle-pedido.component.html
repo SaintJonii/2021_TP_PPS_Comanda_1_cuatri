@@ -12,9 +12,16 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="fondo">
-  <div class="contenedorBlanco">
-    <div *ngFor="let producto of pedido.pedido">
+<ion-content class="fondo" style="text-align: center;">
+  <div class="divBlanco" >
+    <ion-row *ngFor="let p of pedido.pedido" style="margin: 10px; margin-top: 20px;">
+      <ion-col size="3"><ion-avatar><img [src]="p.producto.imagen[0].referencia"></ion-avatar></ion-col>
+      <ion-col size="4" style="padding-top: 20px">{{ p.producto.nombre }}</ion-col>
+      <ion-col size="1" style="padding-top: 20px">x{{ p.unidades }}</ion-col>
+      <ion-col size="4" style="padding-top: 20px">${{ p.producto.precio }} c/u</ion-col>
+      <div class='line'></div>
+    </ion-row>
+    <!--<div *ngFor="let producto of pedido.pedido">
       <ion-card>
         <ion-item>
           <div>
@@ -40,7 +47,7 @@
           </div>
         </ion-item>
       </ion-card>
-    </div>
+    </div>-->
     <div style="text-align: center;display: flex;flex-direction: column;align-items: center;">
       <h1>Total: ${{pedido.total}}</h1>
       <!--<ion-button expand="block" (click)="despacharPedido()" class="buttonDespacharPedido">Despachar pedido</ion-button>

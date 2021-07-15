@@ -10,7 +10,7 @@
       <br> 
     </div>
   
-    <div *ngIf="pedidosPendientes" class="contenedorBlanco" >
+    <div *ngIf="pedidosPendientes" class="divBlanco" >
       <div *ngFor="let pedido of pedidos">
         <ion-card>
           <div *ngFor="let producto of pedido.pedido">
@@ -20,7 +20,10 @@
                   <ion-grid>
                     <ion-row>
                       <ion-col>
-                        <ion-label  style="width: 150px;">
+                        <ion-avatar><img [src]="producto.producto.imagen[0].referencia"></ion-avatar>
+                      </ion-col>
+                      <ion-col>
+                        <ion-label  style="width: 90px;">
                           <span>{{producto.producto.nombre}}</span>
                         </ion-label>
                       </ion-col>
