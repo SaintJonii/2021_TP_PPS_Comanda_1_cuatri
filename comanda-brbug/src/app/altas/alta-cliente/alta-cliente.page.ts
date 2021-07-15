@@ -184,17 +184,19 @@ export class AltaClientePage implements OnInit {
         this.result = result.content;
         this.scanActive = false;
         
-        //COMPATIBLE CON DNI VIEJOS
         this.resultDNI=this.result.split("@")
-        this.dniStr=this.resultDNI[1].trim(); // DNI
-        this.apellidoStr=this.resultDNI[4].toLowerCase(); // APELLIDO
-        this.nombreStr=this.resultDNI[5].toLowerCase(); // NOMBRE
-
-        //COMPATIBLE CON DNI NUEVOS
-        /*this.resultDNI = this.result.split("@");
-        this.apellidoStr = this.resultDNI[1].toLowerCase(); // Apellido
-        this.nombreStr = this.resultDNI[2].toLowerCase(); // Nombre
-        this.dniStr = this.resultDNI[4]; // DNI*/
+        if(this.resultDNI[0]==""){
+          //COMPATIBLE CON DNI VIEJOS
+          this.dniStr=this.resultDNI[1].trim(); // DNI
+          this.apellidoStr=this.resultDNI[4].toLowerCase(); // APELLIDO
+          this.nombreStr=this.resultDNI[5].toLowerCase(); // NOMBRE
+        }
+        else{
+          //COMPATIBLE CON DNI NUEVOS
+          this.apellidoStr = this.resultDNI[1].toLowerCase(); // Apellido
+          this.nombreStr = this.resultDNI[2].toLowerCase(); // Nombre
+          this.dniStr = this.resultDNI[4]; // DNI
+        }
 
       }else{
         this.mostrarToast("DNI Inválido");
