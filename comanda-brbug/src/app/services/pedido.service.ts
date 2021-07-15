@@ -20,7 +20,10 @@ export class PedidoService {
         total: total,
         mesa: mesa,
         cliente: cliente,
-        tiempoEstimado: tiempoEstimado //<--NUEVO
+        tiempoEstimado: tiempoEstimado, //<--NUEVO
+        propinaPorcentaje: "0",
+        propina: 0,
+        encuesta: false
       }
     );
 
@@ -38,6 +41,13 @@ export class PedidoService {
 
   buscarMesa(nroMesa) {
     return this.afs.collection('mesas').doc(nroMesa).valueChanges();
+  }
+
+  actualizarPropina(nroMesa, propina, propinaPorcentaje){
+    this.afs.collection("pedidos").doc(nroMesa).update({
+      propinaPorcentaje: propinaPorcentaje,
+      propina: propina
+    });
   }
 
 

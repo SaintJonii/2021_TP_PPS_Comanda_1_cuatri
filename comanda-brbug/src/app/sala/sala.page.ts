@@ -177,7 +177,12 @@ export class SalaPage implements OnInit {
   }
 
   irEncuesta() {
-    this.route.navigateByUrl('encuesta');
+    if(this.realizoEncuesta){
+      this.mostrarToast("Solo se puede acceder a la encuesta una vez.");
+    }
+    else{
+      this.route.navigateByUrl('encuesta');
+    }
   }
 
   irResultados() {
