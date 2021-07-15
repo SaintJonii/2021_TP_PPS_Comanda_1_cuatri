@@ -22,10 +22,15 @@
 
     <ion-card-content>
       <ion-list class="opc_list">
-        <ion-item *ngFor="let opcion of producto.opciones">
-          <ion-label>{{opcion}}</ion-label>
-          <ion-checkbox slot="end"></ion-checkbox>
-        </ion-item>
+
+        <ion-radio-group value={{producto.opciones[0]}}>          
+          <ion-item *ngFor="let opcion of producto.opciones">
+            <ion-label>{{opcion}}</ion-label>
+          <ion-radio slot="end" value={{opcion}} (click)="agregarOpcion($event)" color="danger"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+
+
       </ion-list>
     </ion-card-content>
 

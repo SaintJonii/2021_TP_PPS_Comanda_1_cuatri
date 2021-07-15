@@ -4,7 +4,7 @@
 
 <ion-content [style.--background]="scanActive ? '#ffffff00' : style">
 
-  <div class="divContent" style="text-align: center;" [hidden]="!scanActive">
+  <div class="divContent" style="text-align: center;" [hidden]="scanActive">
 
     <img src="./../../assets/logo_bodegon.png" [hidden]="scanActive">
     <strong>{{msjSala}}</strong>
@@ -21,7 +21,7 @@
     </ion-col>
   </ion-row>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="mostrarBotones">
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="mostrarBotones" [hidden]="scanActive">
     <ion-fab-button color="danger" (click)="chat()">
       <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
     </ion-fab-button>
@@ -39,7 +39,7 @@
       <ion-icon name="fast-food-sharp" slot="start"></ion-icon>{{textoEstado}}
     </ion-button>
 
-    <ion-button color="secondary" shape="round" expand="full" (click)="irEncuesta()" *ngIf="mostrarBotones && realizoEncuesta">
+    <ion-button color="secondary" shape="round" expand="full" (click)="irEncuesta()" *ngIf="mostrarBotones && !realizoEncuesta">
       <ion-icon name="stats-chart-sharp" slot="start"></ion-icon>Acceder a encuesta
     </ion-button>
 

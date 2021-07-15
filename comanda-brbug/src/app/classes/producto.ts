@@ -8,5 +8,5 @@ export class Producto
     nombre:string;
     imagen:Array<Imagen>;
     tiempo: number; //<----Nuevo
-
+    opciones: any;
 }
