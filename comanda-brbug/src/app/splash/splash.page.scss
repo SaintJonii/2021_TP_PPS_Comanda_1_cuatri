@@ -2,27 +2,12 @@ ion-content{
     --background: url('/assets/splash_fondo.png') 100% 100%/100% 100% no-repeat;
 }
 
-@-webkit-keyframes bounce-in-right{0%{-webkit-transform:translateX(600px);transform:translateX(600px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in;opacity:0}38%{-webkit-transform:translateX(0);transform:translateX(0);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out;opacity:1}55%{-webkit-transform:translateX(68px);transform:translateX(68px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}72%{-webkit-transform:translateX(0);transform:translateX(0);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}81%{-webkit-transform:translateX(32px);transform:translateX(32px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}90%{-webkit-transform:translateX(0);transform:translateX(0);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}95%{-webkit-transform:translateX(8px);transform:translateX(8px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}100%{-webkit-transform:translateX(0);transform:translateX(0);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}}@keyframes bounce-in-right{0%{-webkit-transform:translateX(600px);transform:translateX(600px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in;opacity:0}38%{-webkit-transform:translateX(0);transform:translateX(0);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out;opacity:1}55%{-webkit-transform:translateX(68px);transform:translateX(68px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}72%{-webkit-transform:translateX(0);transform:translateX(0);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}81%{-webkit-transform:translateX(32px);transform:translateX(32px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}90%{-webkit-transform:translateX(0);transform:translateX(0);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}95%{-webkit-transform:translateX(8px);transform:translateX(8px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}100%{-webkit-transform:translateX(0);transform:translateX(0);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}}
-.nombre {
-    animation:bounce-in-right 2s both;
-    margin-top: 10%;
-    font-size: 50px;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-}
-@keyframes bounce-in-left{0%{transform:translateX(-600px);animation-timing-function:ease-in;opacity:0}38%{transform:translateX(0);animation-timing-function:ease-out;opacity:1}55%{transform:translateX(-68px);animation-timing-function:ease-in}72%{transform:translateX(0);animation-timing-function:ease-out}81%{transform:translateX(-28px);animation-timing-function:ease-in}90%{transform:translateX(0);animation-timing-function:ease-out}95%{transform:translateX(-8px);animation-timing-function:ease-in}100%{transform:translateX(0);animation-timing-function:ease-out}}
-.division{
-    animation:bounce-in-left 2s both;
-    margin-top: 20%;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: xx-large;
-
-}
   
 @keyframes scale-up-center{0%{transform:scale(.3)}100%{transform:scale(1)}}
 .container{
-    margin-top: 30%;
+    margin-top: 5%;
 
-    animation:scale-up-center 3s cubic-bezier(.39,.575,.565,1.000) both;
+    animation:scale-up-center 4s cubic-bezier(.39,.575,.565,1.000) both;
     img{
         height: 250px;
     }
