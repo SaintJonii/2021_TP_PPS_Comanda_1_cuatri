@@ -3,9 +3,9 @@ ion-content{
 }
 
   
-@keyframes scale-up-center{0%{transform:scale(.3)}100%{transform:scale(1)}}
+@keyframes scale-up-center{0%{transform:scale(.3)}100%{transform:scale(1.8)}}
 .container{
-    margin-top: 5%;
+    margin-top: 8%;
 
     animation:scale-up-center 5s cubic-bezier(.39,.575,.565,1.000) both;
     img{

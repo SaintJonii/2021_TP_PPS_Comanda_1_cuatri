@@ -19,18 +19,18 @@ export class HomePage implements OnInit {
   //Variables para el uso del escaner
   result: any = [];
   scanActive: boolean = false;
-  titulo= "Home";
-  style= "url('/assets/login/fondoLogin.png') 100% 100%/100% 100% no-repeat";
+  titulo = "Home";
+  style = "url('/assets/login/fondoLogin.png') 100% 100%/100% 100% no-repeat";
   usuario;
 
   constructor(public toastController: ToastController,
-              private alertController : AlertController,
-              private route : Router,
-              private encuestaSv : EncuestaService,
-              private storeSv: StoreService,
-              private pedidoSvce: PedidoService,
-              private loadingController: LoadingController,
-              private pushSvce: PushService ) { 
+    private alertController: AlertController,
+    private route: Router,
+    private encuestaSv: EncuestaService,
+    private storeSv: StoreService,
+    private pedidoSvce: PedidoService,
+    private loadingController: LoadingController,
+    private pushSvce: PushService) {
   }
 
   ngOnInit() {
@@ -38,7 +38,7 @@ export class HomePage implements OnInit {
     this.pedidoEnCurso();
   }
 
-  ionViewWillEnter(){
+  ionViewWillEnter() {
     this.pedidoEnCurso();
   }
 
@@ -58,12 +58,12 @@ export class HomePage implements OnInit {
       if (result.hasContent) {
         this.result = result.content.split("@");
         this.scanActive = false;
-        if(this.result[1] == "sala-espera"){
+        if (this.result[1] == "sala-espera") {
           this.route.navigateByUrl('sala');
           this.storeSv.guardarEnLista(this.usuario.email, this.usuario.nombre, this.usuario.apellido, this.usuario.dni);
           this.notificarAlMozo();
         }
-        else{
+        else {
           this.mostrarToast("QR Inválido");
         }
       }
@@ -98,7 +98,7 @@ export class HomePage implements OnInit {
         resolve(false);
       }
     });
-  } 
+  }
 
   async mostrarToast(mensaje) {
     const toast = await this.toastController.create({
@@ -107,8 +107,8 @@ export class HomePage implements OnInit {
     });
     toast.present();
   }
- 
-  ionViewDidEnter(){
+
+  ionViewDidEnter() {
     this.encuestaSv.actualizarEncuestas();
   }
 
@@ -116,17 +116,22 @@ export class HomePage implements OnInit {
     this.usuario = JSON.parse(localStorage.getItem("usuarioActual"));
     let aux = this.pedidoSvce.buscarPedido(this.usuario.dni).subscribe(doc => {
       let pedido: any = doc[0];
-      if (pedido.estado != "finalizado") {
-        this.presentLoading();
-        localStorage.setItem("nro_mesa", pedido.mesa);
-        setTimeout(() => {
-          this.route.navigateByUrl('sala');
-        }, 2500);
+      if (pedido) {
+        
+        if (pedido.estado != "finalizado") {
+          this.presentLoading();
+          localStorage.setItem("nro_mesa", pedido.mesa);
+          setTimeout(() => {
+            this.route.navigateByUrl('sala');
+          }, 2500);
+        }
+        else {
+          this.route.navigateByUrl('home');
+        }
+
       }
-      else{
-        this.route.navigateByUrl('home');
-      }
-      
+
+
     });
 
     //aux.unsubscribe();
@@ -142,7 +147,7 @@ export class HomePage implements OnInit {
     const { role, data } = await loading.onDidDismiss();
   }
 
-  notificarAlMozo(){
+  notificarAlMozo() {
     this.storeSv.obtenerTokenMozo().subscribe(doc => {
       let docAux: any = doc[0];
       let token = JSON.parse(docAux.token).value;
