@@ -244,6 +244,12 @@ export class StoreService {
     });
   }
 
+  actualizarEncuestaPedido(mesa){
+    this.db.collection('pedidos').doc(mesa).update({
+      encuesta: true
+    });
+  }
+
   obtenerTokenMozo(){
     return this.db.collection('users', ref => ref.where('tipo', '==', "mozo")).valueChanges();
   }

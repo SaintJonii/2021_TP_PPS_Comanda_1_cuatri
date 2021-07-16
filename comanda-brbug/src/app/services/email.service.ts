@@ -11,9 +11,9 @@ export class EmailService {
   mandarEmail(user : any, rechazo : boolean) {
 		let body = {
 			mail: user.email,
-      asunto: "Estado del registro",
-      rechazo: rechazo,
-      destinatario: user.nombre
+      		asunto: "Estado del registro",
+      		rechazo: rechazo,
+      		destinatario: user.nombre
 		};
 		let headers = {
 			headers: new HttpHeaders({
@@ -25,7 +25,7 @@ export class EmailService {
 		}));
 		setTimeout(() => {
 			subA.unsubscribe();
-		}, 5000)
+		}, 10000)
 	}
 
 }

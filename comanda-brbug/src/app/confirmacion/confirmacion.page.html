@@ -2,8 +2,8 @@
   <app-nav [titulo]="titulo"></app-nav>
 </ion-header>
 
-<ion-content>
-  <ion-card style="margin-top: 5%;">
+<ion-content class="fondo">
+  <ion-card style="margin-top: 5%; opacity: 0.95;">
     <ion-card-header>
       <ion-card-title>Detalle del Pedido</ion-card-title>
     </ion-card-header>
@@ -38,9 +38,15 @@
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar>
+  <ion-toolbar color="dark">
 
-    <ion-button color="danger" shape="round" fill="outline" expand="full" (click)="confirmar()">
+  <div class="divEstado">
+    <ion-text>
+      <p style="font-family: arial black; font-weight:bold;">Tiempo estimado: {{tiempo}} min</p>
+    </ion-text>
+  </div>
+
+    <ion-button color="danger" shape="round" expand="full" (click)="confirmar()">
       Confirmar Pedido
       <ion-icon slot="start" name="checkmark-sharp"></ion-icon>
     </ion-button>

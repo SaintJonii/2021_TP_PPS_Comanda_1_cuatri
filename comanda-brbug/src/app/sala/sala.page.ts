@@ -18,7 +18,10 @@ export class SalaPage implements OnInit {
   usuario;
   tienePedido: Boolean;
   listoParaPagar: Boolean;
-  titulo = "Sala de espera";
+  pagado: Boolean;
+  realizoEncuesta: Boolean;
+  style= "url('/assets/login/fondoLogin.png') 100% 100%/100% 100% no-repeat";
+  titulo = "Sala";
   msjSala: String;
   msjDescSala: String;
   textoEstado = "Estado del Pedido";
@@ -34,6 +37,8 @@ export class SalaPage implements OnInit {
     this.tienePedido = false;
     this.listoParaPagar = false;
     this.mostrarBotones = false;
+    this.realizoEncuesta = false;
+    this.pagado = false;
     this.nroMesa = "";
   }
 
@@ -106,6 +111,7 @@ export class SalaPage implements OnInit {
         this.msjDescSala = "Puede acceder al estado del pedido escaneando su mesa o realizar la encuesta";
         this.tienePedido = true;
         this.nroMesa = pedido.mesa;
+        this.realizoEncuesta = pedido.encuesta;
         localStorage.setItem("nro_mesa", pedido.mesa);
         this.mostrarToast("Escanee para acceder a las opciones");
 
@@ -126,6 +132,7 @@ export class SalaPage implements OnInit {
         else if (pedido.estado == "confirmacion_pago") {
           this.msjSala = "Pedido finalizado y abonado";
           this.msjDescSala = "Acceda para ver resultado de la encuesta";
+          this.pagado = true;
           this.mostrarToast("Escanee para acceder a las opciones");
 
         }
@@ -142,7 +149,7 @@ export class SalaPage implements OnInit {
 
   manejarMesa(mesaEscaneada) {
 
-    this.pedidoSvce.buscarMesa(mesaEscaneada).subscribe(doc => {
+    let aux = this.pedidoSvce.buscarMesa(mesaEscaneada).subscribe(doc => {
       let mesa: any = doc;
       if (mesa.disponible && !this.tienePedido) {
         this.storeSv.asignarMesa(mesa.id, this.usuario.dni);
@@ -161,6 +168,8 @@ export class SalaPage implements OnInit {
 
     });
 
+    //aux.unsubscribe();
+
   }
 
   irEstado() {
@@ -168,7 +177,16 @@ export class SalaPage implements OnInit {
   }
 
   irEncuesta() {
-    this.route.navigateByUrl('encuesta');
+    if(this.realizoEncuesta){
+      this.mostrarToast("Solo se puede acceder a la encuesta una vez.");
+    }
+    else{
+      this.route.navigateByUrl('encuesta');
+    }
+  }
+
+  irResultados() {
+    this.route.navigateByUrl('encuestas-grafico');
   }
 
   chat() {

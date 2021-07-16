@@ -17,6 +17,7 @@ export class ConfirmacionPage implements OnInit {
   total;
   mesaCliente;
   usuario;
+  tiempo;
 
   constructor(private routerNav: Router, private pedidoSvice: PedidoService, private toastController: ToastController, private loadingController: LoadingController) {
     this.mesaCliente = localStorage.getItem("nro_mesa");
@@ -24,6 +25,8 @@ export class ConfirmacionPage implements OnInit {
     this.usuario = JSON.parse(localStorage.getItem("usuarioActual"));
 
     this.pedido = JSON.parse(localStorage.getItem("pedidoActual"));
+
+    this.tiempo = this.sacarTiempoMaximo();
     this.calcularTotal();
   }
 
@@ -36,6 +39,7 @@ export class ConfirmacionPage implements OnInit {
       this.pedido.splice(idx, 1);
     }
     localStorage.setItem("pedidoActual", JSON.stringify(this.pedido));
+    this.tiempo = this.sacarTiempoMaximo();
     this.calcularTotal();
   }
 
@@ -53,8 +57,8 @@ export class ConfirmacionPage implements OnInit {
   }
 
   confirmar(){
-    this.presentLoading();
-    this.pedidoSvice.confirmacionCliente(this.pedido, this.mesaCliente, this.usuario.dni, this.total);
+    let tiempoMaximo = this.sacarTiempoMaximo(); //<--- NUEVO
+    this.pedidoSvice.confirmacionCliente(this.pedido, this.mesaCliente, this.usuario.dni, this.total,tiempoMaximo);
     localStorage.removeItem("pedidoActual");
     setTimeout(() => {
       this.routerNav.navigateByUrl('sala');
@@ -75,14 +79,21 @@ export class ConfirmacionPage implements OnInit {
     }
   }
 
-  async presentLoading() {
-    const loading = await this.loadingController.create({
-      cssClass: 'my-custom-class',
-      message: 'Enviando pedido al mozo',
-      duration: 2600
+ 
+
+  sacarTiempoMaximo(){
+    let tiempos = [];
+    let tiempoMaximo = 0;
+    tiempos = this.pedido.map(function (x) {
+      return x.producto.tiempo;
     });
-    await loading.present();
-    const { role, data } = await loading.onDidDismiss();
+    tiempos.forEach(function (tiempo) {
+      if(tiempo > tiempoMaximo){
+        tiempoMaximo=tiempo;
+      }
+    });
+
+    return tiempoMaximo;
   }
 
 }

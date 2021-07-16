@@ -40,9 +40,9 @@
 </ion-content>
 
 <ion-footer *ngIf="pedido.length > 0">
-  <ion-toolbar>
+  <ion-toolbar color="dark">
     
-    <ion-button color="danger" shape="round" fill="outline" expand="full" (click)="confirmarPedido()">
+    <ion-button color="danger" shape="round" expand="full" (click)="confirmarPedido()">
       Confirmar Pedido (${{total}})
       <ion-icon slot="start" name="cart-outline"></ion-icon>
     </ion-button>

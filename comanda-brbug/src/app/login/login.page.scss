@@ -32,26 +32,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        .buttonAlta{
-            margin-top: 5px; //35
-            height: 40px;
-            width: 250px;
-            font-size: 18px;
-            text-transform: initial;
-            --background: #9200ff;
-        }
-        .buttonQr{
-            margin-top: 5px; //35
-            height: 40px;
-            width: 250px;
-            font-size: 18px;
-            text-transform: initial;
-
-            border: 2px solid;
-            --border-color: #9200ff;
-            color: #9200ff;
-            --background: white;
-        }
     }
 }
 

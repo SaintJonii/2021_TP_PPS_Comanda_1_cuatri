@@ -1,50 +1,7 @@
 <ion-content class="fondo">
-  <!--<div class="divImage">
-    <ion-img src="assets/logo.jpeg"></ion-img>
-  </div>-->
-
-  <!--<form id="form" [formGroup]="loginForm" (ngSubmit)="login(loginForm)">
-
-    <ion-item class="ion-margin-bottom ion-margin-top">
-      <ion-icon name="mail-outline" color="danger" slot="start"></ion-icon>
-      <ion-input [value]="email" formControlName="correo" placeholder="Correo" name="correo"></ion-input>
-    </ion-item>
-    <div *ngFor="let error of errorMessages.correo">
-      <ng-container *ngIf="correo.hasError(error.type) && (correo.dirty || correo.touched)">
-        <small class="error-message">{{error.message}}</small>
-      </ng-container>
-    </div><br>
-
-    <ion-item class="ion-margin-bottom">
-      <ion-icon name="key-outline" color="danger" slot="start"></ion-icon>
-      <ion-input [value]="contrasenia" formControlName="password" type="password" placeholder="Contraseña"></ion-input>
-    </ion-item>
-    <div *ngFor="let error of errorMessages.password">
-      <ng-container *ngIf="password.hasError(error.type) && (password.dirty || password.touched)">
-        <small class="error-message">{{error.message}}</small>
-      </ng-container>
-    </div><br>
-
-    
-    <ion-button class="ion-margin" color="danger" shape="round" expand="full" type="submit">
-      <ion-icon slot="start" name="enter-outline"></ion-icon>
-      Ingresar</ion-button>
-    <ion-button class="ion-margin" color="danger" shape="round" fill="outline" expand="full" (click)="registrarse()" type="button">
-      <ion-icon slot="start" name="reader-outline"></ion-icon>
-      Registrarse</ion-button>
-    <ion-button class="ion-margin" color="danger" shape="round" fill="outline" expand="full" (click)="modoAnonimo()" type="button">
-      <ion-icon slot="start" name="person-circle-outline"></ion-icon>
-      Modo anónimo</ion-button>
-    
-
-    <div class="alert show" *ngIf="alert">
-      <span class="msg">{{alertMsj}}</span>
-    </div>
-
-  </form>-->
 
 
-  <ion-fab vertical="bottom" horizontal="start">
+  <ion-fab vertical="bottom" horizontal="start" [hidden]="!keyboardHide" >
     <ion-fab-button size="small" class="fabButton">
       <ion-icon name="chevron-forward-circle-outline"></ion-icon>
     </ion-fab-button>
@@ -97,7 +54,7 @@
       <p class="text">¿No tiene cuenta? <span (click)="registrarse()" style="color: var(--ion-color-danger);">Registrate</span></p>
   </form>
 
-  
+  <!--Alert y modal-->
   <div class="alert show" *ngIf="alert">
     <span class="msg">{{alertMsj}}</span>
   </div>

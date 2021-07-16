@@ -45,33 +45,7 @@ ion-title{
         height: 45px;
         ion-input{
             margin-bottom: 5px;
-            font-family: arial black;
-        }
-    }
-
-    .divButton{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        .buttonAlta{
-            margin-top: 5px; //35
-            height: 40px;
-            width: 250px;
-            font-size: 18px;
-            text-transform: initial;
-            --background: #9200ff;
-        }
-        .buttonQr{
-            margin-top: 5px; //35
-            height: 40px;
-            width: 250px;
-            font-size: 18px;
-            text-transform: initial;
-
-            border: 2px solid;
-            --border-color: #9200ff;
-            color: #9200ff;
-            --background: white;
+            font-family: 'Asap', sans-serif;
         }
     }
     
@@ -88,8 +62,9 @@ ion-title{
     top: 50%;
     transform: translate(-50%, -50%);
     width: 300px;
+    
 }
-  
+
 .scanner-buttons {
     margin: 0px;
     position: absolute;
@@ -106,26 +81,25 @@ ion-title{
             width: 250px;
             font-size: 18px;
             text-transform: initial;
-            --background: #9200ff;
         }
     }
 }
 
-$greenSeaweed: rgba(2, 128, 144, 1);
 
-.divContent {
+$greenSeaweed: rgba(2, 128, 144, 1);
+.contenedor {
     opacity: 0.95;
     overflow: hidden;
     background-color: white;
-    padding: 40px 30px 30px 30px;
+    //padding: 40px 30px 30px 30px;
     border-radius: 10px;
     position: absolute;
-    top: 45%;
+    top: 75%;
     left: 50%;
     width: 90%;
     transform: translate(-50%, -50%);
     transition: (transform 300ms, box-shadow 300ms);
-    box-shadow: 5px 10px 10px rgba($greenSeaweed, 0.2);    
+    box-shadow: 5px 10px 10px rgba($greenSeaweed, 0.2);
     
 }
   
