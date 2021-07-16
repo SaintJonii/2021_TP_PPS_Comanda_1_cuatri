@@ -46,6 +46,12 @@ export class PedidosPendientesModalComponent implements OnInit {
   finalizarPedido(){
     this.db.liberarMesa(this.pedido.mesa);
     this.db.actualizarEstadoDelPedido("finalizado", this.pedido.mesa);
+    this.modalCtrl.dismiss();
+    this.router.navigateByUrl('homeMozo');
+    //Agregar timeout para borrar el pedido
+    setTimeout(() => {
+      this.db.borrarPedido(this.pedido.mesa);
+    }, 4000);
   }
 
   capitalizeFirstLetter(string) {

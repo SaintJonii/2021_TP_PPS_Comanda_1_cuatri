@@ -54,11 +54,25 @@
         <p>Estado sector barra: <strong>{{capitalizeFirstLetter(pedido.estado_bebidas)}}</strong></p>
       </ion-item>
     </div>
-    <div *ngIf="estado == 'listo_para_servir'"  style="text-align: center;display: flex;flex-direction: column;align-items: center;">
+    <!--<div *ngIf="estado == 'listo_para_servir'"  style="text-align: center;display: flex;flex-direction: column;align-items: center;">
       <ion-button expand="block" (click)="servirPedido()" class="buttonServirPedido">Servir pedido</ion-button>
     </div>
     <div *ngIf="estado == 'confirmar_pago'"  style="text-align: center;display: flex;flex-direction: column;align-items: center;">
       <ion-button expand="block" (click)="finalizarPedido()" class="buttonFinalizarPedido">Confirmar pago y liberar mesa</ion-button>
-    </div>
+    </div>-->
   </div>
 </ion-content>
+<ion-footer>
+  <ion-toolbar color="dark">
+
+    <ion-button *ngIf="estado == 'listo_para_servir'" color="danger" shape="round" fill="outline" expand="full" (click)="servirPedido()">
+      Servir Pedido
+      <ion-icon slot="start" name="bag-check-outline"></ion-icon>
+    </ion-button>
+    <ion-button *ngIf="estado == 'confirmar_pago'" color="danger" shape="round" fill="outline" expand="full" (click)="finalizarPedido()">
+      Confirmar pago y liberar mesa
+      <ion-icon slot="start" name="bag-check-outline"></ion-icon>
+    </ion-button>
+
+  </ion-toolbar>
+</ion-footer>

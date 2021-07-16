@@ -263,5 +263,9 @@ export class StoreService {
   obtenerTokenBarra(){
     return this.db.collection('users', ref => ref.where('tipo', '==', "barra")).valueChanges();
   }
+
+  borrarPedido(mesa) {
+    this.db.collection('pedidos').doc(mesa).delete();
+  }
   
 }

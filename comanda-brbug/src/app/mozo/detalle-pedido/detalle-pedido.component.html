@@ -51,11 +51,21 @@
     <div style="text-align: center;display: flex;flex-direction: column;align-items: center;">
       <h1>Total: ${{pedido.total}}</h1>
       <!--<ion-button expand="block" (click)="despacharPedido()" class="buttonDespacharPedido">Despachar pedido</ion-button>
-      <ion-button expand="block" (click)="rechazarPedido()" class="buttonDespacharPedido">Rechazar pedido</ion-button>-->
+      <ion-button expand="block" (click)="rechazarPedido()" class="buttonDespacharPedido">Rechazar pedido</ion-button>
       <ion-button class="ion-margin" color="danger" shape="round" fill="outline" expand="block" (click)="despacharPedido()" >Despachar Pedido</ion-button>
-      <ion-button class="ion-margin" color="danger" shape="round"  expand="block" (click)="rechazarPedido()" type="button">Rechazar Pedido</ion-button>
+      <ion-button class="ion-margin" color="danger" shape="round"  expand="block" (click)="rechazarPedido()" type="button">Rechazar Pedido</ion-button>-->
     </div>
   </div>
-    
-    
 </ion-content>
+<ion-footer >
+  <ion-toolbar color="dark">
+    <ion-button color="primary" shape="round" fill="outline" expand="full" (click)="despacharPedido()">
+      Despachar Pedido
+    </ion-button>
+
+    <ion-button color="danger" shape="round" fill="outline" expand="full" (click)="rechazarPedido()">
+      Rechazar Pedido
+    </ion-button>
+
+  </ion-toolbar>
+</ion-footer>

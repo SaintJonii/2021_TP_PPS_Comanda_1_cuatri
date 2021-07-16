@@ -14,36 +14,36 @@
       <div *ngFor="let pedido of pedidos">
         <ion-card>
           <div *ngFor="let producto of pedido.pedido">
-            <ion-card *ngIf="producto.producto.sector === 'barra'">
-              <ion-item>
-                <div>
+              <ion-item *ngIf="producto.producto.sector === 'barra'">
                   <ion-grid>
                     <ion-row>
-                      <ion-col>
+                      <ion-col size="2">
                         <ion-avatar><img [src]="producto.producto.imagen[0].referencia"></ion-avatar>
                       </ion-col>
                       <ion-col>
-                        <ion-label  style="width: 90px;">
+                        <ion-label>
                           <span>{{producto.producto.nombre}}</span>
                         </ion-label>
-                      </ion-col>
-                      <ion-col>
+                        </ion-col>
+                        <ion-col>
+                          <ion-label>
+                            <span>{{producto.producto.opciones}}</span>
+                          </ion-label>
+                        </ion-col>
+                        <ion-col>
                         <ion-label>
                           <span>{{producto.unidades}}x</span>
                         </ion-label>
                       </ion-col>
                     </ion-row>
                   </ion-grid>
-                </div>
               </ion-item>
-            </ion-card>
-          </div>
+            </div>
           <div style="text-align: center;display: flex;flex-direction: column;align-items: center;">
             <!--<ion-button expand="block" (click)="entregarPedido(pedido)" class="buttonEntregarPedido">Entregar pedido</ion-button>-->
             <ion-button class="ion-margin" color="danger" shape="round" expand="block" (click)="entregarPedido(pedido)" >Entregar pedido</ion-button>
           </div>
         </ion-card>
-        
       </div>
     </div>
   </div>
