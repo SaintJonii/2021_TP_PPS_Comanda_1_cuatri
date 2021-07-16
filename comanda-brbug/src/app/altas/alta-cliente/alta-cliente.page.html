@@ -9,7 +9,7 @@
 
 <ion-content [style.--background]="scanActive ? '#00000000' : urlFondo">
 
-  <div [hidden]="scanActive" class="contenedor">
+  <div [hidden]="scanActive" class="contenedor ion-margin">
     <ion-button [hidden]="scanActive" color="danger" shape="round" fill="outline" expand="full" (click)="escanearQr()" type="button" class="ion-margin" >Escanear DNI<ion-icon slot="start" name="qr-code-outline"></ion-icon></ion-button>
     <div class="divImage" [hidden]="scanActive">
       <ion-avatar class="avatarImage">
@@ -81,7 +81,9 @@
       </ng-container>
     </div><br>
 
-    <ion-button color="danger" shape="round" expand="full" style="margin-bottom: 20px;" type="submit" >Registrarse</ion-button>
+    <ion-button color="danger" shape="round" expand="full" style="margin-bottom: 20px;" type="submit" >
+      <ion-icon slot="start" name="reader-outline"></ion-icon>
+      Registrarse</ion-button>
     </form>
 
   </div>
