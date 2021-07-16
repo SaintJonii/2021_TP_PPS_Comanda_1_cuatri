@@ -4,7 +4,7 @@
 
 <ion-content class="fondo">
 
-  <div class="contenedor">
+  <div class="contenedor ion-margin">
     <div class="divText">
       <ion-text>
         <p class="text">Por favor, le rogamos que dedique un 
@@ -106,12 +106,17 @@
         <p>¿Comería de nuevo aquí?</p>
       </ion-text>
     </div>
-    <div class="divRespuesta">
+    <div class="divRespuesta ion-margin">
       <textarea autosize maxRows="4" [(ngModel)]="respuestaUltima" class="respuesta-input"></textarea>
     </div>
   
-    <ion-button fill="outline" color="danger" shape="round" expand="full" (click)="enviarEncuesta()" class="ion-margin">
-      <ion-icon slot="start" name="reader-outline"></ion-icon>
-      Enviar encuesta</ion-button>
   </div>
 </ion-content>
+
+<ion-footer [hidden]="scanActive">
+  <ion-toolbar color="dark">
+    <ion-button color="danger" shape="round" expand="full" (click)="enviarEncuesta()">
+      <ion-icon slot="start" name="reader-outline"></ion-icon>
+      Enviar encuesta</ion-button>
+  </ion-toolbar>
+</ion-footer>

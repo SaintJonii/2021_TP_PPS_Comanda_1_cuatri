@@ -4,7 +4,7 @@
 
 <ion-content [style.--background]="scanActive ? '#00000000' : urlFondo">
 
-  <div class="contenedor" [hidden]="scanActive">
+  <div class="contenedor ion-margin" [hidden]="scanActive">
     <div class='line' [hidden]="scanActive"></div>
 
     <ion-grid [hidden]="scanActive">
@@ -40,15 +40,6 @@
       <ion-img src="{{imagenElegida}}" style="height: 50px; width: 50px;" class="ion-margin"></ion-img>
     </div>
   
-    <ion-button [hidden]="scanActive" (click)="ingresarPropina()" color="danger" shape="round" fill="outline" expand="full" class="ion-margin">
-      Ingresar propina
-      <ion-icon slot="start" name="qr-code-outline"></ion-icon>
-    </ion-button>
-    <ion-button [hidden]="scanActive" color="danger" shape="round" expand="full" class="ion-margin" (click)="pagar()">
-      Pagar
-    </ion-button>
-  
-    
   </div>
   
 <!-- Aparece cuando el scanner esta activado-->
@@ -59,3 +50,15 @@
   </ion-col>
 </ion-row>
 </ion-content>
+
+<ion-footer [hidden]="scanActive">
+  <ion-toolbar color="dark">
+    <ion-button [hidden]="scanActive" (click)="ingresarPropina()" color="secondary" shape="round" expand="full">
+      Ingresar propina
+      <ion-icon slot="start" name="qr-code-outline"></ion-icon>
+    </ion-button>
+    <ion-button [hidden]="scanActive" color="danger" shape="round" expand="full" (click)="pagar()">
+      Pagar
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>
