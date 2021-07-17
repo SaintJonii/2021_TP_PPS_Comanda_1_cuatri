@@ -11,7 +11,7 @@ import { PushService } from 'src/app/services/push.service';
 })
 export class PedidosPendientesModalComponent implements OnInit {
   @Input() pedido: any;
-
+  titulo = "Detalle Pedido";
   public estado: string;
   public pedidoPendiente: boolean = false;
 
@@ -28,7 +28,7 @@ export class PedidosPendientesModalComponent implements OnInit {
     this.modalCtrl.dismiss();
   }
 
-  despacharPedido(){
+  servirPedido(){
     console.log(this.pedido.mesa);
     this.db.servirPedido(this.pedido.mesa);
     this.dismissModal();
@@ -43,9 +43,26 @@ export class PedidosPendientesModalComponent implements OnInit {
     
   }
 
+  finalizarPedido(){
+    this.db.liberarMesa(this.pedido.mesa);
+    this.db.actualizarEstadoDelPedido("finalizado", this.pedido.mesa);
+    this.modalCtrl.dismiss();
+    this.router.navigateByUrl('homeMozo');
+    //Agregar timeout para borrar el pedido
+    setTimeout(() => {
+      this.db.borrarPedido(this.pedido.mesa);
+    }, 4000);
+  }
+
   capitalizeFirstLetter(string) {
     var s = string.charAt(0).toUpperCase() + string.slice(1);
     return s.split('_').join(' ');
+  }
+
+  logout(){
+    localStorage.clear();
+    this.router.navigateByUrl('login');
+    this.modalCtrl.dismiss();
   }
 
 }

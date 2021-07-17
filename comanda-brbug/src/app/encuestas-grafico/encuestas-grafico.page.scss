@@ -17,11 +17,23 @@
     flex-direction: column;
     display: flex;
     align-items: center;
-    border-radius: 30px;
+    margin-right: 10px;
+    margin-left: 10px;
+    border-radius: 10px;
     border: 2px solid;
     border-color: var(--ion-color-danger);
     .title{
         color: var(--ion-color-danger);
     }
+}
+
+$greenSeaweed: rgba(2, 128, 144, 1);
+.contenedor {
+    opacity: 0.95;
+    overflow: hidden;
+    background-color: white;
+    border-radius: 10px;
+    transition: (transform 300ms, box-shadow 300ms);
+    box-shadow: 5px 10px 10px rgba($greenSeaweed, 0.2);
 }
 

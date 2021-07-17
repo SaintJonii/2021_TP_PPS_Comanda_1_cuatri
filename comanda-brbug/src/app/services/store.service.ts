@@ -118,7 +118,7 @@ export class StoreService {
   }
 
   obtenerPedidos(){
-    return this.db.collection('pedidos', ref => ref.where('estado_bebidas', '!=', 'pendiente_confirmacion')).valueChanges();
+    return this.db.collection('pedidos', ref => ref.where('estado', '!=', 'pendiente_confirmacion')).valueChanges();
   }
 
   obtenerPedido(mesa){
@@ -132,6 +132,13 @@ export class StoreService {
     });
 
     this.borrarDeLista(dni);
+  }
+
+  liberarMesa(id : string){
+    this.db.collection("mesas").doc(id).update({
+      disponible: true,
+      dniCliente: ""
+    });
   }
 
   confirmacionCliente(pedido, mesa, cliente, total) {
@@ -185,7 +192,6 @@ export class StoreService {
   }
 
   entregarPedido(mesa, esCocina){
-    debugger
     var pedido : any [] = [];
     this.obtenerPedido(mesa).subscribe(data  => {
       pedido = data;      
@@ -238,6 +244,12 @@ export class StoreService {
     });
   }
 
+  actualizarEncuestaPedido(mesa){
+    this.db.collection('pedidos').doc(mesa).update({
+      encuesta: true
+    });
+  }
+
   obtenerTokenMozo(){
     return this.db.collection('users', ref => ref.where('tipo', '==', "mozo")).valueChanges();
   }
@@ -248,6 +260,18 @@ export class StoreService {
 
   obtenerTokenCliente(dni){
     return this.db.collection('users', ref => ref.where('dni', '==', dni)).valueChanges();
+  }
+
+  obtenerTokenCocina(){
+    return this.db.collection('users', ref => ref.where('tipo', '==', "cocina")).valueChanges();
+  }
+
+  obtenerTokenBarra(){
+    return this.db.collection('users', ref => ref.where('tipo', '==', "barra")).valueChanges();
+  }
+
+  borrarPedido(mesa) {
+    this.db.collection('pedidos').doc(mesa).delete();
   }
   
 }

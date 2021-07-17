@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup ,FormControl, Validators } from '@angular/forms';
 import { ToastController, AlertController } from '@ionic/angular';
-import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
+import { BarcodeScanner, ScanOptions, SupportedFormat } from '@capacitor-community/barcode-scanner';
 import { AuthService } from 'src/app/services/auth.service';
 import { Camera, CameraResultType, CameraSource} from '@capacitor/camera';
 import { Capacitor } from '@capacitor/core';
@@ -78,7 +78,7 @@ export class AltaClientePage implements OnInit {
   scanActive : boolean = false;
   resultDNI : string [] = [];
 
-
+  scanOption : ScanOptions = {targetedFormats: [SupportedFormat.PDF_417]};
 
   constructor(public toastController: ToastController, 
     private alertController : AlertController,
@@ -86,7 +86,7 @@ export class AltaClientePage implements OnInit {
     private loadingController: LoadingController,
     private router : Router,
     private pushService : PushService,
-    private storeSvce : StoreService) { }
+    private storeSvce : StoreService,) { }
 
   ngOnInit() {
   }
@@ -178,17 +178,29 @@ export class AltaClientePage implements OnInit {
     const allowed = this.checkPermission();
     if(allowed){
       this.scanActive = true;
-      const result = await scanner.startScan();
+      const result = await scanner.startScan(this.scanOption);
       console.log(result);
       if(result.hasContent){
         this.result = result.content;
         this.scanActive = false;
         
-        this.resultDNI=this.result.split("@",6)
-        this.dniStr=this.resultDNI[1].trim(); // DNI
-        this.apellidoStr=this.resultDNI[4]; // APELLIDO
-        this.nombreStr=this.resultDNI[5]; // NOMBRE
+        this.resultDNI=this.result.split("@")
+        if(this.resultDNI[0]==""){
+          //COMPATIBLE CON DNI VIEJOS
+          this.dniStr=this.resultDNI[1].trim(); // DNI
+          this.apellidoStr=this.resultDNI[4].toLowerCase(); // APELLIDO
+          this.nombreStr=this.resultDNI[5].toLowerCase(); // NOMBRE
+        }
+        else{
+          //COMPATIBLE CON DNI NUEVOS
+          this.apellidoStr = this.resultDNI[1].toLowerCase(); // Apellido
+          this.nombreStr = this.resultDNI[2].toLowerCase(); // Nombre
+          this.dniStr = this.resultDNI[4]; // DNI
+        }
 
+      }else{
+        this.mostrarToast("DNI Inválido");
+        this.scanActive = false;
       }
     }
   

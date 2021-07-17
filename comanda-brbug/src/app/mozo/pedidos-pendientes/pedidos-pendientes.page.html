@@ -1,19 +1,18 @@
 <ion-header [translucent]="true">
   <app-nav [titulo]="titulo"></app-nav>
 </ion-header>
-<ion-content>
-  <div *ngIf="!spinner">
+<ion-content class="fondo">
+  <div *ngIf="!spinner" class="divBlanco">
     <div *ngIf="!pedidosPendientes" class="divMensaje">
-      <h4 class="mensaje">No hay pedidos pendientes</h4>
       <br>
-      <br>
-      <br>
-      <img style="width: 70vw;" src="assets/logo.jpeg">
+      <img style="width: 70vw;" src="assets/logo.png">
+      <h4 class="mensaje">No hay pedidos pendientes</h4>    
+      <br>  
     </div>
     
       <div *ngIf="pedidosPendientes" >
         <div *ngFor="let pedido of pedidos">
-          <ion-card>
+          <ion-card *ngIf="pedido.estado != 'finalizado'">
             <ion-item>
               <div>
                 <ion-grid style="text-align: center; margin-left: 50px;">

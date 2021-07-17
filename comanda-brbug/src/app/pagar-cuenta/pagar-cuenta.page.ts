@@ -4,6 +4,7 @@ import { AlertController, LoadingController, ToastController } from '@ionic/angu
 import { AuthService } from '../services/auth.service';
 import { StoreService } from '../services/store.service';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
+import { PedidoService } from '../services/pedido.service';
 
 const scanner = BarcodeScanner; 
 
@@ -13,6 +14,8 @@ const scanner = BarcodeScanner;
   styleUrls: ['./pagar-cuenta.page.scss'],
 })
 export class PagarCuentaPage implements OnInit {
+
+  urlFondo = "url('/assets/login/fondoLogin.png') 100% 100%/100% 100% no-repeat";
 
   pedidos : any = {};
   titulo : string = "Detalle de la cuenta";
@@ -46,7 +49,8 @@ export class PagarCuentaPage implements OnInit {
     private route : Router,
     private alertController : AlertController,
     private toastController: ToastController,
-    private loadingController : LoadingController ) {
+    private loadingController : LoadingController,
+    private dbPedidos : PedidoService) {
 
     this.nroMesa =localStorage.getItem("nro_mesa");
     this.db.obtenerPedidoxNroMesa(this.nroMesa).subscribe( doc => {
@@ -73,9 +77,10 @@ export class PagarCuentaPage implements OnInit {
 
   pagar(){
     if(this.validar){
+      this.dbPedidos.actualizarPropina(this.nroMesa,this.propina,this.propinaPorcentaje);
       this.db.actualizarEstadoDelPedido("confirmar_pago", this.nroMesa );
       //enviar notificacion que el cliente pago
-      this.route.navigateByUrl('sala');
+      this.route.navigateByUrl('home');
     }
     else{
       this.mostrarToast("Error: Ingrese propina");

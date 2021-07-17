@@ -4,18 +4,18 @@
 
 <ion-content class="fondo">
 
-  <div class="divBlanco">
-    
+  <div class="contenedor" *ngIf="!clienteSinAutorizar">
     <div *ngIf="!clienteSinAutorizar" class="img">
-      <img style="width: 70vw;" src="assets/logo_bodegon.png">
+      <img style="width: 300px; height: 300px;" src="assets/logo.png">
     </div>
 
 
     <div *ngIf="!clienteSinAutorizar" class="ion-margin divTitle">
       <h2 class="title">No hay clientes por aprobar</h2>
     </div>
-  
-    <div *ngIf="clienteSinAutorizar">
+  </div>
+
+  <div *ngIf="clienteSinAutorizar">
       <ion-card *ngFor="let user of users">
         <ion-item>
           <ion-avatar slot="start">
@@ -30,6 +30,5 @@
           <ion-badge (click)="rechazar(user)" color="danger"><ion-icon name="close-sharp"></ion-icon></ion-badge>
         </ion-item>
       </ion-card>
-    </div>
   </div>
 </ion-content>

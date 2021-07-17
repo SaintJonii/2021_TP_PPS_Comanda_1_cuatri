@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingController, ModalController } from '@ionic/angular';
+import { LoadingController, ModalController, ToastController } from '@ionic/angular';
 import { StoreService } from 'src/app/services/store.service';
 import { MesasModalComponent } from '../mesas-modal/mesas-modal.component';
 
@@ -9,12 +9,15 @@ import { MesasModalComponent } from '../mesas-modal/mesas-modal.component';
   styleUrls: ['./lista.page.scss'],
 })
 export class ListaPage implements OnInit {
-  titulo = "Lista de espera de clientes";
+  titulo = "Lista de espera";
   public users : any [] = [];
   public clientesEsperando : boolean = false;
   public spinner : boolean = true;
 
-  constructor(private db : StoreService, private modalCtrl: ModalController, public loadingController: LoadingController) { }
+  constructor(private db : StoreService,
+    private modalCtrl: ModalController,
+    public loadingController: LoadingController,
+    private toastController : ToastController) { }
 
   ngOnInit() {
     this.presentLoading();
@@ -49,6 +52,22 @@ export class ListaPage implements OnInit {
       loading.dismiss();
       this.spinner = false;
     }, 2000);
+  }
+
+  rechazar(user : any){
+    this.db.borrarDeLista(user.dni);
+    this.presentLoading();
+    setTimeout(() => {
+      this.mostrarToast("Cliente removido de la lista de espera");
+    }, 3000);
+  }
+
+  async mostrarToast(mensaje) {
+    const toast = await this.toastController.create({
+      message: mensaje,
+      duration: 3000
+    });
+    toast.present();
   }
 
 }

@@ -2,51 +2,53 @@
   <app-nav [titulo]="titulo"></app-nav>
 </ion-header>
 
-<ion-content fullscreen [style.--background]="scanActive ? '#ffffff00' : '#ffffff'"  >
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Sala</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [style.--background]="scanActive ? '#ffffff00' : style">
 
-  <div id="container" [hidden]="scanActive">
-    <img src="./../../assets/logo_bodegon.png">
+  <div class="divContent" style="text-align: center;" [hidden]="scanActive">
+
+    <img src="./../../assets/logo.png" [hidden]="scanActive">
     <strong>{{msjSala}}</strong>
     <p style="margin-top: 2%;">{{msjDescSala}}
     </p>
+
   </div>
 
   <!-- Aparece cuando el scanner esta activado-->
   <div class="scan-box" [hidden]="!scanActive"></div>
   <ion-row class="scanner-buttons" [hidden]="!scanActive">
     <ion-col class="ion-no-padding">
-      <ion-button color="primary" shape="round" (click)="stopScanner()">Salir</ion-button>
+      <ion-button color="danger" shape="round" (click)="stopScanner()">Salir</ion-button>
     </ion-col>
   </ion-row>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="mostrarBotones">
-    <ion-fab-button  color="danger" (click)="chat()">
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="mostrarBotones" [hidden]="scanActive">
+    <ion-fab-button color="danger" (click)="chat()">
       <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 </ion-content>
 
 <ion-footer [hidden]="scanActive">
-  <ion-toolbar>
-    <ion-button color="danger" shape="round" fill="outline" expand="full" (click)="escanear()" *ngIf="!mostrarBotones">
-      <ion-icon name="qr-code-sharp" slot="end"></ion-icon>Escanear QR
+  <ion-toolbar color="dark">
+    <ion-button color="danger" shape="round" expand="full" (click)="escanear()" *ngIf="!mostrarBotones">
+      <ion-icon name="qr-code-sharp" slot="start"></ion-icon>Escanear QR
     </ion-button>
 
-    <ion-button color="primary" shape="round" fill="outline" expand="full" (click)="irEstado()" *ngIf="mostrarBotones && !listoParaPagar">
-      <ion-icon name="qr-code-sharp" slot="end"></ion-icon>{{textoEstado}}
+    <ion-button color="primary" shape="round" expand="full" (click)="irEstado()"
+      *ngIf="mostrarBotones && !listoParaPagar" >
+      <ion-icon name="fast-food-sharp" slot="start"></ion-icon>{{textoEstado}}
     </ion-button>
 
-    <ion-button color="secondary" shape="round" fill="outline" expand="full" (click)="irEncuesta()"  *ngIf="mostrarBotones">
-      <ion-icon name="qr-code-sharp" slot="end"></ion-icon>Acceder a encuesta
+    <ion-button color="danger" shape="round" expand="full" (click)="pagarCuenta()" *ngIf="mostrarBotones && listoParaPagar && !pagado">
+      <ion-icon name="wallet-sharp" slot="start"></ion-icon>Pagar cuenta
     </ion-button>
 
-    <ion-button color="secondary" shape="round" fill="outline" expand="full" (click)="pagarCuenta()"  *ngIf="listoParaPagar">
-      <ion-icon name="qr-code-sharp" slot="end"></ion-icon>Pagar cuenta
+    <ion-button color="secondary" shape="round" expand="full" (click)="irEncuesta()" *ngIf="mostrarBotones">
+      <ion-icon name="stats-chart-sharp" slot="start"></ion-icon>Acceder a encuesta
+    </ion-button>
+
+    <ion-button color="secondary" shape="round" expand="full" (click)="irResultados()" *ngIf="!tienePedido" >
+      <ion-icon name="stats-chart-sharp" slot="start" ></ion-icon>Resultado de encuestas
     </ion-button>
 
   </ion-toolbar>

@@ -1,3 +1,5 @@
+$greenSeaweed: rgba(2, 128, 144, 1);
+
 ion-title{
     padding-left: 0px;
     color: white;
@@ -20,7 +22,7 @@ ion-title{
     align-items: center;
     width: 100%;
     .mensaje{
-        font-size: 20px;
+        font-size: 17px;
         text-transform: initial;
     }
 }
@@ -41,3 +43,20 @@ ion-title{
     --backdrop-opacity: 100%;
     color: #fff;
   }
+
+  .divBlanco {
+    opacity: 0.95;
+    overflow: hidden;
+    background-color: white;
+    //padding: 40px 30px 30px 30px;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 99%;
+    height: 90%;
+    transform: translate(-50%, -50%);
+    transition: (transform 300ms, box-shadow 300ms);
+    box-shadow: 5px 10px 10px rgba($greenSeaweed, 0.2);
+    
+}

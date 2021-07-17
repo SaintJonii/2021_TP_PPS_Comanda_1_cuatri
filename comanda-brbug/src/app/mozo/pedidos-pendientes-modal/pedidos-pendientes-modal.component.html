@@ -1,54 +1,78 @@
 <ion-header>
   <ion-toolbar color="dark">
-    <ion-title>Detalle Pedido</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="dismissModal()">Cerrar</ion-button>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="pendientesMozo" (click)="dismissModal()" color="danger"> </ion-back-button>
     </ion-buttons>
+    <ion-buttons slot="primary">
+      <ion-button (click)="logout()">
+        <ion-icon slot="icon-only" name="exit-outline" color="danger"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">{{titulo}}</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>
-  <div style="margin: 40px; font-size: 30px; text-align: center;">
-    <p>Estado Pedido: <strong>{{capitalizeFirstLetter(pedido.estado)}}</strong></p>
-  </div>
-  <div *ngFor="let producto of pedido.pedido">
-    <ion-card>
+<ion-content class="fondo">
+  <div class="divBlanco">
+    <div style="margin: 40px; font-size: 30px; text-align: center;">
+      <p>Estado Pedido: <strong>{{capitalizeFirstLetter(pedido.estado)}}</strong></p>
+    </div>
+    <div *ngFor="let producto of pedido.pedido">
+      <ion-card>
+        <ion-item>
+          <div>
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <ion-label style="width: 200px;">
+                    <span>{{producto.producto.nombre}}</span>
+                  </ion-label>
+                </ion-col>
+                <ion-col>
+                  <ion-label>
+                    <span>{{producto.unidades}}x</span>
+                  </ion-label>
+                </ion-col>
+                <ion-col>
+                  <ion-label>
+                    <span>${{producto.producto.precio}}</span>
+                  </ion-label>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+        </ion-item>
+      </ion-card>
+    </div>
+    <div style="text-align: center;">
+      <h1>Total: ${{pedido.total}}</h1>
+    </div>
+    <div *ngIf="pedidoPendiente">
       <ion-item>
-        <div>
-          <ion-grid>
-            <ion-row>
-              <ion-col>
-                <ion-label style="width: 210px;">
-                  <span>{{producto.producto.nombre}}</span>
-                </ion-label>
-              </ion-col>
-              <ion-col>
-                <ion-label>
-                  <span>{{producto.unidades}}x</span>
-                </ion-label>
-              </ion-col>
-              <ion-col>
-                <ion-label>
-                  <span>${{producto.producto.precio}}</span>
-                </ion-label>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </div>
+        <p>Estado sector cocina: <strong>{{capitalizeFirstLetter(pedido.estado_cocina)}}</strong></p>
       </ion-item>
-    </ion-card>
-  </div>
-  <div style="text-align: center;">
-    <h1>Total: ${{pedido.total}}</h1>
-  </div>
-  <div *ngIf="pedidoPendiente">
-    <ion-item>
-      <p>Estado sector cocina: <strong>{{capitalizeFirstLetter(pedido.estado_cocina)}}</strong></p>
-    </ion-item>
-    <ion-item>
-      <p>Estado sector barra: <strong>{{capitalizeFirstLetter(pedido.estado_bebidas)}}</strong></p>
-    </ion-item>
-  </div>
-  <div *ngIf="estado == 'listo_para_servir'"  style="text-align: center;display: flex;flex-direction: column;align-items: center;">
-    <ion-button expand="block" (click)="despacharPedido()" class="buttonDespacharPedido">Servir pedido</ion-button>
+      <ion-item>
+        <p>Estado sector barra: <strong>{{capitalizeFirstLetter(pedido.estado_bebidas)}}</strong></p>
+      </ion-item>
+    </div>
+    <!--<div *ngIf="estado == 'listo_para_servir'"  style="text-align: center;display: flex;flex-direction: column;align-items: center;">
+      <ion-button expand="block" (click)="servirPedido()" class="buttonServirPedido">Servir pedido</ion-button>
+    </div>
+    <div *ngIf="estado == 'confirmar_pago'"  style="text-align: center;display: flex;flex-direction: column;align-items: center;">
+      <ion-button expand="block" (click)="finalizarPedido()" class="buttonFinalizarPedido">Confirmar pago y liberar mesa</ion-button>
+    </div>-->
   </div>
 </ion-content>
+<ion-footer>
+  <ion-toolbar color="dark">
+
+    <ion-button *ngIf="estado == 'listo_para_servir'" color="danger" shape="round" fill="outline" expand="full" (click)="servirPedido()">
+      Servir Pedido
+      <ion-icon slot="start" name="bag-check-outline"></ion-icon>
+    </ion-button>
+    <ion-button *ngIf="estado == 'confirmar_pago'" color="danger" shape="round" fill="outline" expand="full" (click)="finalizarPedido()">
+      Confirmar pago y liberar mesa
+      <ion-icon slot="start" name="bag-check-outline"></ion-icon>
+    </ion-button>
+
+  </ion-toolbar>
+</ion-footer>

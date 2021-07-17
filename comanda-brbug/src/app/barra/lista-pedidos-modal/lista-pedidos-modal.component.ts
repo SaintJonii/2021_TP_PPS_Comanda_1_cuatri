@@ -10,7 +10,7 @@ import { StoreService } from 'src/app/services/store.service';
 })
 export class ListaPedidosModalComponent implements OnInit {
   @Input() pedido: any;
-
+  titulo = "Detalle Pedido";
   constructor(private modalCtrl: ModalController, private db: StoreService, private router: Router) { }
 
   ngOnInit() {
@@ -26,6 +26,12 @@ export class ListaPedidosModalComponent implements OnInit {
     this.db.prepararPedido(this.pedido.mesa, false);
     this.dismissModal();
     this.router.navigateByUrl('homeBarra');
+  }
+
+  logout(){
+    localStorage.clear();
+    this.router.navigateByUrl('login');
+    this.modalCtrl.dismiss();
   }
 
 }

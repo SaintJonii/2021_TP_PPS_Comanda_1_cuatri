@@ -7,20 +7,19 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [style.--background]="scanActive ? '#00000000' : '#fff'">
+<ion-content [style.--background]="scanActive ? '#00000000' : urlFondo">
 
-  <ion-button [hidden]="scanActive" color="danger" shape="round" fill="outline" expand="full" (click)="escanearQr()" type="button" class="ion-margin" ><p>Escanear DNI</p><ion-icon slot="start" name="qr-code-outline"></ion-icon></ion-button>
+  <div [hidden]="scanActive" class="contenedor ion-margin">
+    <ion-button [hidden]="scanActive" color="danger" shape="round" fill="outline" expand="full" (click)="escanearQr()" type="button" class="ion-margin" >Escanear DNI<ion-icon slot="start" name="qr-code-outline"></ion-icon></ion-button>
+    <div class="divImage" [hidden]="scanActive">
+      <ion-avatar class="avatarImage">
+        <img [src]='foto' alt="">
+      </ion-avatar>
+    </div>
 
-  <div class="divImage" [hidden]="scanActive">
-    <ion-avatar class="avatarImage">
-      <img [src]='foto' alt="">
-    </ion-avatar>
-  </div>
+    <ion-button color="danger" shape="round" fill="outline" expand="full" (click)="tomarFoto()" type="button" class="ion-margin" ><p>Tomar foto</p><ion-icon slot="start" name="camera-outline"></ion-icon></ion-button>
 
-  <form [hidden]="scanActive" id="form" [formGroup]="altaForm" (ngSubmit)="alta(altaForm)">
-
-    
-    <ion-button color="danger" shape="round" fill="outline" expand="full" (click)="tomarFoto()" type="button" ><p>Tomar foto</p><ion-icon slot="start" name="camera-outline"></ion-icon></ion-button>
+    <form [hidden]="scanActive" id="form" [formGroup]="altaForm" (ngSubmit)="alta(altaForm)">
 
     <ion-item class="ion-margin-bottom ion-margin-top">
       <ion-icon name="person-outline" color="danger" slot="start"></ion-icon>
@@ -82,8 +81,12 @@
       </ng-container>
     </div><br>
 
-    <ion-button color="danger" shape="round" expand="full" style="margin-bottom: 20px;" type="submit" >Registrarse</ion-button>
-  </form>
+    <ion-button color="danger" shape="round" expand="full" style="margin-bottom: 20px;" type="submit" >
+      <ion-icon slot="start" name="reader-outline"></ion-icon>
+      Registrarse</ion-button>
+    </form>
+
+  </div>
 
 
   <!-- Aparece cuando el scanner esta activado-->

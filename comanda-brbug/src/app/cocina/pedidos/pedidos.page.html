@@ -1,14 +1,14 @@
 <ion-header [translucent]="true">
   <app-nav [titulo]="titulo"></app-nav>
 </ion-header>
-<ion-content>
+<ion-content class="fondo">
+  <div class="divBlanco">
   <div *ngIf="!spinner">
     <div *ngIf="!pedidosPendientes" class="divMensaje">
-      <h4 class="mensaje">No hay pedidos para cocinar</h4>
       <br>
-      <br>
-      <br>
-      <img style="width: 70vw;" src="assets/logo.jpeg">
+      <img style="width: 70vw;" src="assets/logo.png">
+      <h4 class="mensaje">No hay pedidos para preparar</h4>    
+      <br> 
     </div>
   
     <div *ngIf="pedidosPendientes" >
@@ -33,4 +33,5 @@
       </div>
     </div>
   </div>
+</div>
 </ion-content>

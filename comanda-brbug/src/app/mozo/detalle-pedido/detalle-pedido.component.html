@@ -1,20 +1,34 @@
 <ion-header>
   <ion-toolbar color="dark">
-    <ion-title>Detalle Pedido</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="dismissModal()">Cerrar</ion-button>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="pedidosMozo" (click)="dismissModal()" color="danger"> </ion-back-button>
     </ion-buttons>
+    <ion-buttons slot="primary">
+      <ion-button (click)="logout()">
+        <ion-icon slot="icon-only" name="exit-outline" color="danger"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">{{titulo}}</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>
-    <div *ngFor="let producto of pedido.pedido">
+
+<ion-content class="fondo" style="text-align: center;">
+  <div class="divBlanco" >
+    <ion-row *ngFor="let p of pedido.pedido" style="margin: 10px; margin-top: 20px;">
+      <ion-col size="3"><ion-avatar><img [src]="p.producto.imagen[0].referencia"></ion-avatar></ion-col>
+      <ion-col size="4" style="padding-top: 20px">{{ p.producto.nombre }}</ion-col>
+      <ion-col size="1" style="padding-top: 20px">x{{ p.unidades }}</ion-col>
+      <ion-col size="4" style="padding-top: 20px">${{ p.producto.precio }} c/u</ion-col>
+      <div class='line'></div>
+    </ion-row>
+    <!--<div *ngFor="let producto of pedido.pedido">
       <ion-card>
         <ion-item>
           <div>
             <ion-grid>
               <ion-row>
                 <ion-col>
-                  <ion-label style="width: 210px;">
+                  <ion-label>
                     <span>{{producto.producto.nombre}}</span>
                   </ion-label>
                 </ion-col>
@@ -33,11 +47,25 @@
           </div>
         </ion-item>
       </ion-card>
-    </div>
+    </div>-->
     <div style="text-align: center;display: flex;flex-direction: column;align-items: center;">
       <h1>Total: ${{pedido.total}}</h1>
-      <ion-button expand="block" (click)="despacharPedido()" class="buttonDespacharPedido">Despachar pedido</ion-button>
+      <!--<ion-button expand="block" (click)="despacharPedido()" class="buttonDespacharPedido">Despachar pedido</ion-button>
       <ion-button expand="block" (click)="rechazarPedido()" class="buttonDespacharPedido">Rechazar pedido</ion-button>
+      <ion-button class="ion-margin" color="danger" shape="round" fill="outline" expand="block" (click)="despacharPedido()" >Despachar Pedido</ion-button>
+      <ion-button class="ion-margin" color="danger" shape="round"  expand="block" (click)="rechazarPedido()" type="button">Rechazar Pedido</ion-button>-->
     </div>
-    
+  </div>
 </ion-content>
+<ion-footer >
+  <ion-toolbar color="dark">
+    <ion-button color="primary" shape="round" fill="outline" expand="full" (click)="despacharPedido()">
+      Despachar Pedido
+    </ion-button>
+
+    <ion-button color="danger" shape="round" fill="outline" expand="full" (click)="rechazarPedido()">
+      Rechazar Pedido
+    </ion-button>
+
+  </ion-toolbar>
+</ion-footer>
